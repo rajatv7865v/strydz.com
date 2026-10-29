@@ -44,7 +44,7 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({ job, onClose }) 
                 </span>
                 <span className="text-xs text-slate-500">• Posted {job.postedAgo}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-[1.2]">{job.title}</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-[1.2]">{job.title}</h3>
               <p className="text-sm font-semibold text-indigo-600 mt-1">{job.location} · {job.type}</p>
             </div>
 

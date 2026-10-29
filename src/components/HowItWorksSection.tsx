@@ -29,7 +29,7 @@ export const HowItWorksSection: React.FC = () => {
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
             <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Execution Process</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-[1.18]">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
             Hiring in three{' '}
             <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
               simple steps

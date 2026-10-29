@@ -30,7 +30,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenHireModal, onOpenJobPortal }) 
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-950 leading-[1.12]">
+            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-bold tracking-tight text-slate-950 leading-[1.15]">
               Hire smarter.<br />
               Grow faster with{' '}
               <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
@@ -150,7 +150,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenHireModal, onOpenJobPortal }) 
 
               {/* Floating Element 3: 48h Metric Card with Reverse Float */}
               <div className="relative z-10 animate-float-reverse bg-slate-950/90 backdrop-blur-md border border-white/15 rounded-2xl p-4 text-white flex items-center gap-4 max-w-[250px] shadow-2xl transition-all hover:scale-[1.02]">
-                <div className="text-3xl font-black text-white tracking-tight flex items-center gap-1">
+                <div className="text-3xl font-bold text-white tracking-tight flex items-center gap-1">
                   48h
                 </div>
                 <div className="text-xs text-slate-300 font-medium leading-tight">

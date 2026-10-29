@@ -69,7 +69,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
           <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Our Mission</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.14]">
+        <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-slate-900 tracking-tight leading-[1.15]">
           We connect ambition with{' '}
           <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
             opportunity
@@ -117,7 +117,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-white/20 backdrop-blur-md text-white border border-white/20 uppercase tracking-widest">
                   Founding Era
                 </span>
-                <h2 className="text-4xl sm:text-5xl font-black tracking-tight text-white drop-shadow-sm">
+                <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white drop-shadow-sm">
                   Since 2018
                 </h2>
                 <p className="text-xs sm:text-sm text-indigo-100 font-medium">
@@ -133,7 +133,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
               <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Our Story</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
               Built by recruiters,{' '}
               <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
                 powered by data
@@ -159,7 +159,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
               <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Guiding Principles</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-[1.18]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
               What we{' '}
               <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
                 stand for
@@ -200,7 +200,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
             {metrics.map((m) => (
               <div key={m.label} className="space-y-1">
-                <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
                   {m.value}
                 </div>
                 <div className="text-xs sm:text-sm font-medium text-indigo-100">
@@ -221,7 +221,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
               <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Executive Leadership</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-[1.18]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
               Meet the team{' '}
               <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
                 behind Strydz

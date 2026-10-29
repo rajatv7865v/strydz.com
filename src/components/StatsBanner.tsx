@@ -14,7 +14,7 @@ export const StatsBanner: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-center">
           {stats.map((stat) => (
             <div key={stat.label} className="space-y-1">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
                 {stat.value}
               </div>
               <div className="text-xs sm:text-sm font-medium text-indigo-100">

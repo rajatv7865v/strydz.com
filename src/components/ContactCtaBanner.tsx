@@ -21,7 +21,7 @@ export const ContactCtaBanner: React.FC<ContactCtaBannerProps> = ({
             <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shadow-[0_0_6px_rgba(129,140,248,0.8)]"></span>
             <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-200">Start Hiring Now</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-white leading-[1.2]">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-[1.2]">
             Ready to build your{' '}
             <span className="bg-gradient-to-r from-indigo-300 via-white to-indigo-200 bg-clip-text text-transparent">
               dream team?

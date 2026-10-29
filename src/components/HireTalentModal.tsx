@@ -57,7 +57,7 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
                 <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
                 <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-700">48-Hour Fast Shortlist Delivery</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight leading-[1.2]">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight leading-[1.2]">
                 Hire Talent with{' '}
                 <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
                   Strydz

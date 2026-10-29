@@ -96,7 +96,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
           <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
           <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Talent Acquisition Partner</span>
         </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.14]">
+        <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-slate-900 tracking-tight leading-[1.15]">
           Hire top talent without the{' '}
           <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
             hiring headache
@@ -132,7 +132,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
               <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Hiring Solutions</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-[1.18]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
               Choose the model that{' '}
               <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
                 fits your scale
@@ -186,7 +186,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
               <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">The Strydz Edge</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-[1.18]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
               Why ambitious employers{' '}
               <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
                 choose us
@@ -228,7 +228,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
               <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Engagement Models</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-[1.18]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
               Simple, transparent{' '}
               <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
                 pricing
@@ -256,7 +256,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
                           Popular
                         </span>
                       </div>
-                      <h3 className="text-4xl font-black mt-2 tracking-tight text-white">
+                      <h3 className="text-3xl sm:text-4xl font-bold mt-2 tracking-tight text-white">
                         {tier.price}
                       </h3>
                       <p className="text-xs text-indigo-100 mt-1 mb-6 font-medium">
@@ -294,7 +294,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
                     <p className="text-xs uppercase tracking-wider font-semibold text-slate-400">
                       {tier.label}
                     </p>
-                    <h3 className="text-4xl font-black mt-2 tracking-tight text-slate-900">
+                    <h3 className="text-3xl sm:text-4xl font-bold mt-2 tracking-tight text-slate-900">
                       {tier.price}
                     </h3>
                     <p className="text-xs text-slate-500 mt-1 mb-6 font-medium">
