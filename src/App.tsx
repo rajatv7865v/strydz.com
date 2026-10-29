@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar } from './components/Navbar';
+import { Navbar, NavView } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { TrustTicker } from './components/TrustTicker';
-import { WhySection } from './components/WhySection';
-import { WhatYouGetSection } from './components/WhatYouGetSection';
+import { SolutionsSection } from './components/SolutionsSection';
 import { HowItWorksSection } from './components/HowItWorksSection';
+import { StatsBanner } from './components/StatsBanner';
 import { SpecialisedHiringSection } from './components/SpecialisedHiringSection';
-import { GccEnterpriseSection } from './components/GccEnterpriseSection';
-import { RoiCalculator } from './components/RoiCalculator';
 import { FeaturedJobs } from './components/FeaturedJobs';
+import { TestimonialsSection } from './components/TestimonialsSection';
 import { ContactCtaBanner } from './components/ContactCtaBanner';
+import { ForEmployersPage } from './components/ForEmployersPage';
+import { ForCandidatesPage } from './components/ForCandidatesPage';
+import { AboutPage } from './components/AboutPage';
 import { ContactPage } from './components/ContactPage';
 import { Footer } from './components/Footer';
 import { HireTalentModal } from './components/HireTalentModal';
@@ -17,7 +19,7 @@ import { JobDetailModal } from './components/JobDetailModal';
 import { JobListing } from './types';
 
 export const App: React.FC = () => {
-  const [currentView, setCurrentView] = useState<'home' | 'contact'>('home');
+  const [currentView, setCurrentView] = useState<NavView>('home');
   const [hireModalOpen, setHireModalOpen] = useState<boolean>(false);
   const [hireModalCategory, setHireModalCategory] = useState<string>('');
   const [selectedJob, setSelectedJob] = useState<JobListing | null>(null);
@@ -25,10 +27,20 @@ export const App: React.FC = () => {
   // Sync with browser hash on load and hash change
   useEffect(() => {
     const handleHash = () => {
-      if (window.location.hash === '#contact-us') {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#employers' || hash === '#for-employers') {
+        setCurrentView('employers');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#candidates' || hash === '#for-candidates') {
+        setCurrentView('candidates');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#about' || hash === '#about-us') {
+        setCurrentView('about');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#contact' || hash === '#contact-us') {
         setCurrentView('contact');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (window.location.hash === '' || window.location.hash === '#') {
+      } else if (hash === '' || hash === '#') {
         setCurrentView('home');
       }
     };
@@ -38,10 +50,19 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('hashchange', handleHash);
   }, []);
 
-  const handleNavigate = (view: 'home' | 'contact', hash?: string) => {
+  const handleNavigate = (view: NavView, hash?: string) => {
     setCurrentView(view);
-    if (view === 'contact') {
-      window.location.hash = '#contact-us';
+    if (view === 'employers') {
+      window.location.hash = '#employers';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'candidates') {
+      window.location.hash = '#candidates';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'about') {
+      window.location.hash = '#about';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'contact') {
+      window.location.hash = '#contact';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       if (hash) {
@@ -58,25 +79,18 @@ export const App: React.FC = () => {
   };
 
   const handleOpenHireModal = (category?: string) => {
-    setHireModalCategory(category || 'Tech & HFT Recruitment');
+    setHireModalCategory(category || 'Permanent Hiring');
     setHireModalOpen(true);
   };
 
   const handleOpenJobPortal = () => {
-    if (currentView !== 'home') {
-      handleNavigate('home', '#jobs');
-    } else {
-      const jobSection = document.getElementById('jobs');
-      if (jobSection) {
-        jobSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    handleNavigate('candidates');
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#fdfbf7] text-[#101a33]">
+    <div className="min-h-screen flex flex-col font-sans bg-[#faf7f2] text-slate-900">
       
-      {/* Sticky Top Navbar */}
+      {/* 1. Header / Navbar */}
       <Navbar
         onOpenHireModal={handleOpenHireModal}
         onOpenJobPortal={handleOpenJobPortal}
@@ -86,43 +100,69 @@ export const App: React.FC = () => {
 
       {/* Main View Router */}
       <main className="flex-grow">
-        {currentView === 'home' ? (
+        {currentView === 'home' && (
           <>
-            {/* 1. Hero Section (HuntingCube Luxury Aesthetic) */}
+            {/* Hero Section */}
             <Hero
               onOpenHireModal={handleOpenHireModal}
               onOpenJobPortal={handleOpenJobPortal}
             />
 
-            {/* 2. Tier-1 Client Logos Trust Ticker */}
+            {/* Trusted By Client Logos */}
             <TrustTicker />
 
-            {/* 3. Why Strydz Section (Talent Network Graphic SVG + Checklist) */}
-            <WhySection />
+            {/* What we do - End-to-end hiring solutions */}
+            <SolutionsSection onOpenHireModal={handleOpenHireModal} />
 
-            {/* 4. What You Get (6-Card Grid with Gold Outline Icons) */}
-            <WhatYouGetSection />
-
-            {/* 5. How It Works (4 Steps: 01 to 04 + Quote Box) */}
+            {/* Process - Hiring in three simple steps */}
             <HowItWorksSection />
 
-            {/* 6. Specialised Hiring (Tags Cloud for Tech, Quant & Trading) */}
+            {/* Key Metrics Banner (10K+, 500+, 48 hrs, 92%) */}
+            <StatsBanner />
+
+            {/* Industries - Specialised recruiters for every sector */}
             <SpecialisedHiringSection onOpenHireModal={handleOpenHireModal} />
 
-            {/* 7. GCC & Global Capability Hubs (CareerNet India Corridors) */}
-            <GccEnterpriseSection onOpenHireModal={handleOpenHireModal} />
-
-            {/* 8. Interactive Hiring ROI Simulator */}
-            <RoiCalculator onOpenHireModal={handleOpenHireModal} />
-
-            {/* 9. Curated Active Openings */}
+            {/* For candidates - Featured opportunities */}
             <FeaturedJobs onSelectJob={(job) => setSelectedJob(job)} />
 
-            {/* 10. Night Navy Contact CTA Banner */}
-            <ContactCtaBanner onOpenHireModal={() => handleNavigate('contact')} />
+            {/* Testimonials - Loved by hiring teams and candidates */}
+            <TestimonialsSection />
+
+            {/* Ready to build your dream team? CTA Banner */}
+            <ContactCtaBanner 
+              onOpenHireModal={handleOpenHireModal} 
+              onUploadResume={() => handleOpenHireModal('Resume Upload / Candidate')}
+            />
           </>
-        ) : (
-          /* Dedicated Ultra-Premium Contact Us Page */
+        )}
+
+        {/* For Employers Page */}
+        {currentView === 'employers' && (
+          <ForEmployersPage
+            onOpenHireModal={handleOpenHireModal}
+            onOpenBookDemo={() => handleOpenHireModal('Book a Demo')}
+          />
+        )}
+
+        {/* For Candidates Page */}
+        {currentView === 'candidates' && (
+          <ForCandidatesPage
+            onSelectJob={(job) => setSelectedJob(job)}
+            onUploadResume={() => handleOpenHireModal('Candidate Resume Upload')}
+          />
+        )}
+
+        {/* About Page */}
+        {currentView === 'about' && (
+          <AboutPage
+            onOpenHireModal={handleOpenHireModal}
+            onNavigateToContact={() => handleNavigate('contact')}
+          />
+        )}
+
+        {/* Contact Page */}
+        {currentView === 'contact' && (
           <ContactPage
             onBackToHome={() => handleNavigate('home')}
             onOpenHireModal={handleOpenHireModal}
@@ -136,7 +176,7 @@ export const App: React.FC = () => {
         onNavigate={handleNavigate}
       />
 
-      {/* Post a Job Free / Hire Talent Modal */}
+      {/* Post a Job / Hire Talent Modal */}
       <HireTalentModal
         isOpen={hireModalOpen}
         onClose={() => setHireModalOpen(false)}

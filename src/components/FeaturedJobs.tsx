@@ -1,168 +1,171 @@
 import React, { useState } from 'react';
-import { featuredJobs } from '../data/jobs';
+import { Search, MapPin, ArrowRight } from 'lucide-react';
 import { JobListing } from '../types';
-import { 
-  Briefcase, 
-  MapPin, 
-  Clock, 
-  ChevronRight, 
-  Search,
-  Building
-} from 'lucide-react';
 
 interface FeaturedJobsProps {
   onSelectJob: (job: JobListing) => void;
-  isDark?: boolean;
 }
 
 export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({ onSelectJob }) => {
-  const [selectedDomain, setSelectedDomain] = useState<string>('All');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [locationTerm, setLocationTerm] = useState('');
 
-  const domains = ['All', 'Low-Latency & Quant', 'AI & Data', 'Leadership / CXO', 'Core Engineering', 'GCC Core'];
+  const initialJobs: JobListing[] = [
+    {
+      id: 'job-nexora-designer',
+      title: 'Senior Product Designer',
+      companyCategory: 'Nexora',
+      domain: 'Core Engineering',
+      location: 'Bengaluru',
+      type: 'Full-time',
+      experience: '4 - 7 Years',
+      salaryRange: '₹24-32 LPA',
+      skills: ['Figma', 'Design Systems', 'User Research', 'Product Strategy'],
+      description: 'Lead end-to-end UX architecture and design system evolution across mobile and web client platforms.',
+      postedAgo: '1 day ago',
+      featured: true,
+    },
+    {
+      id: 'job-finlytics-node',
+      title: 'Backend Engineer (Node.js)',
+      companyCategory: 'Finlytics',
+      domain: 'Core Engineering',
+      location: 'Remote',
+      type: 'Full-time',
+      experience: '3 - 6 Years',
+      salaryRange: '₹18-28 LPA',
+      skills: ['Node.js', 'TypeScript', 'PostgreSQL', 'Microservices', 'Redis'],
+      description: 'Architect low-latency financial analytics APIs and secure distributed microservices processing real-time market data.',
+      postedAgo: '2 days ago',
+      featured: true,
+    },
+    {
+      id: 'job-bluewave-sales',
+      title: 'Regional Sales Manager',
+      companyCategory: 'Bluewave',
+      domain: 'Core Engineering',
+      location: 'Lucknow',
+      type: 'Contract', // will display as On-site
+      experience: '5 - 8 Years',
+      salaryRange: '₹12-18 LPA',
+      skills: ['B2B Sales', 'Enterprise Accounts', 'Channel Growth', 'Territory Strategy'],
+      description: 'Drive high-velocity enterprise talent and software solutions sales across Northern India region.',
+      postedAgo: '3 days ago',
+      featured: true,
+    },
+  ];
 
-  const filteredJobs = featuredJobs.filter(job => {
-    const matchesDomain = selectedDomain === 'All' || job.domain === selectedDomain;
-    const matchesSearch = job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          job.skills.some(s => s.toLowerCase().includes(searchQuery.toLowerCase())) ||
-                          job.location.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesDomain && matchesSearch;
+  const filteredJobs = initialJobs.filter((job) => {
+    const matchKeyword = !searchTerm.trim() || 
+      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.companyCategory.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.skills.some(s => s.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    const matchLocation = !locationTerm.trim() ||
+      job.location.toLowerCase().includes(locationTerm.toLowerCase());
+
+    return matchKeyword && matchLocation;
   });
 
   return (
-    <section id="jobs" className="py-24 border-t border-[rgba(168,119,42,0.18)] bg-[#fdfbf7]">
+    <section id="jobs" className="py-20 md:py-24 bg-[#f4efe6]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium border border-[rgba(168,119,42,0.25)] bg-[rgba(168,119,42,0.06)] text-[#a8772a]">
-              <Briefcase className="w-3.5 h-3.5 text-[#a8772a]" />
-              <span>Curated High-Impact Openings</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#101a33]">
-              Elite Engineering & Leadership <span className="g">Roles</span>
-            </h2>
-            <p className="text-[#5f6679] text-sm sm:text-base max-w-xl font-normal">
-              Verified high-compensation roles at Tier-1 quant trading desks, GenAI unicorns, and multinational GCC technology centers.
-            </p>
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
+            <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Open Mandates</span>
           </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-[1.18]">
+            Featured{' '}
+            <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
+              opportunities
+            </span>
+          </h2>
+          <p className="text-slate-600 text-base sm:text-lg mt-3.5 leading-relaxed font-normal">
+            Directly sourced openings with verified CTC budgets and fast-track interviews.
+          </p>
+        </div>
 
-          {/* Search Input */}
-          <div className="relative w-full md:w-80">
-            <Search className="w-4 h-4 text-[#a8772a] absolute left-4 top-1/2 -translate-y-1/2" />
+        {/* Dual Search Input Bar */}
+        <div className="bg-white border border-[#e8e2d5] rounded-2xl p-2 sm:p-2.5 shadow-sm max-w-3xl mx-auto mb-12 flex flex-col md:flex-row items-center gap-2">
+          {/* Keyword Search */}
+          <div className="flex items-center gap-2.5 px-3 py-2 flex-grow w-full">
+            <Search className="w-4 h-4 text-slate-400 flex-none" />
             <input
               type="text"
-              placeholder="Search C++, PyTorch, GCC, City..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 rounded-full text-xs sm:text-sm border border-[rgba(168,119,42,0.25)] bg-white text-[#101a33] placeholder-[#5f6679]/60 focus:outline-none focus:border-[#a8772a] focus:ring-1 focus:ring-[#a8772a] shadow-xs"
+              placeholder="Job title, skills or company"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full text-sm text-slate-900 placeholder-slate-400 bg-transparent focus:outline-none"
             />
           </div>
+
+          {/* Divider */}
+          <div className="hidden md:block w-px h-7 bg-slate-200 flex-none" />
+
+          {/* Location Search */}
+          <div className="flex items-center gap-2.5 px-3 py-2 md:w-60 w-full">
+            <MapPin className="w-4 h-4 text-slate-400 flex-none" />
+            <input
+              type="text"
+              placeholder="Lucknow, India"
+              value={locationTerm}
+              onChange={(e) => setLocationTerm(e.target.value)}
+              className="w-full text-sm text-slate-900 placeholder-slate-400 bg-transparent focus:outline-none"
+            />
+          </div>
+
+          {/* Search Button */}
+          <button
+            onClick={() => {}}
+            className="btn-shimmer w-full md:w-auto px-6 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm whitespace-nowrap hover:-translate-y-0.5"
+          >
+            Search Jobs
+          </button>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap gap-2.5 mb-10 overflow-x-auto pb-2">
-          {domains.map((dom) => (
-            <button
-              key={dom}
-              onClick={() => setSelectedDomain(dom)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold border transition-all ${
-                selectedDomain === dom
-                  ? 'bg-gradient-to-r from-[#9c6a1f] via-[#d2a24c] to-[#b8862e] text-white border-transparent shadow-[0_4px_12px_rgba(168,119,42,0.3)]'
-                  : 'bg-white text-[#101a33] border-[rgba(168,119,42,0.2)] hover:border-[#a8772a] hover:bg-[#f5f0e6]'
-              }`}
-            >
-              {dom}
-            </button>
-          ))}
-        </div>
+        {/* 3 Job Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {filteredJobs.map((job) => {
+            const displayType = job.location === 'Lucknow' ? 'On-site' : job.type;
 
-        {/* Jobs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredJobs.map((job) => (
-            <div
-              key={job.id}
-              onClick={() => onSelectJob(job)}
-              className="bg-white rounded-3xl p-6 sm:p-8 border border-[rgba(168,119,42,0.18)] shadow-[0_4px_16px_rgba(16,26,51,0.04)] hover:border-[#a8772a] hover:shadow-[0_12px_32px_rgba(168,119,42,0.15)] hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative"
-            >
-              {/* Top Row: Category and Match Score */}
-              <div className="flex items-start justify-between gap-4 mb-4">
+            return (
+              <div
+                key={job.id}
+                onClick={() => onSelectJob(job)}
+                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-7 shadow-xs flex flex-col justify-between cursor-pointer group"
+              >
                 <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-mono font-bold text-[#a8772a] uppercase tracking-wider block">
-                      {job.domain}
-                    </span>
-                    <span className="text-[10px] font-mono font-bold bg-[rgba(168,119,42,0.08)] text-[#a8772a] px-2.5 py-0.5 rounded-full border border-[rgba(168,119,42,0.2)] flex items-center gap-1">
-                      <Clock className="w-2.5 h-2.5 text-[#a8772a]" /> 8h Turnaround
-                    </span>
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-bold tracking-tight text-[#101a33] group-hover:text-[#a8772a] transition-colors mt-1.5">
+                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
                     {job.title}
                   </h3>
-                  <div className="flex items-center gap-1.5 text-xs text-[#5f6679] mt-1">
-                    <Building className="w-3.5 h-3.5 text-[#a8772a]" />
-                    <span>{job.companyCategory}</span>
+                  <p className="text-sm text-slate-500 mt-1">
+                    {job.companyCategory} · {job.location}
+                  </p>
+
+                  {/* Pills Row */}
+                  <div className="flex items-center gap-2 mt-4">
+                    <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
+                      {job.salaryRange}
+                    </span>
+                    <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-indigo-50 text-indigo-700">
+                      {displayType}
+                    </span>
                   </div>
                 </div>
 
-                {job.matchScore && (
-                  <div className="flex-shrink-0 text-center px-3.5 py-2 rounded-2xl border border-[rgba(168,119,42,0.25)] bg-[rgba(168,119,42,0.06)]">
-                    <div className="text-sm font-bold font-mono g">
-                      {job.matchScore}%
-                    </div>
-                    <div className="text-[8px] uppercase tracking-wider text-[#5f6679] font-bold">
-                      Match Fit
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Description Preview */}
-              <p className="text-xs text-[#5f6679] line-clamp-2 mb-5 leading-relaxed font-normal">
-                {job.description}
-              </p>
-
-              {/* Skills badges */}
-              <div className="flex flex-wrap gap-1.5 mb-6">
-                {job.skills.map((skill, sIdx) => (
-                  <span 
-                    key={sIdx}
-                    className="text-[11px] font-mono px-2.5 py-1 rounded-md border border-[rgba(168,119,42,0.15)] bg-[#fdfbf7] text-[#101a33] font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-
-              {/* Footer Meta Row */}
-              <div className="pt-4 border-t border-[rgba(168,119,42,0.12)] flex items-center justify-between text-xs text-[#5f6679]">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="flex items-center gap-1 font-medium text-[#101a33]">
-                    <MapPin className="w-3.5 h-3.5 text-[#a8772a]" />
-                    {job.location}
-                  </span>
-                  <span className="font-mono text-[#14a58c] font-bold bg-[rgba(20,165,140,0.1)] px-2.5 py-0.5 rounded-full border border-[rgba(20,165,140,0.25)] text-xs">
-                    {job.salaryRange}
+                <div className="pt-6">
+                  <span className="text-xs sm:text-sm font-semibold text-indigo-600 group-hover:text-indigo-700 inline-flex items-center gap-1">
+                    <span>Apply now</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </span>
                 </div>
-
-                <div className="flex items-center gap-1 text-[#a8772a] font-bold group-hover:translate-x-1 transition-transform">
-                  <span>View Details</span>
-                  <ChevronRight className="w-4 h-4" />
-                </div>
               </div>
-
-            </div>
-          ))}
+            );
+          })}
         </div>
-
-        {filteredJobs.length === 0 && (
-          <div className="text-center py-16 text-[#5f6679] space-y-2">
-            <p className="text-lg font-bold text-[#101a33]">No roles found matching "{searchQuery}"</p>
-            <p className="text-xs">Try selecting a different domain or clearing your search filter.</p>
-          </div>
-        )}
 
       </div>
     </section>

@@ -3,77 +3,61 @@ import React from 'react';
 export const HowItWorksSection: React.FC = () => {
   const steps = [
     {
-      step: '01',
-      title: 'Post your job',
-      desc: 'Share your requirements in minutes. It is completely free.'
+      step: '1',
+      title: 'Share your needs',
+      desc: "Tell us the role, skills and culture you're hiring for in a 15-minute call.",
     },
     {
-      step: '02',
-      title: 'StrydzAI matches',
-      desc: 'The engine scans the pool and ranks best-fit talent in 8h.'
+      step: '2',
+      title: 'Get a curated shortlist',
+      desc: 'Our recruiters and AI deliver vetted, interview-ready profiles within 48 hours.',
     },
     {
-      step: '03',
-      title: 'Expert screening',
-      desc: 'Our recruiters verify skills, code signal and career intent.'
+      step: '3',
+      title: 'Interview & onboard',
+      desc: 'We manage scheduling, feedback, offers and joining until day one.',
     },
-    {
-      step: '04',
-      title: 'Interview & hire',
-      desc: 'Meet a curated shortlist and close offers in days.'
-    }
   ];
 
   return (
-    <section id="how" className="py-24 bg-[#fdfbf7] relative">
-      <div className="max-w-[1180px] mx-auto px-6">
+    <section id="process" className="py-20 md:py-24 bg-[#f4efe6]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-left mb-14">
-          <div className="eyebrow-text">How it works</div>
-          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-semibold tracking-[-1px] leading-[1.2] text-[#101a33]">
-            From job post to offer in <span className="g">four steps</span>
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
+            <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Execution Process</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight text-slate-900 leading-[1.18]">
+            Hiring in three{' '}
+            <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
+              simple steps
+            </span>
           </h2>
+          <p className="text-slate-600 text-base sm:text-lg mt-3.5 leading-relaxed font-normal">
+            Fast-track your talent pipeline with verified checkpoints and guaranteed 48-hour shortlists.
+          </p>
         </div>
 
-        {/* 4 Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          
-          {steps.map((s, idx) => (
-            <div 
-              key={idx}
-              className="step-item group relative cursor-default"
+        {/* 3 Step Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {steps.map((item) => (
+            <div
+              key={item.step}
+              className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-8 shadow-xs flex flex-col justify-between"
             >
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[40px] font-bold block g leading-none group-hover:scale-105 transition-transform">
-                  {s.step}
-                </span>
-                <span className="w-2 h-2 rounded-full bg-[rgba(168,119,42,0.3)] group-hover:bg-[#a8772a] group-hover:scale-125 transition-all"></span>
+              <div className="w-9 h-9 rounded-xl bg-indigo-600 text-white font-bold text-sm flex items-center justify-center shadow-xs">
+                {item.step}
               </div>
-              <h3 className="text-base font-bold text-[#101a33] mb-1.5 group-hover:text-[#a8772a] transition-colors">
-                {s.title}
+              <h3 className="text-lg font-bold text-slate-900 mt-5">
+                {item.title}
               </h3>
-              <p className="text-sm text-[#5f6679] leading-relaxed">
-                {s.desc}
+              <p className="text-sm text-slate-500 leading-relaxed mt-2 font-normal">
+                {item.desc}
               </p>
             </div>
           ))}
-
-        </div>
-
-        {/* Testimonial Quote Box with Hover Glow */}
-        <div className="quote-box mt-14 group">
-          <span className="w-[72px] h-[72px] rounded-full inline-grid place-items-end justify-center overflow-hidden bg-gradient-to-br from-[#c8964a] to-[#6b4417] flex-none group-hover:scale-105 transition-transform shadow-md">
-            <svg className="w-full h-full"><use href="#avatar-user" /></svg>
-          </span>
-          <div>
-            <p className="text-[19px] font-light leading-relaxed text-[#101a33]">
-              "We filled a niche low-latency role in under a week. The shortlist was precise, with no noise."
-            </p>
-            <small className="block mt-3 text-[#a8772a] font-medium text-sm">
-              Head of Engineering, Tier-1 Algorithmic Trading Firm
-            </small>
-          </div>
         </div>
 
       </div>
