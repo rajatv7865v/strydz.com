@@ -1,5 +1,14 @@
 import React from 'react';
-import { ArrowRight, Sparkles, Landmark, Factory, Stethoscope, ShoppingBag, Cpu, Users2, Shield, CheckCircle2 } from 'lucide-react';
+import { 
+  Building2, 
+  Cpu, 
+  Users2, 
+  Stethoscope, 
+  ShoppingBag, 
+  Factory, 
+  ArrowRight,
+  Sparkles 
+} from 'lucide-react';
 
 interface ForEmployersPageProps {
   onOpenHireModal: (category?: string) => void;
@@ -7,22 +16,22 @@ interface ForEmployersPageProps {
   onNavigateToContact?: () => void;
 }
 
-export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
+export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({ 
   onOpenHireModal,
-  onNavigateToContact,
+  onNavigateToContact
 }) => {
   const industries = [
     {
-      id: 'banking',
+      id: 'bfsi',
       title: 'Banking & Financial Services',
-      desc: 'Our Global Financial Services Practice is designed to be flexible and to serve the needs of an ever-changing market. It adapts seamlessly to shifting regulatory landscapes, digital transformation mandates, and evolving customer expectations.',
+      desc: 'The financial landscape demands leaders who can manage complex regulatory frameworks, drive digital transformation, and deliver sustainable commercial growth.',
       image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80',
-      icon: Landmark,
+      icon: Building2,
     },
     {
       id: 'industrial',
       title: 'Industrial & Manufacturing',
-      desc: 'James Douglas specializes in mid-management to senior executive search across industrial and hi-tech sectors. From advanced manufacturing to mining start-ups, we help organisations secure leaders who drive operational excellence and long-term growth.',
+      desc: 'Manufacturing and industrial enterprises operate in high-capital, high-volume environments where operational efficiency and supply-chain continuity are critical.',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80',
       icon: Factory,
     },
@@ -74,8 +83,8 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
     },
     {
       num: '04',
-      title: 'Selection & Offer Negotiation',
-      desc: 'Facilitating discussions, discreet reference checks, and aligning executive compensation architectures for seamless closure.',
+      title: 'Offer Advisory & Negotiation',
+      desc: 'Structuring competitive executive compensation frameworks, equity alignment, and discreet transition stewardship.',
     },
     {
       num: '05',
@@ -87,7 +96,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
   return (
     <div className="bg-[#faf7f2] min-h-screen text-slate-900 pb-20">
       
-      {/* 1. Hero Banner with Authentic James Douglas Imagery */}
+      {/* 1. Hero Banner with Authentic Imagery */}
       <section
         id="company-banner"
         className="banner relative w-full h-[52vh] min-h-[420px] max-h-[580px] overflow-hidden flex items-center justify-center bg-[#111126] select-none"
@@ -100,12 +109,12 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
 
-        {/* Centered James Douglas Banner Overlay */}
+        {/* Centered Banner Overlay */}
         <div className="banner-overlay relative z-10 w-full md:w-[65%] lg:w-[60%] h-full flex items-center justify-center bg-black/45 md:bg-[#00000077] backdrop-blur-[1px] px-6 sm:px-10 md:px-14 py-12">
           <div className="banner-content text-center text-white max-w-3xl mx-auto flex flex-col items-center justify-center">
             
             <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4 text-white">
-              <Sparkles className="w-3.5 h-3.5 text-[#ff9900]" />
+              <Sparkles className="w-3.5 h-3.5 text-white" />
               <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
                 Hiring Solutions for Organizations
               </span>
@@ -145,20 +154,20 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
       </section>
 
       {/* 2. Build High-Impact Teams Section */}
-      <section className="py-16 md:py-20 bg-white border-y border-[#e8e2d5]">
+      <section className="py-16 md:py-20 bg-white border-y border-[#e8e2d5]" id="our-services">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
             <div className="lg:col-span-6 space-y-5">
-              <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#ff9900]">
+              <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#514f14]">
                 Executive Leadership
               </span>
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
                 Build High-Impact Teams
               </h2>
               <div className="section-divider-left"></div>
               <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
-                Exceptional results come from thoughtful hiring. At James Douglas, we work closely with organizations to place professionals who combine skill, intent, and long-term fit across management and leadership roles.
+                Exceptional results come from thoughtful hiring. At Strydz, we work closely with organizations to place professionals who combine skill, intent, and long-term fit across management and leadership roles.
               </p>
               <div className="pt-3">
                 <button
@@ -178,7 +187,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
                   alt="Build High-Impact Teams"
                   className="w-full h-80 sm:h-96 object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#23235b]/70 via-transparent to-transparent flex items-end p-8">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#31547b]/70 via-transparent to-transparent flex items-end p-8">
                   <p className="text-white text-sm font-medium">
                     Placing leaders who combine skill, intent, and long-term fit.
                   </p>
@@ -196,11 +205,11 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
           
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Sector Expertise</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Sector Expertise</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
               Industry Specialization
             </h2>
             
@@ -217,7 +226,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
               return (
                 <div
                   key={ind.id}
-                  className="premium-card bg-white border border-[#e8e2d5] rounded-3xl overflow-hidden shadow-xs flex flex-col justify-between group hover:border-[#ff9900]/60 transition-all hover:-translate-y-1"
+                  className="premium-card bg-white border border-[#e8e2d5] rounded-3xl overflow-hidden shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60 transition-all hover:-translate-y-1"
                 >
                   <div>
                     <div className="relative h-48 overflow-hidden">
@@ -226,9 +235,9 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
                         alt={ind.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#23235b]/80 via-transparent to-transparent flex items-end p-5">
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#31547b]/80 via-transparent to-transparent flex items-end p-5">
                         <div className="flex items-center gap-2.5 text-white">
-                          <div className="w-8 h-8 rounded-lg bg-[#ff9900] flex items-center justify-center text-slate-900 font-bold">
+                          <div className="w-8 h-8 rounded-lg bg-[#514f14] flex items-center justify-center text-white font-bold">
                             <Icon className="w-4 h-4" />
                           </div>
                           <h3 className="text-base font-semibold text-white">
@@ -248,10 +257,10 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
                   <div className="p-6 pt-0 border-t border-slate-100 mt-4">
                     <button
                       onClick={() => onOpenHireModal(ind.title)}
-                      className="text-xs sm:text-sm font-semibold text-[#23235b] group-hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors"
+                      className="text-xs sm:text-sm font-semibold text-[#31547b] group-hover:text-[#514f14] inline-flex items-center gap-1.5 transition-colors"
                     >
                       <span>Find leaders in {ind.title}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#ff9900] group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-3.5 h-3.5 text-[#514f14] group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </div>
@@ -268,11 +277,11 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
           
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Methodology</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Methodology</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
               Our Search Approach
             </h2>
             
@@ -287,13 +296,13 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
             {searchStages.map((s, idx) => (
               <div 
                 key={s.num}
-                className="bg-white border border-[#e8e2d5] rounded-2xl p-6 shadow-xs relative flex flex-col justify-between group hover:border-[#ff9900]/60 transition-all hover:-translate-y-1"
+                className="bg-white border border-[#e8e2d5] rounded-2xl p-6 shadow-xs relative flex flex-col justify-between group hover:border-[#31547b]/60 transition-all hover:-translate-y-1"
               >
                 <div>
-                  <span className="text-2xl font-black text-[#ff9900] block mb-3 font-mono">
+                  <span className="text-2xl font-black text-[#514f14] block mb-3 font-mono">
                     {s.num}
                   </span>
-                  <h4 className="text-base font-semibold text-[#23235b] mb-2 leading-snug">
+                  <h4 className="text-base font-semibold text-[#31547b] mb-2 leading-snug">
                     {s.title}
                   </h4>
                   <p className="text-xs text-slate-600 leading-relaxed font-normal">
@@ -301,7 +310,7 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
                   </p>
                 </div>
                 {idx < 4 && (
-                  <div className="hidden md:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-[#23235b] text-white flex items-center justify-center text-[10px]">
+                  <div className="hidden md:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-[#31547b] text-white flex items-center justify-center text-[10px]">
                     →
                   </div>
                 )}
@@ -312,9 +321,9 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
         </div>
       </section>
 
-      {/* 5. Call to Action Banner (from hiring-solution.html) */}
+      {/* 5. Call to Action Banner */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#faf7f2]">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#00aeef] via-[#1095cb] to-[#23235b] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#31547b] via-[#264364] to-[#152537] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-white">
               Advance Your Leadership Journey.

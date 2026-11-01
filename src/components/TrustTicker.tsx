@@ -15,7 +15,7 @@ export const TrustTicker: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="flex items-center justify-center gap-4 mb-6">
           <span className="h-px w-8 sm:w-16 bg-[#dcd5c7]" />
-          <p className="text-[11px] font-bold tracking-widest text-[#23235b] uppercase">
+          <p className="text-[11px] font-bold tracking-widest text-[#31547b] uppercase">
             Executive Advisory Across India & Global Corridors
           </p>
           <span className="h-px w-8 sm:w-16 bg-[#dcd5c7]" />
@@ -25,7 +25,7 @@ export const TrustTicker: React.FC = () => {
           {credentials.map((item) => (
             <div 
               key={item.name}
-              className="text-xs sm:text-sm font-semibold tracking-wide text-slate-600 px-4 py-2 rounded-full bg-white/70 border border-[#e8e2d5] hover:text-[#23235b] hover:border-[#ff9900]/50 transition cursor-default select-none shadow-2xs"
+              className="text-xs sm:text-sm font-semibold tracking-wide text-slate-600 px-4 py-2 rounded-full bg-white/70 border border-[#e8e2d5] hover:text-[#31547b] hover:border-[#31547b]/50 transition cursor-default select-none shadow-2xs"
             >
               {item.name}
             </div>

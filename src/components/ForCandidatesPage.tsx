@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Search, MapPin, Briefcase, ArrowRight, Sparkles, Lightbulb, Target, Users, Shield, Award, CheckCircle } from 'lucide-react';
+import { 
+  Search, 
+  ArrowRight,
+  Sparkles,
+  Lightbulb,
+  Crosshair,
+  ShieldAlert
+} from 'lucide-react';
 import { JobListing } from '../types';
 
 interface ForCandidatesPageProps {
@@ -8,10 +15,10 @@ interface ForCandidatesPageProps {
   onNavigateToContact?: () => void;
 }
 
-export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
-  onSelectJob,
+export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({ 
+  onSelectJob, 
   onUploadResume,
-  onNavigateToContact,
+  onNavigateToContact 
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [locationTerm, setLocationTerm] = useState('');
@@ -24,64 +31,61 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
     'Delhi-NCR',
     'Hyderabad',
     'Pune',
-    'Chennai',
-    'Kolkata',
-    'Ahmedabad',
   ];
 
   const industries = [
     'All Industries',
-    'Banking and Financial Services',
+    'BFSI',
     'Technology',
-    'Human Resources',
+    'HR Leadership',
     'Healthcare & Life Sciences',
     'Industrial & Manufacturing',
     'Consumer',
   ];
 
-  const leadershipRoles: (JobListing & { industry: string })[] = [
+  const leadershipRoles: JobListing[] = [
     {
       id: 'role-1',
       title: 'Managing Director & Head of Wholesale Banking',
-      companyCategory: 'Banking and Financial Services',
+      companyCategory: 'Leading Private Sector Bank',
       domain: 'BFSI Practice',
-      industry: 'Banking and Financial Services',
+      industry: 'BFSI',
       location: 'Mumbai',
       type: 'Executive Search',
-      experience: '18 - 25 Years',
-      salaryRange: 'Institutional CXO Compensation',
-      skills: ['Wholesale Banking', 'Structured Credit', 'P&L Stewardship', 'Regulatory Relations'],
-      description: 'Lead nationwide corporate and institutional banking division, overseeing balance sheet growth, corporate relationships, and digital credit pipelines.',
+      experience: '18+ Years',
+      salaryRange: 'Top Decile + LTI',
+      skills: ['Wholesale Banking', 'Institutional Client Advisory', 'Credit Architecture', 'P&L Ownership'],
+      description: 'Lead institutional client coverage, structured lending, and transaction banking across corporate corridors.',
       postedAgo: 'Active Mandate',
       featured: true,
     },
     {
       id: 'role-2',
       title: 'Chief Technology Officer (CTO)',
-      companyCategory: 'Technology',
+      companyCategory: 'Series-D Enterprise AI Platform',
       domain: 'Technology Practice',
       industry: 'Technology',
       location: 'Bengaluru',
       type: 'Executive Search',
-      experience: '15 - 20 Years',
-      salaryRange: 'Executive CTC + Equity',
-      skills: ['Distributed Architecture', 'AI/ML Systems', 'Global Engineering Scale', 'Product Roadmapping'],
-      description: 'Architect multi-tenant global infrastructure, lead 400+ engineering and product specialists, and spearhead autonomous AI enterprise integration.',
+      experience: '14 - 18 Years',
+      salaryRange: '₹1.2 - 1.8 Cr + Equity',
+      skills: ['Distributed Systems', 'Applied AI/LLM Infra', 'Product Engineering Scale', 'Multi-Geo Teams'],
+      description: 'Build core AI infrastructure and lead a global engineering organization of 180+ engineers.',
       postedAgo: 'Active Mandate',
       featured: true,
     },
     {
       id: 'role-3',
       title: 'Chief Human Resources Officer (CHRO)',
-      companyCategory: 'Human Resources',
+      companyCategory: 'Listed Diversified Conglomerate',
       domain: 'HR Practice',
-      industry: 'Human Resources',
+      industry: 'HR Leadership',
       location: 'Delhi-NCR',
       type: 'Executive Search',
-      experience: '16 - 22 Years',
-      salaryRange: 'Board Level Compensation',
-      skills: ['Succession Planning', 'Global Talent Strategy', 'M&A People Integration', 'Executive Governance'],
-      description: 'Partner with Board and CEO to steward talent transformation across 12 manufacturing sites and cross-border R&D facilities.',
+      experience: '18 - 22 Years',
+      salaryRange: 'Executive Board Grade',
+      skills: ['Board Succession Planning', 'Organizational Transformation', 'Total Rewards', 'Executive Coaching'],
+      description: 'Spearhead group-wide succession strategy, C-suite executive talent development, and culture transformation.',
       postedAgo: 'Active Mandate',
       featured: true,
     },
@@ -139,14 +143,14 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
       desc: 'Thoughtful, honest guidance when decisions matter most.',
     },
     {
-      icon: Target,
+      icon: Crosshair,
       title: 'Alignment',
-      desc: 'Opportunities that connect ambition with purpose.',
+      desc: 'Opportunities that match not just your resume, but your values and ambition.',
     },
     {
-      icon: Users,
+      icon: ShieldAlert,
       title: 'Enduring Partnership',
-      desc: 'A relationship that evolves with your leadership journey.',
+      desc: 'Relationships that extend far beyond a single placement.',
     },
   ];
 
@@ -160,7 +164,7 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
       role.location.toLowerCase().includes(locationTerm.toLowerCase());
 
     const matchesIndustry = !industryTerm || industryTerm === 'All Industries' ||
-      role.industry.toLowerCase().includes(industryTerm.toLowerCase());
+      Boolean(role.industry?.toLowerCase().includes(industryTerm.toLowerCase()));
 
     return matchesKeyword && matchesLocation && matchesIndustry;
   });
@@ -174,7 +178,7 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
   return (
     <div className="bg-[#faf7f2] min-h-screen text-slate-900 pb-20">
       
-      {/* 1. Hero Banner with Authentic James Douglas Imagery */}
+      {/* 1. Hero Banner with Authentic Imagery */}
       <section
         id="leader-banner"
         className="banner relative w-full h-[52vh] min-h-[420px] max-h-[580px] overflow-hidden flex items-center justify-center bg-[#111126] select-none"
@@ -187,12 +191,12 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
 
-        {/* Centered James Douglas Banner Overlay */}
+        {/* Centered Banner Overlay */}
         <div className="banner-overlay relative z-10 w-full md:w-[65%] lg:w-[60%] h-full flex items-center justify-center bg-black/45 md:bg-[#00000077] backdrop-blur-[1px] px-6 sm:px-10 md:px-14 py-12">
           <div className="banner-content text-center text-white max-w-3xl mx-auto flex flex-col items-center justify-center">
             
             <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4 text-white">
-              <Sparkles className="w-3.5 h-3.5 text-[#ff9900]" />
+              <Sparkles className="w-3.5 h-3.5 text-white" />
               <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
                 For Leaders & Candidates
               </span>
@@ -231,12 +235,12 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
         </div>
       </section>
 
-      {/* 2. What Leaders Gain Section (exact from leaders.html) */}
+      {/* 2. What Leaders Gain Section */}
       <section className="py-16 md:py-20 bg-white border-y border-[#e8e2d5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
               What Leaders Gain
             </h2>
             <div className="section-divider"></div>
@@ -248,12 +252,12 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
               return (
                 <div
                   key={item.title}
-                  className="bg-[#faf7f2] border border-[#e8e2d5] rounded-3xl p-8 text-center flex flex-col items-center hover:shadow-md hover:border-[#ff9900]/40 transition-all group"
+                  className="bg-[#faf7f2] border border-[#e8e2d5] rounded-3xl p-8 text-center flex flex-col items-center hover:shadow-md hover:border-[#31547b]/40 transition-all group"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-[#23235b] text-[#ff9900] flex items-center justify-center mb-6 shadow-xs group-hover:scale-105 transition-transform">
+                  <div className="w-16 h-16 rounded-2xl bg-[#31547b] text-white flex items-center justify-center mb-6 shadow-xs group-hover:scale-105 transition-transform">
                     <IconComp className="w-8 h-8" />
                   </div>
-                  <h3 className="text-xl font-semibold text-[#23235b] mb-3">
+                  <h3 className="text-xl font-semibold text-[#31547b] mb-3">
                     {item.title}
                   </h3>
                   <p className="text-sm text-slate-600 leading-relaxed font-normal">
@@ -267,18 +271,18 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
         </div>
       </section>
 
-      {/* 3. Leadership Roles Section (exact from careers/ index.html) */}
-      <section className="py-20 bg-[#faf7f2]" id="roles">
+      {/* 3. Leadership Roles Section */}
+      <section className="py-20 bg-[#faf7f2]" id="search-roles">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#23235b] leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#31547b] leading-[1.2]">
               Leadership Roles
             </h2>
             <div className="section-divider"></div>
           </div>
 
-          {/* Job Search & Filters Bar (matching careers/ filter form) */}
+          {/* Job Search & Filters Bar */}
           <div className="bg-white border border-[#e8e2d5] rounded-3xl p-6 shadow-sm max-w-4xl mx-auto mb-12 space-y-4">
             
             {/* Top row: search input + buttons */}
@@ -304,7 +308,7 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
                 </button>
                 <button
                   type="button"
-                  className="btn-warning-custom px-6 py-2.5 rounded-xl text-sm font-semibold shadow-xs whitespace-nowrap"
+                  className="px-6 py-2.5 rounded-xl text-sm font-semibold shadow-xs whitespace-nowrap text-white bg-[#31547b] hover:bg-[#264364] transition-all"
                 >
                   Search
                 </button>
@@ -318,7 +322,7 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
                 <select
                   value={locationTerm}
                   onChange={(e) => setLocationTerm(e.target.value)}
-                  className="w-full px-4 py-2 rounded-xl text-sm border border-[#e8e2d5] bg-[#faf7f2] text-slate-700 focus:outline-none focus:border-[#23235b]"
+                  className="w-full px-4 py-2 rounded-xl text-sm border border-[#e8e2d5] bg-[#faf7f2] text-slate-700 focus:outline-none focus:border-[#31547b]"
                 >
                   {locations.map((loc) => (
                     <option key={loc} value={loc === 'All Locations' ? '' : loc}>
@@ -333,7 +337,7 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
                 <select
                   value={industryTerm}
                   onChange={(e) => setIndustryTerm(e.target.value)}
-                  className="w-full px-4 py-2 rounded-xl text-sm border border-[#e8e2d5] bg-[#faf7f2] text-slate-700 focus:outline-none focus:border-[#23235b]"
+                  className="w-full px-4 py-2 rounded-xl text-sm border border-[#e8e2d5] bg-[#faf7f2] text-slate-700 focus:outline-none focus:border-[#31547b]"
                 >
                   {industries.map((ind) => (
                     <option key={ind} value={ind === 'All Industries' ? '' : ind}>
@@ -352,11 +356,11 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
               <div
                 key={role.id}
                 onClick={() => onSelectJob(role)}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-3xl p-7 shadow-xs flex flex-col justify-between cursor-pointer group hover:border-[#ff9900]/60 transition-all hover:-translate-y-1"
+                className="premium-card bg-white border border-[#e8e2d5] rounded-3xl p-7 shadow-xs flex flex-col justify-between cursor-pointer group hover:border-[#31547b]/60 transition-all hover:-translate-y-1"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#ff9900] bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200/80">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#514f14] bg-[#514f14]/10 px-2.5 py-1 rounded-md border border-[#514f14]/20">
                       {role.domain}
                     </span>
                     <span className="text-xs text-slate-400 font-medium">
@@ -364,7 +368,7 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-bold text-[#23235b] group-hover:text-[#ff9900] transition-colors leading-snug">
+                  <h3 className="text-lg font-bold text-[#31547b] group-hover:text-[#514f14] transition-colors leading-snug">
                     {role.title}
                   </h3>
                   
@@ -386,11 +390,11 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
                 </div>
 
                 <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs sm:text-sm font-semibold text-[#23235b] group-hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors">
+                  <span className="text-xs sm:text-sm font-semibold text-[#31547b] group-hover:text-[#514f14] inline-flex items-center gap-1.5 transition-colors">
                     <span>View Role & Apply</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#ff9900] group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#514f14] group-hover:translate-x-1 transition-transform" />
                   </span>
-                  <span className="text-[11px] font-bold text-[#00aeef]">
+                  <span className="text-[11px] font-bold text-[#31547b]">
                     Confidential
                   </span>
                 </div>
@@ -401,13 +405,13 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
         </div>
       </section>
 
-      {/* 4. Transform Your Career & Haven't Found Your Desired Role? (exact from join-us.php) */}
+      {/* 4. Transform Your Career & Haven't Found Your Desired Role? */}
       <section className="py-20 bg-white border-y border-[#e8e2d5]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
-              Transform your career with James Douglas
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
+              Transform your career with Strydz
             </h2>
             <div className="section-divider"></div>
             <p className="text-slate-600 text-base leading-relaxed mt-4">
@@ -418,7 +422,7 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
           {/* CTA Strip */}
           <div className="bg-[#f4efe6] border border-[#e8e2d5] rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
             <div className="space-y-2 text-center sm:text-left">
-              <h3 className="text-xl sm:text-2xl font-semibold text-[#23235b]">
+              <h3 className="text-xl sm:text-2xl font-semibold text-[#31547b]">
                 Haven’t found your desired role?
               </h3>
               <p className="text-sm text-slate-600 max-w-lg leading-relaxed">
@@ -437,16 +441,16 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
         </div>
       </section>
 
-      {/* 5. Call to Action Section (exact from leaders.html) */}
+      {/* 5. Call to Action Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#faf7f2]">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#00aeef] via-[#1095cb] to-[#23235b] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#31547b] via-[#264364] to-[#152537] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-white">
               Ready to bolster your leadership team?
             </h2>
             <div className="section-divider mt-4 mb-4"></div>
             <p className="text-slate-200 text-sm sm:text-base max-w-xl mx-auto font-normal">
-              James Douglas delivers impact-driven leaders confidentially and without compromise.
+              Strydz delivers impact-driven leaders confidentially and without compromise.
             </p>
 
             <div className="pt-6 flex flex-wrap items-center justify-center gap-4">

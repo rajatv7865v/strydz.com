@@ -39,13 +39,13 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onSele
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Leadership Team</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Leadership Team</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
             Meet Our{' '}
-            <span className="text-[#ff9900]">
+            <span className="text-[#514f14]">
               Consultants
             </span>
           </h2>
@@ -62,7 +62,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onSele
           {consultants.map((consultant) => (
             <div
               key={consultant.name}
-              className="premium-card bg-white border border-[#e8e2d5] rounded-3xl overflow-hidden shadow-xs flex flex-col justify-between group hover:border-[#ff9900]/60 transition-all"
+              className="premium-card bg-white border border-[#e8e2d5] rounded-3xl overflow-hidden shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60 transition-all"
             >
               <div>
                 {/* Photo Header */}
@@ -72,10 +72,10 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onSele
                     alt={consultant.name}
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#23235b]/90 via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#31547b]/90 via-transparent to-transparent opacity-80" />
                   
                   <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <span className="text-xs font-medium px-2.5 py-1 rounded-md bg-[#ff9900] text-white inline-block mb-1 shadow-sm">
+                    <span className="text-xs font-medium px-2.5 py-1 rounded-md bg-[#514f14] text-white inline-block mb-1 shadow-sm">
                       {consultant.role}
                     </span>
                     <h3 className="text-xl font-semibold text-white tracking-tight">
@@ -86,7 +86,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onSele
 
                 {/* Content */}
                 <div className="p-6">
-                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#ff9900] mb-2">
+                  <p className="text-xs font-semibold uppercase tracking-[0.08em] text-[#514f14] mb-2">
                     {consultant.practice}
                   </p>
                   <p className="text-sm text-slate-600 leading-relaxed font-normal">
@@ -100,17 +100,17 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ onSele
                 <a
                   href="#about"
                   onClick={() => onSelectConsultant?.(consultant.name)}
-                  className="text-xs sm:text-sm font-semibold text-[#23235b] group-hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors"
+                  className="text-xs sm:text-sm font-semibold text-[#31547b] group-hover:text-[#514f14] inline-flex items-center gap-1.5 transition-colors"
                 >
                   <span>Know more</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#ff9900] group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#514f14] group-hover:translate-x-1 transition-transform" />
                 </a>
 
                 <a
                   href={consultant.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full bg-slate-100 hover:bg-[#23235b] hover:text-white flex items-center justify-center text-slate-600 transition"
+                  className="w-8 h-8 rounded-full bg-slate-100 hover:bg-[#31547b] hover:text-white flex items-center justify-center text-slate-600 transition"
                   aria-label={`${consultant.name} LinkedIn`}
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">

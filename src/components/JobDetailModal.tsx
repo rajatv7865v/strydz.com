@@ -39,14 +39,14 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({ job, onClose }) 
             {/* Header */}
             <div>
               <div className="flex items-center gap-2 mb-2.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.1em] bg-white/90 border border-[#e2dcd0] text-[#23235b] shadow-2xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.1em] bg-white/90 border border-[#e2dcd0] text-[#31547b] shadow-2xs">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
                   {job.companyCategory}
                 </span>
                 <span className="text-xs text-slate-400">• {job.postedAgo}</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-semibold text-[#23235b] tracking-[-0.025em] leading-[1.2]">{job.title}</h3>
-              <p className="text-sm font-semibold text-[#00aeef] mt-1">{job.location} · {job.type}</p>
+              <h3 className="text-2xl sm:text-3xl font-semibold text-[#31547b] tracking-[-0.025em] leading-[1.2]">{job.title}</h3>
+              <p className="text-sm font-semibold text-[#514f14] mt-1">{job.location} · {job.type}</p>
             </div>
 
             {/* Quick Specs */}
@@ -61,7 +61,7 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({ job, onClose }) 
               </div>
               <div>
                 <span className="text-slate-400 block mb-0.5">Compensation</span>
-                <span className="text-[#23235b] font-bold">{job.salaryRange}</span>
+                <span className="text-[#31547b] font-bold">{job.salaryRange}</span>
               </div>
             </div>
 
@@ -95,11 +95,11 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({ job, onClose }) 
             {/* Fast Apply Form */}
             <form onSubmit={handleSubmit} className="border-t border-[#e8e2d5] pt-5 space-y-3">
               <div className="flex items-center justify-between">
-                <h4 className="text-sm font-bold text-[#23235b]">
+                <h4 className="text-sm font-bold text-[#31547b]">
                   Confidential Leadership Expression of Interest
                 </h4>
                 <span className="text-[11px] text-slate-500 inline-flex items-center gap-1">
-                  <Shield className="w-3 h-3 text-[#ff9900]" />
+                  <Shield className="w-3 h-3 text-[#514f14]" />
                   Strictly Confidential
                 </span>
               </div>
@@ -111,7 +111,7 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({ job, onClose }) 
                   value={applicantName}
                   onChange={(e) => setApplicantName(e.target.value)}
                   placeholder="Your Full Name *"
-                  className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#31547b] focus:ring-1 focus:ring-[#31547b] bg-white"
                 />
                 <input
                   type="email"
@@ -119,7 +119,7 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({ job, onClose }) 
                   value={applicantEmail}
                   onChange={(e) => setApplicantEmail(e.target.value)}
                   placeholder="Work or Personal Email *"
-                  className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#31547b] focus:ring-1 focus:ring-[#31547b] bg-white"
                 />
               </div>
 
@@ -130,20 +130,20 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({ job, onClose }) 
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Direct Phone / Mobile *"
-                  className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#31547b] focus:ring-1 focus:ring-[#31547b] bg-white"
                 />
                 <input
                   type="text"
                   value={linkedinUrl}
                   onChange={(e) => setLinkedinUrl(e.target.value)}
                   placeholder="LinkedIn Profile URL"
-                  className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl text-xs sm:text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#31547b] focus:ring-1 focus:ring-[#31547b] bg-white"
                 />
               </div>
 
               <button
                 type="submit"
-                className="btn-warning-custom w-full py-3.5 rounded-xl text-sm font-bold text-slate-900 transition shadow-sm hover:-translate-y-0.5"
+                className="btn-warning-custom w-full py-3.5 rounded-xl text-sm font-bold text-white transition shadow-sm hover:-translate-y-0.5"
               >
                 Submit Confidential Credentials
               </button>
@@ -155,13 +155,13 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({ job, onClose }) 
             <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
               <Check className="w-7 h-7" />
             </div>
-            <h3 className="text-2xl font-bold text-[#23235b]">Credentials Received Confidentially</h3>
+            <h3 className="text-2xl font-bold text-[#31547b]">Credentials Received Confidentially</h3>
             <p className="text-sm text-slate-600 max-w-md mx-auto">
-              A James Douglas Practice Lead will evaluate your profile and contact you regarding preliminary discussions.
+              A Strydz Practice Lead will evaluate your profile and contact you regarding preliminary discussions.
             </p>
             <button
               onClick={onClose}
-              className="btn-warning-custom mt-4 px-6 py-2.5 rounded-xl text-sm font-semibold text-slate-900 transition"
+              className="btn-warning-custom mt-4 px-6 py-2.5 rounded-xl text-sm font-semibold text-white transition"
             >
               Done
             </button>

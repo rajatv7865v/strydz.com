@@ -1,57 +1,55 @@
-import { Sparkles, Shield, Compass, CheckCircle2, Award, Users, ArrowRight } from 'lucide-react';
+import React from 'react';
+import { Sparkles } from 'lucide-react';
 
 interface AboutPageProps {
   onOpenHireModal: (category?: string) => void;
   onNavigateToContact: () => void;
 }
 
-export const AboutPage: React.FC<AboutPageProps> = ({
-  onOpenHireModal,
-  onNavigateToContact,
-}) => {
+export const AboutPage: React.FC<AboutPageProps> = ({ onOpenHireModal, onNavigateToContact }) => {
+  const searchStages = [
+    {
+      step: '01',
+      title: 'Search Strategy Formulation',
+      desc: 'Deep discovery with boards and executives to define the leadership mandate, cultural context, and business goals.',
+    },
+    {
+      step: '02',
+      title: 'Candidate Engagement & Assessment',
+      desc: 'Discreet market outreach identifying high-caliber executives with verified track records of driving transformation.',
+    },
+    {
+      step: '03',
+      title: 'Shortlisting & Joint Evaluation',
+      desc: 'Structured competency interviews, situational evaluations, and mutual alignment with leadership expectations.',
+    },
+    {
+      step: '04',
+      title: 'Offer Negotiation & Transition Planning',
+      desc: 'Balancing compensation benchmarks, long-term incentive alignment, and confidential offer management.',
+    },
+    {
+      step: '05',
+      title: 'Post-Placement Integration & Feedback',
+      desc: 'Ongoing check-ins with client and placed leader to ensure early traction and long-term organizational value.',
+    },
+  ];
+
   const values = [
     {
       num: '01',
       title: 'Trust',
-      desc: 'We are committed to building lasting relationships grounded in transparency, integrity, and honest partnership with every client and candidate.',
+      desc: 'Uncompromising integrity, discretion, and accountability in every client and candidate interaction.',
     },
     {
       num: '02',
       title: 'Ownership',
-      desc: 'We are your extended team. Every executive search is ours to own from initial diagnostic to long-term onboarding and retention.',
+      desc: 'We treat every leadership mandate as an enterprise mission, staying committed from inception to integration.',
     },
     {
       num: '03',
       title: 'Excellence',
-      desc: 'Our consultants strive for professional excellence through the highest degree of personal integrity and rigorous industry judgment.',
-    },
-  ];
-
-  const searchStages = [
-    {
-      step: '01',
-      title: 'Diagnostics & Architecture',
-      desc: 'Deep alignment on strategic business goals, mandate requirements, cultural dynamics, and leadership competencies.',
-    },
-    {
-      step: '02',
-      title: 'Market Mapping & Intelligence',
-      desc: 'Comprehensive market intelligence across global and domestic talent corridors to surface proven leadership achievers.',
-    },
-    {
-      step: '03',
-      title: 'Assessment & Fit Evaluation',
-      desc: 'Discreet, structured behavioral interviews examining leadership agility, past impact, and alignment with corporate strategy.',
-    },
-    {
-      step: '04',
-      title: 'Selection & Offer Advisory',
-      desc: 'Board advisory, compensation structuring, rigorous 360-degree background referencing, and offer closure.',
-    },
-    {
-      step: '05',
-      title: 'Transition & Integration',
-      desc: 'Proactive check-ins throughout the first 12 months to ensure seamless onboarding and measurable strategic impact.',
+      desc: 'Rigorous sector research, market intelligence, and executive assessment that outlasts immediate hiring trends.',
     },
   ];
 
@@ -61,15 +59,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       role: 'Managing Partner',
       practice: 'Leadership Hiring & Succession Planning',
       bio: 'With over a decade of experience in leadership hiring and succession planning, Nupur brings expertise to strengthen mid-to-senior-level talent pipelines, a critical priority for organizations building their next generation of leaders.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
       linkedin: 'https://www.linkedin.com/in/nupurmehtampi/?originalSubdomain=in',
     },
     {
       name: 'Diksha Uniyal',
       role: 'Senior Director',
-      practice: 'HR, Healthcare & Analytics Practice',
+      practice: 'HR, Healthcare & Diversity Practice',
       bio: 'Diksha is an executive search leader with 12+ years of experience in HR, sales, healthcare, and analytics, shaping leadership talent, driving organizational growth, and championing diversity and inclusion.',
-      image: 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=400&q=80',
+      image: 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80',
       linkedin: 'https://www.linkedin.com/in/diksha-uniyal-27573054/?originalSubdomain=in',
     },
     {
@@ -85,7 +83,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
   return (
     <div className="bg-[#faf7f2] min-h-screen text-slate-900 pb-20">
       
-      {/* 1. Hero Banner with Authentic James Douglas Imagery */}
+      {/* 1. Hero Banner with Authentic Imagery */}
       <section
         id="about-banner"
         className="banner relative w-full h-[52vh] min-h-[420px] max-h-[580px] overflow-hidden flex items-center justify-center bg-[#111126] select-none"
@@ -98,14 +96,14 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
 
-        {/* Centered James Douglas Banner Overlay */}
+        {/* Centered Banner Overlay */}
         <div className="banner-overlay relative z-10 w-full md:w-[65%] lg:w-[60%] h-full flex items-center justify-center bg-black/45 md:bg-[#00000077] backdrop-blur-[1px] px-6 sm:px-10 md:px-14 py-12">
           <div className="banner-content text-center text-white max-w-3xl mx-auto flex flex-col items-center justify-center">
             
             <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4 text-white">
-              <Sparkles className="w-3.5 h-3.5 text-[#ff9900]" />
+              <Sparkles className="w-3.5 h-3.5 text-white" />
               <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
-                About James Douglas India
+                About Strydz
               </span>
             </div>
 
@@ -146,31 +144,31 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             
             {/* Left Statement */}
             <div className="lg:col-span-5 space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#ff9900]">
+              <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#514f14]">
                 Executive Focus
               </span>
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
                 The right leadership has the power to transform organizations
               </h2>
               <div className="section-divider-left"></div>
               <p className="text-sm text-slate-500 italic">
-                “At James Douglas, our values are not words. They are promises.”
+                “At Strydz, our values are not words. They are promises.”
               </p>
             </div>
 
             {/* Right Detailed Narrative */}
             <div className="lg:col-span-7 space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
               <p>
-                <strong className="text-[#23235b] font-semibold">James Douglas India</strong> is an executive search firm focused on mid-management and senior leadership hiring. We are a wholly owned subsidiary of <strong className="text-[#23235b] font-semibold">EMA Partners India Limited</strong>, a publicly listed global leadership advisory firm.
+                <strong className="text-[#31547b] font-semibold">Strydz</strong> is a premier executive search firm focused on mid-management and senior leadership hiring. We partner with boards and business leaders to build transformative leadership teams.
               </p>
               <p>
-                As part of the EMA Partners network, we bring together deep industry expertise and diverse perspectives to help organizations address one of their most critical priorities: identifying and securing the right leadership talent.
+                We bring together deep industry expertise and diverse perspectives to help organizations address one of their most critical priorities: identifying and securing the right leadership talent.
               </p>
               <p>
-                At James Douglas, we specialize in assessing, hiring, and advising leaders from mid-managerial through senior executive levels, working across industries and businesses.
+                At Strydz, we specialize in assessing, hiring, and advising leaders from mid-managerial through senior executive levels, working across industries and businesses.
               </p>
               <p>
-                Our clients include global corporations, established Indian enterprises, and high-growth niche organizations navigating phases of rapid scale, succession planning, and organizational transformation.
+                Our clients include global corporations, established enterprises, and high-growth niche organizations navigating phases of rapid scale, succession planning, and organizational transformation.
               </p>
             </div>
 
@@ -184,13 +182,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Executive Search Rigor</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Executive Search Rigor</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
               How We Work:{' '}
-              <span className="text-[#ff9900]">
+              <span className="text-[#514f14]">
                 Our Search Approach
               </span>
             </h2>
@@ -206,13 +204,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             {searchStages.map((stage) => (
               <div
                 key={stage.step}
-                className="bg-white border border-[#e8e2d5] rounded-2xl p-6 shadow-xs flex flex-col justify-between group hover:border-[#ff9900]/60 transition-all hover:-translate-y-1"
+                className="bg-white border border-[#e8e2d5] rounded-2xl p-6 shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60 transition-all hover:-translate-y-1"
               >
                 <div>
-                  <div className="w-9 h-9 rounded-xl bg-[#23235b] text-[#ff9900] font-bold text-sm flex items-center justify-center mb-4 shadow-2xs">
+                  <div className="w-9 h-9 rounded-xl bg-[#31547b] text-white font-bold text-sm flex items-center justify-center mb-4 shadow-2xs">
                     {stage.step}
                   </div>
-                  <h3 className="text-base font-semibold text-[#23235b] leading-snug">
+                  <h3 className="text-base font-semibold text-[#31547b] leading-snug">
                     {stage.title}
                   </h3>
                   <p className="text-xs text-slate-600 leading-relaxed mt-2 font-normal">
@@ -232,13 +230,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Guiding Principles</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Guiding Principles</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
               What Guides{' '}
-              <span className="text-[#ff9900]">
+              <span className="text-[#514f14]">
                 Our Work
               </span>
             </h2>
@@ -254,13 +252,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             {values.map((v) => (
               <div
                 key={v.num}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-8 shadow-xs flex flex-col justify-between group hover:border-[#ff9900]/60"
+                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-8 shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-[#23235b]/10 text-[#23235b] font-bold text-sm flex items-center justify-center mb-5 group-hover:bg-[#23235b] group-hover:text-white transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-[#31547b]/10 text-[#31547b] font-bold text-sm flex items-center justify-center mb-5 group-hover:bg-[#31547b] group-hover:text-white transition-colors">
                     {v.num}
                   </div>
-                  <h3 className="text-xl font-bold text-[#23235b] group-hover:text-[#ff9900] transition-colors">
+                  <h3 className="text-xl font-bold text-[#31547b] group-hover:text-[#514f14] transition-colors">
                     {v.title}
                   </h3>
                   <p className="text-sm text-slate-600 leading-relaxed mt-2.5 font-normal">
@@ -274,27 +272,27 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </div>
       </section>
 
-      {/* 5. EMA Partners India Legacy Section */}
-      <section className="py-20 bg-gradient-to-br from-[#23235b] via-[#202052] to-[#14143a] text-white">
+      {/* 5. Strydz Executive Advisory Legacy Section */}
+      <section className="py-20 bg-gradient-to-br from-[#31547b] via-[#264364] to-[#152537] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
             <div className="lg:col-span-6 space-y-5">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#00aeef]">
+              <span className="text-xs font-bold uppercase tracking-widest text-slate-300">
                 Global Pedigree
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.15]">
-                EMA Partners India Legacy
+                Strydz Leadership Pedigree
               </h2>
-              <div className="w-20 h-1 bg-[#ff9900] rounded-sm"></div>
+              <div className="w-20 h-1 bg-[#514f14] rounded-sm"></div>
               
-              <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
-                EMA Partners India is a globally respected search firm that has advised boards and C-suites for a quarter-century. That pedigree brings:
+              <p className="text-slate-200 text-base sm:text-lg leading-relaxed font-normal">
+                Strydz brings seasoned advisory pedigree that has guided boards and C-suites across critical transitions:
               </p>
 
               <div className="space-y-4 pt-2">
                 <div className="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-[#ff9900]/20 text-[#ff9900] flex items-center justify-center flex-none font-bold">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center flex-none font-bold">
                     ✓
                   </div>
                   <div>
@@ -304,7 +302,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 </div>
 
                 <div className="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-[#00aeef]/20 text-[#00aeef] flex items-center justify-center flex-none font-bold">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center flex-none font-bold">
                     ✓
                   </div>
                   <div>
@@ -314,7 +312,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 </div>
 
                 <div className="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-[#ff9900]/20 text-[#ff9900] flex items-center justify-center flex-none font-bold">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center flex-none font-bold">
                     ✓
                   </div>
                   <div>
@@ -326,16 +324,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
 
             <div className="lg:col-span-6 bg-white/5 border border-white/15 rounded-3xl p-8 sm:p-12 text-center backdrop-blur-md">
-              <div className="w-20 h-20 rounded-2xl bg-white text-[#23235b] flex items-center justify-center mx-auto text-2xl font-black mb-6 shadow-xl">
-                JD
+              <div className="w-20 h-20 rounded-2xl bg-[#31547b] text-white border border-[#514f14]/40 flex items-center justify-center mx-auto text-3xl font-black mb-6 shadow-xl">
+                S
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">James Douglas India</h3>
+              <h3 className="text-2xl font-bold text-white mb-2">Strydz</h3>
               <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                Wholly owned subsidiary of EMA Partners India Limited. Advising boards, promoters, and leadership teams on high-impact executive appointments.
+                Advising boards, promoters, and leadership teams on high-impact executive appointments and leadership succession.
               </p>
               <div className="pt-6">
                 <button
-                  onClick={() => onOpenHireModal('EMA Legacy Partnership')}
+                  onClick={() => onOpenHireModal('Strydz Partnership')}
                   className="btn-warning-custom px-6 py-3 rounded-xl text-sm font-semibold shadow-md"
                 >
                   Start an Engagement
@@ -353,13 +351,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           
           <div className="text-center max-w-2xl mx-auto mb-14">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#23235b]">Consultant Leadership</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+              <span className="text-[11px] font-bold uppercase tracking-widest text-[#31547b]">Consultant Leadership</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#23235b] leading-[1.2]">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#31547b] leading-[1.2]">
               Meet Our{' '}
-              <span className="text-[#ff9900]">
+              <span className="text-[#514f14]">
                 Leadership
               </span>
             </h2>
@@ -375,7 +373,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             {leadershipTeam.map((member) => (
               <div
                 key={member.name}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-3xl overflow-hidden shadow-xs flex flex-col justify-between group hover:border-[#ff9900]/60 transition-all"
+                className="premium-card bg-white border border-[#e8e2d5] rounded-3xl overflow-hidden shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60 transition-all"
               >
                 <div>
                   <div className="relative h-64 overflow-hidden bg-slate-100">
@@ -384,9 +382,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                       alt={member.name}
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#23235b]/90 via-transparent to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#31547b]/90 via-transparent to-transparent opacity-80" />
                     <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-[#ff9900] text-white inline-block mb-1 shadow-sm">
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-[#514f14] text-white inline-block mb-1 shadow-sm">
                         {member.role}
                       </span>
                       <h3 className="text-xl font-bold text-white tracking-tight">
@@ -396,7 +394,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                   </div>
 
                   <div className="p-6">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#ff9900] mb-2">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#514f14] mb-2">
                       {member.practice}
                     </p>
                     <p className="text-sm text-slate-600 leading-relaxed font-normal">
@@ -410,9 +408,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-semibold text-[#23235b] hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors"
+                    className="text-xs font-semibold text-[#31547b] hover:text-[#514f14] inline-flex items-center gap-1.5 transition-colors"
                   >
-                    <svg className="w-4 h-4 fill-current text-[#00aeef]" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 fill-current text-[#31547b]" viewBox="0 0 24 24">
                       <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.76v8.37H6.46v-8.37M7.84 6.2a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24Z" />
                     </svg>
                     <span>View LinkedIn Profile</span>
@@ -427,7 +425,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
       {/* 7. Ready to bolster your leadership team CTA Banner */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#faf7f2]">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#00aeef] via-[#1095cb] to-[#23235b] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#31547b] via-[#264364] to-[#152537] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
           <div className="relative z-10 max-w-2xl mx-auto space-y-4">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
               Ready to bolster your leadership team?
@@ -445,7 +443,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
               </button>
               <button
                 onClick={onNavigateToContact}
-                className="px-6 py-3 rounded-xl text-sm font-semibold text-white bg-[#23235b] hover:bg-[#1b1b46] border border-white/20 transition"
+                className="px-6 py-3 rounded-xl text-sm font-semibold text-[#31547b] bg-white hover:bg-slate-100 transition shadow-sm"
               >
                 Contact Us
               </button>
@@ -459,4 +457,3 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 };
 
 export default AboutPage;
-

@@ -60,13 +60,13 @@ export const SpecialisedHiringSection: React.FC<SpecialisedHiringSectionProps> =
         {/* Header */}
         <div className="max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Practice Groups</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Practice Groups</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
             Industry{' '}
-            <span className="text-[#ff9900]">
+            <span className="text-[#514f14]">
               Practices
             </span>
           </h2>
@@ -90,21 +90,21 @@ export const SpecialisedHiringSection: React.FC<SpecialisedHiringSectionProps> =
                 onClick={() => setSelectedPractice(practice.id)}
                 className={`premium-card bg-[#faf7f2] border rounded-2xl p-7 shadow-xs flex flex-col justify-between cursor-pointer group transition-all ${
                   isSelected
-                    ? 'border-[#ff9900] ring-2 ring-[#ff9900]/20 bg-white'
-                    : 'border-[#e8e2d5] hover:border-[#23235b]/30 hover:bg-white'
+                    ? 'border-[#31547b] ring-2 ring-[#31547b]/20 bg-white'
+                    : 'border-[#e8e2d5] hover:border-[#31547b]/40 hover:bg-white'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-[#23235b] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
-                      <Icon className="w-6 h-6 text-[#ff9900]" />
+                    <div className="w-12 h-12 rounded-xl bg-[#31547b] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+                      <Icon className="w-6 h-6 text-white" />
                     </div>
                     <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white border border-[#e8e2d5] text-slate-600">
                       Practice Area
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-semibold text-[#23235b] group-hover:text-[#ff9900] transition-colors">
+                  <h3 className="text-xl font-semibold text-[#31547b] group-hover:text-[#514f14] transition-colors">
                     {practice.title}
                   </h3>
 
@@ -133,10 +133,10 @@ export const SpecialisedHiringSection: React.FC<SpecialisedHiringSectionProps> =
                       e.stopPropagation();
                       onOpenHireModal?.(practice.title);
                     }}
-                    className="text-xs sm:text-sm font-semibold text-[#23235b] hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors"
+                    className="text-xs sm:text-sm font-semibold text-[#31547b] hover:text-[#514f14] inline-flex items-center gap-1.5 transition-colors"
                   >
                     <span>Engage {practice.title} Practice</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#ff9900] group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#514f14] group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>

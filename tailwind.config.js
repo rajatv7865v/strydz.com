@@ -8,17 +8,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
+        strydz: {
+          DEFAULT: '#31547b',
+          primary: '#31547b',
+          secondary: '#514f14',
+          dark: '#264364',
+          light: '#426c9b',
+          accent: '#514f14',
         },
         creme: {
           50: '#fdfbf7',   // warm ivory
@@ -28,9 +24,9 @@ export default {
           border: '#e8e2d5', // refined border tone
         },
         darkNavy: {
-          800: '#111827',
-          900: '#0c1222',
-          950: '#070b14',
+          800: '#1d344d',
+          900: '#152537',
+          950: '#0d1824',
         },
         muted: '#64748b',
       },

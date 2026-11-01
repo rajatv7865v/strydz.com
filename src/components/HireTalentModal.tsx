@@ -54,13 +54,13 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
             {/* Header */}
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Executive Search & Leadership Advisory</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+                <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Executive Search & Leadership Advisory</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-semibold text-[#23235b] tracking-[-0.025em] leading-[1.2]">
+              <h3 className="text-2xl sm:text-3xl font-semibold text-[#31547b] tracking-[-0.025em] leading-[1.2]">
                 Partner with{' '}
-                <span className="text-[#00aeef]">
-                  James Douglas
+                <span className="text-[#514f14]">
+                  Strydz
                 </span>
               </h3>
               <div className="section-divider-left mt-2 mb-2"></div>
@@ -82,8 +82,8 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
                     onClick={() => setServiceType(type)}
                     className={`p-2.5 rounded-xl text-xs font-semibold border transition-all text-center ${
                       serviceType === type
-                        ? 'bg-[#23235b] text-white border-[#23235b] shadow-xs'
-                        : 'bg-white text-slate-700 border-[#e8e2d5] hover:border-[#ff9900] hover:text-[#23235b]'
+                        ? 'bg-[#31547b] text-white border-[#31547b] shadow-xs'
+                        : 'bg-white text-slate-700 border-[#e8e2d5] hover:border-[#514f14] hover:text-[#31547b]'
                     }`}
                   >
                     {type}
@@ -103,7 +103,7 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
                 value={roleTitle}
                 onChange={(e) => setRoleTitle(e.target.value)}
                 placeholder="e.g. Chief Executive Officer, Managing Director, CHRO, VP Tech"
-                className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#31547b] focus:ring-1 focus:ring-[#31547b] bg-white"
               />
             </div>
 
@@ -117,7 +117,7 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder="e.g. Enterprise / Conglomerate"
-                  className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#31547b] focus:ring-1 focus:ring-[#31547b] bg-white"
                 />
               </div>
 
@@ -129,7 +129,7 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
                   placeholder="e.g. Nupur Mehta"
-                  className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#31547b] focus:ring-1 focus:ring-[#31547b] bg-white"
                 />
               </div>
 
@@ -141,7 +141,7 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@organization.com"
-                  className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#31547b] focus:ring-1 focus:ring-[#31547b] bg-white"
                 />
               </div>
 
@@ -153,7 +153,7 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+91 98765 43210"
-                  className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                  className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#31547b] focus:ring-1 focus:ring-[#31547b] bg-white"
                 />
               </div>
             </div>
@@ -162,7 +162,7 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
             <div className="pt-2">
               <button
                 type="submit"
-                className="btn-warning-custom w-full py-3.5 rounded-xl text-sm font-bold text-slate-900 transition shadow-md hover:-translate-y-0.5"
+                className="btn-warning-custom w-full py-3.5 rounded-xl text-sm font-bold text-white transition shadow-md hover:-translate-y-0.5"
               >
                 Initiate Confidential Search Mandate
               </button>
@@ -174,13 +174,13 @@ export const HireTalentModal: React.FC<HireTalentModalProps> = ({
             <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
               <Check className="w-7 h-7" />
             </div>
-            <h3 className="text-2xl font-bold text-[#23235b]">Search Mandate Received</h3>
+            <h3 className="text-2xl font-bold text-[#31547b]">Search Mandate Received</h3>
             <p className="text-sm text-slate-600 max-w-md mx-auto">
-              A James Douglas Practice Partner will review your requirements and reach out to schedule an initial advisory consultation.
+              A Strydz Practice Partner will review your requirements and reach out to schedule an initial advisory consultation.
             </p>
             <button
               onClick={onClose}
-              className="btn-warning-custom mt-4 px-6 py-2.5 rounded-xl text-sm font-semibold text-slate-900 transition"
+              className="btn-warning-custom mt-4 px-6 py-2.5 rounded-xl text-sm font-semibold text-white transition"
             >
               Done
             </button>

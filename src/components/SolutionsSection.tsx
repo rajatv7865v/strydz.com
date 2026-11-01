@@ -44,31 +44,31 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenHireMo
         
         {/* 1. Philosophy Manifesto Block */}
         <div className="text-center max-w-3xl mx-auto mb-20 bg-white border border-[#e8e2d5] rounded-3xl p-8 sm:p-12 shadow-xs">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200/80 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Our Philosophy</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#31547b]/10 border border-[#31547b]/20 mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Our Philosophy</span>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
             Redefining Leadership with Intent
           </h2>
           
           <div className="section-divider"></div>
           
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal mt-4">
-            At James Douglas, we believe leadership isn’t “filled”. It is built over time, tested in complexity, and chosen with intent. That’s why we don’t see ourselves as recruiters. We work as advisors and long-term partners, shaping leadership decisions that impact businesses and careers beyond the immediate hire.
+            At Strydz, we believe leadership isn’t “filled”. It is built over time, tested in complexity, and chosen with intent. That’s why we don’t see ourselves as recruiters. We work as advisors and long-term partners, shaping leadership decisions that impact businesses and careers beyond the immediate hire.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 mt-8 pt-2">
             <button
               onClick={() => onOpenJobPortal ? onOpenJobPortal() : window.location.hash = '#candidates'}
-              className="btn-warning-custom px-6 py-3 rounded-xl text-sm font-semibold shadow-sm"
+              className="px-6 py-3 rounded-xl text-sm font-semibold shadow-sm text-white bg-[#31547b] hover:bg-[#264364] transition-all"
             >
               Explore Leadership Roles
             </button>
             <button
               onClick={() => onOpenHireModal?.('Leadership Advisory')}
-              className="btn-navy-custom px-6 py-3 rounded-xl text-sm font-semibold shadow-sm"
+              className="px-6 py-3 rounded-xl text-sm font-semibold shadow-sm text-white bg-[#514f14] hover:bg-[#3f3e10] transition-all"
             >
               Build Your Leadership Team
             </button>
@@ -78,12 +78,12 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenHireMo
         {/* 2. What We Do - 4 Pillars Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">What We Do</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">What We Do</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
             Our Advisory{' '}
-            <span className="text-[#ff9900]">
+            <span className="text-[#514f14]">
               Pillars
             </span>
           </h2>
@@ -100,18 +100,18 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenHireMo
             return (
               <div
                 key={item.num}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-7 shadow-xs flex flex-col justify-between group hover:border-[#ff9900]/60"
+                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-7 shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-[#23235b]/5 text-[#23235b] flex items-center justify-center mb-5 group-hover:bg-[#23235b] group-hover:text-white transition-all">
-                    <Icon className="w-6 h-6 text-[#23235b] group-hover:text-[#ff9900] transition-colors" />
+                  <div className="w-12 h-12 rounded-xl bg-[#31547b]/5 text-[#31547b] flex items-center justify-center mb-5 group-hover:bg-[#31547b] group-hover:text-white transition-all">
+                    <Icon className="w-6 h-6 text-[#31547b] group-hover:text-white transition-colors" />
                   </div>
                   
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#ff9900]">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#514f14]">
                     {item.tag}
                   </span>
 
-                  <h3 className="text-lg font-semibold text-[#23235b] mt-2 group-hover:text-[#23235b] transition-colors">
+                  <h3 className="text-lg font-semibold text-[#31547b] mt-2 group-hover:text-[#31547b] transition-colors">
                     {item.title}
                   </h3>
                   
@@ -123,10 +123,10 @@ export const SolutionsSection: React.FC<SolutionsSectionProps> = ({ onOpenHireMo
                 <div className="pt-6 border-t border-slate-100 mt-6">
                   <button
                     onClick={() => onOpenHireModal?.(item.title)}
-                    className="text-xs sm:text-sm font-semibold text-[#23235b] hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors"
+                    className="text-xs sm:text-sm font-semibold text-[#31547b] hover:text-[#514f14] inline-flex items-center gap-1.5 transition-colors"
                   >
                     <span>Learn more</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#ff9900] group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#514f14] group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>

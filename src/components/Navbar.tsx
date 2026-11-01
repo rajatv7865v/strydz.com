@@ -32,21 +32,21 @@ export const Navbar: React.FC<NavbarProps> = ({
     <header className="sticky top-0 z-50 bg-[#faf7f2]/90 backdrop-blur-md border-b border-[#e8e2d5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        {/* Brand Logo */}
+        {/* Strydz Brand Logo */}
         <a 
           href="#"
           onClick={(e) => handleLinkClick(e, 'home')}
           className="flex items-center gap-3 group"
         >
-          <div className="w-10 h-10 rounded-xl bg-[#23235b] flex items-center justify-center shadow-md text-white font-extrabold text-base tracking-tight transition-transform group-hover:scale-105 border border-[#ff9900]/40">
-            <span className="text-[#ff9900]">J</span><span>D</span>
+          <div className="w-10 h-10 rounded-xl bg-[#31547b] flex items-center justify-center shadow-md text-white font-extrabold text-lg tracking-tight transition-transform group-hover:scale-105 border border-[#514f14]/30">
+            <span className="text-white">S</span>
           </div>
           <div className="flex flex-col">
-            <span className="font-semibold text-xl sm:text-2xl tracking-[-0.02em] text-[#23235b] leading-tight">
-              James Douglas
+            <span className="font-semibold text-xl sm:text-2xl tracking-[-0.02em] text-[#31547b] leading-tight">
+              Strydz
             </span>
-            <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
-              India · Leadership Advisory
+            <span className="text-[10px] font-semibold text-[#514f14] uppercase tracking-widest">
+              Executive Search & Advisory
             </span>
           </div>
         </a>
@@ -57,7 +57,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             href="#"
             onClick={(e) => handleLinkClick(e, 'home')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'home' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
+              currentView === 'home' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
             }`}
           >
             Home
@@ -66,7 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             href="#candidates"
             onClick={(e) => handleLinkClick(e, 'candidates')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'candidates' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
+              currentView === 'candidates' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
             }`}
           >
             Find Opportunities
@@ -75,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             href="#employers"
             onClick={(e) => handleLinkClick(e, 'employers')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'employers' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
+              currentView === 'employers' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
             }`}
           >
             Hire Talent
@@ -84,7 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             href="#about"
             onClick={(e) => handleLinkClick(e, 'about')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'about' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
+              currentView === 'about' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
             }`}
           >
             Our Expertise
@@ -93,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             href="#insights"
             onClick={(e) => handleLinkClick(e, 'insights')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'insights' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
+              currentView === 'insights' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
             }`}
           >
             Insights
@@ -102,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             href="#contact"
             onClick={(e) => handleLinkClick(e, 'contact')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'contact' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
+              currentView === 'contact' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
             }`}
           >
             Contact Us
@@ -113,7 +113,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="hidden md:flex items-center">
           <button
             onClick={() => onOpenHireModal()}
-            className="btn-shimmer px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-[#ff9900] hover:bg-[#e68a00] transition shadow-md hover:-translate-y-0.5"
+            className="btn-shimmer px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-[#31547b] hover:bg-[#264364] transition shadow-md hover:-translate-y-0.5"
           >
             Hire Talent
           </button>
@@ -123,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={() => onOpenHireModal()}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-[#ff9900]"
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-[#31547b]"
           >
             Hire
           </button>
@@ -146,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="#"
               onClick={(e) => handleLinkClick(e, 'home')}
               className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'home' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
+                currentView === 'home' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
               }`}
             >
               Home
@@ -155,7 +155,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="#candidates"
               onClick={(e) => handleLinkClick(e, 'candidates')}
               className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'candidates' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
+                currentView === 'candidates' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
               }`}
             >
               Find Opportunities
@@ -164,7 +164,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="#employers"
               onClick={(e) => handleLinkClick(e, 'employers')}
               className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'employers' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
+                currentView === 'employers' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
               }`}
             >
               Hire Talent
@@ -173,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="#about"
               onClick={(e) => handleLinkClick(e, 'about')}
               className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'about' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
+                currentView === 'about' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
               }`}
             >
               Our Expertise
@@ -182,7 +182,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="#insights"
               onClick={(e) => handleLinkClick(e, 'insights')}
               className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'insights' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
+                currentView === 'insights' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
               }`}
             >
               Insights
@@ -191,7 +191,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               href="#contact"
               onClick={(e) => handleLinkClick(e, 'contact')}
               className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'contact' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
+                currentView === 'contact' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
               }`}
             >
               Contact Us
@@ -203,7 +203,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenHireModal();
               }}
-              className="btn-shimmer w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-[#ff9900] hover:bg-[#e68a00] text-center shadow-sm"
+              className="btn-shimmer w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-[#31547b] hover:bg-[#264364] text-center shadow-sm"
             >
               Hire Talent
             </button>

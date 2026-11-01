@@ -74,12 +74,12 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({ onSelectJob }) => {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#23235b]">Open Mandates</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#31547b]">Open Mandates</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#23235b] leading-[1.2]">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#31547b] leading-[1.2]">
             Featured{' '}
-            <span className="text-[#ff9900]">
+            <span className="text-[#514f14]">
               Leadership Roles
             </span>
           </h2>
@@ -121,7 +121,7 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({ onSelectJob }) => {
           {/* Search Button */}
           <button
             onClick={() => {}}
-            className="btn-warning-custom w-full md:w-auto px-6 py-2.5 rounded-xl text-sm font-semibold shadow-sm whitespace-nowrap"
+            className="w-full md:w-auto px-6 py-2.5 rounded-xl text-sm font-semibold shadow-sm whitespace-nowrap text-white bg-[#31547b] hover:bg-[#264364] transition-all"
           >
             Search Mandates
           </button>
@@ -134,13 +134,13 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({ onSelectJob }) => {
               <div
                 key={job.id}
                 onClick={() => onSelectJob(job)}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-7 shadow-xs flex flex-col justify-between cursor-pointer group hover:border-[#ff9900]/60"
+                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-7 shadow-xs flex flex-col justify-between cursor-pointer group hover:border-[#31547b]/60"
               >
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#ff9900] block mb-1">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#514f14] block mb-1">
                     {job.domain}
                   </span>
-                  <h3 className="text-lg font-bold text-[#23235b] group-hover:text-[#ff9900] transition-colors leading-snug">
+                  <h3 className="text-lg font-bold text-[#31547b] group-hover:text-[#514f14] transition-colors leading-snug">
                     {job.title}
                   </h3>
                   <p className="text-xs text-slate-500 mt-1 font-medium">
@@ -153,19 +153,19 @@ export const FeaturedJobs: React.FC<FeaturedJobsProps> = ({ onSelectJob }) => {
 
                   {/* Pills Row */}
                   <div className="flex flex-wrap items-center gap-2 mt-4 pt-3 border-t border-slate-100">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                    <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-[#f0f5fa] text-[#31547b] border border-[#31547b]/30">
                       {job.salaryRange}
                     </span>
-                    <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-[#23235b]/10 text-[#23235b]">
+                    <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-[#514f14]/10 text-[#514f14]">
                       {job.type}
                     </span>
                   </div>
                 </div>
 
                 <div className="pt-5 mt-3">
-                  <span className="text-xs sm:text-sm font-semibold text-[#23235b] group-hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors">
+                  <span className="text-xs sm:text-sm font-semibold text-[#31547b] group-hover:text-[#514f14] inline-flex items-center gap-1.5 transition-colors">
                     <span>Confidential representation</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-[#ff9900] group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight className="w-3.5 h-3.5 text-[#514f14] group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>
               </div>

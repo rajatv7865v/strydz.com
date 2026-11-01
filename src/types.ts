@@ -36,6 +36,7 @@ export interface JobListing {
   salaryRange: string;
   skills: string[];
   description: string;
+  industry?: string;
   matchScore?: number;
   featured?: boolean;
   postedAgo: string;

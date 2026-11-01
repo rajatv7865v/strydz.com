@@ -47,7 +47,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenHireModal, onOpenJobPortal }) 
     },
   ];
 
-  // Auto-advance slides every 4 seconds (matching James Douglas carousel delay)
+  // Auto-advance slides every 4 seconds (matching Strydz carousel delay)
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
@@ -115,11 +115,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenHireModal, onOpenJobPortal }) 
         );
       })}
 
-      {/* Centered James Douglas Banner Overlay */}
+      {/* Centered Strydz Banner Overlay */}
       <div className="banner-overlay relative z-10 w-full md:w-[65%] lg:w-[60%] h-full flex items-center justify-center bg-black/45 md:bg-[#00000077] backdrop-blur-[1px] px-6 sm:px-10 md:px-14 py-10 transition-all duration-500">
         <div className="banner-content text-center text-white max-w-3xl mx-auto flex flex-col items-center justify-center">
           
-          {/* Main Heading with Authentic James Douglas Corner Accent */}
+          {/* Main Heading with Authentic Strydz Corner Accent */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-medium leading-[1.2] text-white tracking-tight drop-shadow-sm">
             <span className="hero-corner mr-4 sm:mr-6">
               {slides[currentSlide].corner}
@@ -133,7 +133,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenHireModal, onOpenJobPortal }) 
             {slides[currentSlide].description}
           </p>
 
-          {/* Action CTAs styled with James Douglas Brand Palette */}
+          {/* Action CTAs styled with Strydz Brand Palette (#31547b primary, #514f14 secondary) */}
           <div className="mt-7 sm:mt-8 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
             <button
               onClick={() => {
@@ -144,7 +144,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenHireModal, onOpenJobPortal }) 
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="btn-warning-custom px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium shadow-lg hover:shadow-xl flex items-center gap-2 group transition-all"
+              className="px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium shadow-lg hover:shadow-xl flex items-center gap-2 group transition-all text-white bg-[#31547b] hover:bg-[#264364]"
             >
               <span>Explore Leadership Roles</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -152,16 +152,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenHireModal, onOpenJobPortal }) 
 
             <button
               onClick={() => onOpenHireModal('Leadership Search')}
-              className="px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium text-white border border-white/60 hover:border-white hover:bg-white/10 backdrop-blur-sm transition-all"
+              className="px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium text-white bg-[#514f14] hover:bg-[#3f3e10] border border-[#514f14] shadow-md transition-all"
             >
               <span>Build Your Leadership Team</span>
             </button>
           </div>
 
           {/* Credibility Note */}
-          <div className="mt-6 flex items-center gap-2 text-xs text-white/70 font-medium">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#ff9900]" />
-            <span>A wholly owned subsidiary of EMA Partners India Limited</span>
+          <div className="mt-6 flex items-center gap-2 text-xs text-white/80 font-medium">
+            <span className="inline-block w-2 h-2 rounded-full bg-[#514f14]" />
+            <span>Strydz — Strategic Leadership Advisory & Executive Search</span>
           </div>
 
         </div>
@@ -193,7 +193,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenHireModal, onOpenJobPortal }) 
             aria-label={`Go to slide ${idx + 1}`}
             className={`transition-all duration-300 rounded-full ${
               currentSlide === idx
-                ? 'w-7 sm:w-8 h-2.5 bg-[#ff9900] shadow-[0_0_8px_rgba(255,153,0,0.6)]'
+                ? 'w-7 sm:w-8 h-2.5 bg-[#31547b] shadow-[0_0_8px_rgba(49,84,123,0.8)] border border-white/40'
                 : 'w-2.5 h-2.5 bg-white/50 hover:bg-white/80'
             }`}
           />

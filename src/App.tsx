@@ -122,7 +122,7 @@ export const App: React.FC = () => {
             {/* 3. 6 Industry Practices */}
             <SpecialisedHiringSection onOpenHireModal={handleOpenHireModal} />
 
-            {/* 4. Why Choose James Douglas? */}
+            {/* 4. Why Choose Strydz? */}
             <HowItWorksSection onDiscover={() => handleNavigate('about')} />
 
             {/* 5. Meet Our Consultants */}
