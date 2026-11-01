@@ -35,7 +35,8 @@ export default {
         muted: '#64748b',
       },
       fontFamily: {
-        sans: ['"Plus Jakarta Sans"', 'Inter', 'Poppins', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['"Poppins"', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+        poppins: ['"Poppins"', 'sans-serif'],
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

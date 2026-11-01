@@ -1,328 +1,264 @@
 import React, { useState } from 'react';
-import { Search, MapPin, Briefcase, ArrowRight, Sparkles } from 'lucide-react';
+import { Search, MapPin, Briefcase, ArrowRight, Sparkles, Lightbulb, Target, Users, Shield, Award, CheckCircle } from 'lucide-react';
 import { JobListing } from '../types';
 
 interface ForCandidatesPageProps {
   onSelectJob: (job: JobListing) => void;
   onUploadResume: () => void;
+  onNavigateToContact?: () => void;
 }
 
 export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
   onSelectJob,
   onUploadResume,
+  onNavigateToContact,
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [locationTerm, setLocationTerm] = useState('');
-  const [experienceTerm, setExperienceTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [industryTerm, setIndustryTerm] = useState('');
 
-  const categories = [
-    'All',
-    'Engineering',
-    'Design',
-    'Sales',
-    'Marketing',
-    'Finance',
-    'HR',
-    'Operations',
-    'Data & AI',
+  const locations = [
+    'All Locations',
+    'Mumbai',
+    'Bengaluru',
+    'Delhi-NCR',
+    'Hyderabad',
+    'Pune',
+    'Chennai',
+    'Kolkata',
+    'Ahmedabad',
   ];
 
-  const jobsList: (JobListing & { category: string })[] = [
+  const industries = [
+    'All Industries',
+    'Banking and Financial Services',
+    'Technology',
+    'Human Resources',
+    'Healthcare & Life Sciences',
+    'Industrial & Manufacturing',
+    'Consumer',
+  ];
+
+  const leadershipRoles: (JobListing & { industry: string })[] = [
     {
-      id: 'candidate-job-1',
-      title: 'Senior Product Designer',
-      companyCategory: 'Nexora',
-      domain: 'Core Engineering',
-      category: 'Design',
-      location: 'Bengaluru',
-      type: 'Full-time',
-      experience: '4 - 7 Years',
-      salaryRange: '₹24-32 LPA',
-      skills: ['Figma', 'Design Systems', 'User Research', 'Product Strategy'],
-      description: 'Lead design systems and user journey flows across core digital products.',
-      postedAgo: '1 day ago',
-      featured: true,
-    },
-    {
-      id: 'candidate-job-2',
-      title: 'Backend Engineer (Node.js)',
-      companyCategory: 'Finlytics',
-      domain: 'Core Engineering',
-      category: 'Engineering',
-      location: 'Remote',
-      type: 'Full-time',
-      experience: '3 - 6 Years',
-      salaryRange: '₹18-28 LPA',
-      skills: ['Node.js', 'TypeScript', 'PostgreSQL', 'Microservices'],
-      description: 'Build robust API engines and distributed financial microservices.',
-      postedAgo: '2 days ago',
-      featured: true,
-    },
-    {
-      id: 'candidate-job-3',
-      title: 'Regional Sales Manager',
-      companyCategory: 'Bluewave',
-      domain: 'Core Engineering',
-      category: 'Sales',
-      location: 'Lucknow',
-      type: 'Contract', // displays On-site
-      experience: '5 - 8 Years',
-      salaryRange: '₹12-18 LPA',
-      skills: ['B2B Sales', 'Key Accounts', 'Channel Development'],
-      description: 'Drive regional enterprise partnerships and revenue growth.',
-      postedAgo: '3 days ago',
-      featured: true,
-    },
-    {
-      id: 'candidate-job-4',
-      title: 'Data Analyst',
-      companyCategory: 'Orbitly',
-      domain: 'AI & Data',
-      category: 'Data & AI',
-      location: 'Pune',
-      type: 'Hybrid',
-      experience: '2 - 4 Years',
-      salaryRange: '₹10-15 LPA',
-      skills: ['SQL', 'Python', 'Tableau', 'Statistical Modeling'],
-      description: 'Analyze telemetry and user behavioral data to empower product decisions.',
-      postedAgo: '2 days ago',
-      featured: true,
-    },
-    {
-      id: 'candidate-job-5',
-      title: 'HR Business Partner',
-      companyCategory: 'Zenith',
-      domain: 'Core Engineering',
-      category: 'HR',
+      id: 'role-1',
+      title: 'Managing Director & Head of Wholesale Banking',
+      companyCategory: 'Banking and Financial Services',
+      domain: 'BFSI Practice',
+      industry: 'Banking and Financial Services',
       location: 'Mumbai',
-      type: 'Hybrid',
-      experience: '4 - 7 Years',
-      salaryRange: '₹15-22 LPA',
-      skills: ['Talent Strategy', 'People Ops', 'Culture & Engagement'],
-      description: 'Partner with business leaders to scale high-performing teams and HR ops.',
-      postedAgo: '4 days ago',
+      type: 'Executive Search',
+      experience: '18 - 25 Years',
+      salaryRange: 'Institutional CXO Compensation',
+      skills: ['Wholesale Banking', 'Structured Credit', 'P&L Stewardship', 'Regulatory Relations'],
+      description: 'Lead nationwide corporate and institutional banking division, overseeing balance sheet growth, corporate relationships, and digital credit pipelines.',
+      postedAgo: 'Active Mandate',
       featured: true,
     },
     {
-      id: 'candidate-job-6',
-      title: 'Digital Marketing Lead',
-      companyCategory: 'Acme Corp',
-      domain: 'Core Engineering',
-      category: 'Marketing',
-      location: 'Delhi',
-      type: 'Full-time',
-      experience: '4 - 8 Years',
-      salaryRange: '₹14-20 LPA',
-      skills: ['Performance Marketing', 'SEO', 'Brand Growth', 'Paid Channels'],
-      description: 'Own performance acquisition channels and brand growth initiatives.',
-      postedAgo: '5 days ago',
+      id: 'role-2',
+      title: 'Chief Technology Officer (CTO)',
+      companyCategory: 'Technology',
+      domain: 'Technology Practice',
+      industry: 'Technology',
+      location: 'Bengaluru',
+      type: 'Executive Search',
+      experience: '15 - 20 Years',
+      salaryRange: 'Executive CTC + Equity',
+      skills: ['Distributed Architecture', 'AI/ML Systems', 'Global Engineering Scale', 'Product Roadmapping'],
+      description: 'Architect multi-tenant global infrastructure, lead 400+ engineering and product specialists, and spearhead autonomous AI enterprise integration.',
+      postedAgo: 'Active Mandate',
+      featured: true,
+    },
+    {
+      id: 'role-3',
+      title: 'Chief Human Resources Officer (CHRO)',
+      companyCategory: 'Human Resources',
+      domain: 'HR Practice',
+      industry: 'Human Resources',
+      location: 'Delhi-NCR',
+      type: 'Executive Search',
+      experience: '16 - 22 Years',
+      salaryRange: 'Board Level Compensation',
+      skills: ['Succession Planning', 'Global Talent Strategy', 'M&A People Integration', 'Executive Governance'],
+      description: 'Partner with Board and CEO to steward talent transformation across 12 manufacturing sites and cross-border R&D facilities.',
+      postedAgo: 'Active Mandate',
+      featured: true,
+    },
+    {
+      id: 'role-4',
+      title: 'President & Business Head - Precision Engineering',
+      companyCategory: 'Industrial & Manufacturing',
+      domain: 'Industrial Practice',
+      industry: 'Industrial & Manufacturing',
+      location: 'Pune',
+      type: 'Executive Search',
+      experience: '20+ Years',
+      salaryRange: 'Executive + LTI',
+      skills: ['Operational Excellence', 'P&L Ownership', 'Global Supply Chain', 'Industry 4.0'],
+      description: 'Full P&L leadership for a ₹2,400 Cr capital goods business unit directing operations, international exports, and greenfield expansions.',
+      postedAgo: 'Active Mandate',
+      featured: true,
+    },
+    {
+      id: 'role-5',
+      title: 'Chief Operating Officer (COO)',
+      companyCategory: 'Consumer',
+      domain: 'Consumer Practice',
+      industry: 'Consumer',
+      location: 'Mumbai',
+      type: 'Executive Search',
+      experience: '14 - 18 Years',
+      salaryRange: 'Leadership Package + Equity',
+      skills: ['Supply Chain Logistics', 'Omnichannel Operations', 'Unit Economics Optimization', 'Scale Leadership'],
+      description: 'Scale national supply chain, last-mile logistics, and retail operations across 400+ flagship stores and high-growth digital channels.',
+      postedAgo: 'Active Mandate',
+      featured: true,
+    },
+    {
+      id: 'role-6',
+      title: 'Head of Clinical Research & Medical Affairs',
+      companyCategory: 'Healthcare & Life Sciences',
+      domain: 'Healthcare Practice',
+      industry: 'Healthcare & Life Sciences',
+      location: 'Hyderabad',
+      type: 'Executive Search',
+      experience: '15 - 20 Years',
+      salaryRange: 'Global Tier Compensation',
+      skills: ['Clinical Trials Management', 'USFDA/EMA Regulatory Approvals', 'R&D Governance', 'Medical Strategy'],
+      description: 'Oversee clinical trials strategy, regulatory engagement with international authorities, and translational medicine programs.',
+      postedAgo: 'Active Mandate',
       featured: true,
     },
   ];
 
-  const tools = [
+  const whatLeadersGain = [
     {
-      num: '01',
-      title: 'Resume Review',
-      desc: 'Get your resume reviewed by industry recruiters and ATS-optimised.',
-      image: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=600&q=80',
+      icon: Lightbulb,
+      title: 'Clarity',
+      desc: 'Thoughtful, honest guidance when decisions matter most.',
     },
     {
-      num: '02',
-      title: 'Mock Interviews',
-      desc: 'Practice with experts and get actionable feedback before the real thing.',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
+      icon: Target,
+      title: 'Alignment',
+      desc: 'Opportunities that connect ambition with purpose.',
     },
     {
-      num: '03',
-      title: 'Salary Insights',
-      desc: 'Know your market worth with data from thousands of placements.',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80',
+      icon: Users,
+      title: 'Enduring Partnership',
+      desc: 'A relationship that evolves with your leadership journey.',
     },
   ];
 
-  const filteredJobs = jobsList.filter((job) => {
-    const matchesCat = activeCategory === 'All' || job.category === activeCategory;
-    const matchesSearch = !searchTerm.trim() ||
-      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.companyCategory.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesLoc = !locationTerm.trim() ||
-      job.location.toLowerCase().includes(locationTerm.toLowerCase());
-    const matchesExp = !experienceTerm.trim() ||
-      job.experience.toLowerCase().includes(experienceTerm.toLowerCase());
+  const filteredRoles = leadershipRoles.filter((role) => {
+    const matchesKeyword = !searchTerm.trim() ||
+      role.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      role.companyCategory.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      role.skills.some(s => s.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    return matchesCat && matchesSearch && matchesLoc && matchesExp;
+    const matchesLocation = !locationTerm || locationTerm === 'All Locations' ||
+      role.location.toLowerCase().includes(locationTerm.toLowerCase());
+
+    const matchesIndustry = !industryTerm || industryTerm === 'All Industries' ||
+      role.industry.toLowerCase().includes(industryTerm.toLowerCase());
+
+    return matchesKeyword && matchesLocation && matchesIndustry;
   });
 
-  const scrollToJobs = () => {
-    const el = document.getElementById('candidate-jobs');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  const clearFilters = () => {
+    setSearchTerm('');
+    setLocationTerm('');
+    setIndustryTerm('');
   };
 
   return (
     <div className="bg-[#faf7f2] min-h-screen text-slate-900 pb-20">
       
-      {/* 1. Hero Section with subtle ambient backdrop glow */}
-      <section className="relative pt-16 pb-16 md:pt-24 md:pb-20 text-center max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* 1. Hero Banner with Authentic James Douglas Imagery */}
+      <section
+        id="leader-banner"
+        className="banner relative w-full h-[52vh] min-h-[420px] max-h-[580px] overflow-hidden flex items-center justify-center bg-[#111126] select-none"
+        style={{
+          backgroundImage: `url('https://www.jamesdouglas.co.in/assets/images/leaders-banner.jpg'), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1920&q=85')`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
 
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-5">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
-          <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Career Acceleration</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-slate-900 tracking-tight leading-[1.15]">
-          Find a role that fits{' '}
-          <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-            your ambition
-          </span>
-        </h1>
-        <p className="text-slate-600 text-base sm:text-lg mt-4 max-w-2xl mx-auto leading-relaxed font-normal">
-          Explore thousands of verified openings, get represented by seasoned industry recruiters, and fast-track your career with free coaching.
-        </p>
+        {/* Centered James Douglas Banner Overlay */}
+        <div className="banner-overlay relative z-10 w-full md:w-[65%] lg:w-[60%] h-full flex items-center justify-center bg-black/45 md:bg-[#00000077] backdrop-blur-[1px] px-6 sm:px-10 md:px-14 py-12">
+          <div className="banner-content text-center text-white max-w-3xl mx-auto flex flex-col items-center justify-center">
+            
+            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4 text-white">
+              <Sparkles className="w-3.5 h-3.5 text-[#ff9900]" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
+                For Leaders & Candidates
+              </span>
+            </div>
 
-        {/* Hero CTAs with Shimmer */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-          <button
-            onClick={scrollToJobs}
-            className="btn-shimmer px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-md hover:-translate-y-0.5"
-          >
-            Browse Jobs
-          </button>
-          <button
-            onClick={onUploadResume}
-            className="px-6 py-3.5 rounded-xl text-sm font-semibold text-slate-700 bg-white border border-[#e8e2d5] hover:bg-[#f4efe6] transition shadow-2xs hover:-translate-y-0.5"
-          >
-            Upload Resume
-          </button>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-medium leading-[1.2] text-white tracking-tight drop-shadow-sm">
+              <span className="hero-corner mr-4 sm:mr-6">Your Gateway to</span>
+              <br />
+              <span>Future-ready Leadership</span>
+            </h1>
+
+            <p className="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-white/90 font-normal max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+              Partnering with leaders to define choices that shape lasting careers and impactful outcomes.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
+              <button
+                onClick={() => {
+                  const el = document.getElementById('search-roles');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="btn-warning-custom px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
+              >
+                Explore Active Mandates
+              </button>
+              <button
+                onClick={onUploadResume}
+                className="px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium text-white border border-white/60 hover:border-white hover:bg-white/10 backdrop-blur-sm hover:-translate-y-0.5 transition-all"
+              >
+                Register Confidential Profile
+              </button>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      {/* 2. 3-Input Search Bar & Category Tags */}
-      <section className="py-6 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div className="bg-white border border-[#e8e2d5] rounded-2xl p-2 sm:p-2.5 shadow-sm flex flex-col md:flex-row items-center gap-2">
-          
-          {/* Keyword Search */}
-          <div className="flex items-center gap-2 px-3 py-2 flex-grow w-full">
-            <Search className="w-4 h-4 text-slate-400 flex-none" />
-            <input
-              type="text"
-              placeholder="Job title, skills or company"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full text-sm text-slate-900 placeholder-slate-400 bg-transparent focus:outline-none"
-            />
-          </div>
-
-          <div className="hidden md:block w-px h-7 bg-slate-200 flex-none" />
-
-          {/* Location */}
-          <div className="flex items-center gap-2 px-3 py-2 md:w-44 w-full">
-            <MapPin className="w-4 h-4 text-slate-400 flex-none" />
-            <input
-              type="text"
-              placeholder="Location"
-              value={locationTerm}
-              onChange={(e) => setLocationTerm(e.target.value)}
-              className="w-full text-sm text-slate-900 placeholder-slate-400 bg-transparent focus:outline-none"
-            />
-          </div>
-
-          <div className="hidden md:block w-px h-7 bg-slate-200 flex-none" />
-
-          {/* Experience */}
-          <div className="flex items-center gap-2 px-3 py-2 md:w-36 w-full">
-            <Briefcase className="w-4 h-4 text-slate-400 flex-none" />
-            <input
-              type="text"
-              placeholder="Experience"
-              value={experienceTerm}
-              onChange={(e) => setExperienceTerm(e.target.value)}
-              className="w-full text-sm text-slate-900 placeholder-slate-400 bg-transparent focus:outline-none"
-            />
-          </div>
-
-          {/* Search Button */}
-          <button
-            onClick={scrollToJobs}
-            className="btn-shimmer w-full md:w-auto px-6 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm whitespace-nowrap hover:-translate-y-0.5"
-          >
-            Search Jobs
-          </button>
-        </div>
-
-        {/* Category Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mt-5">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-1.5 rounded-full text-xs font-semibold border transition ${
-                activeCategory === cat
-                  ? 'bg-indigo-600 text-white border-indigo-600 shadow-2xs'
-                  : 'bg-white border-[#e8e2d5] text-slate-600 hover:border-indigo-400 hover:text-indigo-600'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. Featured Jobs (Linen Cream #f4efe6) */}
-      <section id="candidate-jobs" className="py-16 md:py-20 bg-[#f4efe6] border-y border-[#e8e2d5] mt-10">
+      {/* 2. What Leaders Gain Section (exact from leaders.html) */}
+      <section className="py-16 md:py-20 bg-white border-y border-[#e8e2d5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Active Roles</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
-              Featured{' '}
-              <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-                jobs
-              </span>
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+              What Leaders Gain
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg mt-3.5 leading-relaxed font-normal">
-              Direct access to top hiring teams with guaranteed recruiter feedback and salary transparency.
-            </p>
+            <div className="section-divider"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredJobs.map((job) => {
-              const displayType = job.location === 'Lucknow' ? 'On-site' : job.type;
-
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {whatLeadersGain.map((item) => {
+              const IconComp = item.icon;
               return (
                 <div
-                  key={job.id}
-                  onClick={() => onSelectJob(job)}
-                  className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-7 shadow-xs flex flex-col justify-between cursor-pointer group"
+                  key={item.title}
+                  className="bg-[#faf7f2] border border-[#e8e2d5] rounded-3xl p-8 text-center flex flex-col items-center hover:shadow-md hover:border-[#ff9900]/40 transition-all group"
                 >
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                      {job.title}
-                    </h3>
-                    <p className="text-sm text-slate-500 mt-1">
-                      {job.companyCategory} · {job.location}
-                    </p>
-
-                    <div className="flex items-center gap-2 mt-4">
-                      <span className="px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-100">
-                        {job.salaryRange}
-                      </span>
-                      <span className="px-2.5 py-1 rounded-md text-xs font-medium bg-indigo-50 text-indigo-700">
-                        {displayType}
-                      </span>
-                    </div>
+                  <div className="w-16 h-16 rounded-2xl bg-[#23235b] text-[#ff9900] flex items-center justify-center mb-6 shadow-xs group-hover:scale-105 transition-transform">
+                    <IconComp className="w-8 h-8" />
                   </div>
-
-                  <div className="pt-6">
-                    <span className="text-xs sm:text-sm font-semibold text-indigo-600 group-hover:text-indigo-700 inline-flex items-center gap-1">
-                      <span>Apply now</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                    </span>
-                  </div>
+                  <h3 className="text-xl font-semibold text-[#23235b] mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                    {item.desc}
+                  </p>
                 </div>
               );
             })}
@@ -331,64 +267,132 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
         </div>
       </section>
 
-      {/* 4. Free tools to grow your career with Photography Cards (Ivory Cream #faf7f2) */}
-      <section className="py-20 bg-[#faf7f2]">
+      {/* 3. Leadership Roles Section (exact from careers/ index.html) */}
+      <section className="py-20 bg-[#faf7f2]" id="roles">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Career Acceleration</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
-              Free tools to grow{' '}
-              <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-                your career
-              </span>
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#23235b] leading-[1.2]">
+              Leadership Roles
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg mt-3.5 leading-relaxed font-normal">
-              From ATS resume audits to mock panel interviews, accelerate your journey to your next senior role.
-            </p>
+            <div className="section-divider"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {tools.map((tool) => (
+          {/* Job Search & Filters Bar (matching careers/ filter form) */}
+          <div className="bg-white border border-[#e8e2d5] rounded-3xl p-6 shadow-sm max-w-4xl mx-auto mb-12 space-y-4">
+            
+            {/* Top row: search input + buttons */}
+            <div className="flex flex-col sm:flex-row items-center gap-3">
+              <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-[#e8e2d5] w-full bg-[#faf7f2]">
+                <Search className="w-4 h-4 text-slate-400 flex-none" />
+                <input
+                  type="text"
+                  placeholder="Search by Job Title or Keyword"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full text-sm text-slate-900 placeholder-slate-400 bg-transparent focus:outline-none"
+                />
+              </div>
+
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition"
+                >
+                  Clear
+                </button>
+                <button
+                  type="button"
+                  className="btn-warning-custom px-6 py-2.5 rounded-xl text-sm font-semibold shadow-xs whitespace-nowrap"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+
+            {/* Dropdowns row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <div>
+                <label className="block text-xs font-semibold text-slate-500 mb-1">Location</label>
+                <select
+                  value={locationTerm}
+                  onChange={(e) => setLocationTerm(e.target.value)}
+                  className="w-full px-4 py-2 rounded-xl text-sm border border-[#e8e2d5] bg-[#faf7f2] text-slate-700 focus:outline-none focus:border-[#23235b]"
+                >
+                  {locations.map((loc) => (
+                    <option key={loc} value={loc === 'All Locations' ? '' : loc}>
+                      {loc}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-500 mb-1">Industry</label>
+                <select
+                  value={industryTerm}
+                  onChange={(e) => setIndustryTerm(e.target.value)}
+                  className="w-full px-4 py-2 rounded-xl text-sm border border-[#e8e2d5] bg-[#faf7f2] text-slate-700 focus:outline-none focus:border-[#23235b]"
+                >
+                  {industries.map((ind) => (
+                    <option key={ind} value={ind === 'All Industries' ? '' : ind}>
+                      {ind}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Job Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredRoles.map((role) => (
               <div
-                key={tool.num}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl overflow-hidden shadow-xs flex flex-col justify-between group"
+                key={role.id}
+                onClick={() => onSelectJob(role)}
+                className="premium-card bg-white border border-[#e8e2d5] rounded-3xl p-7 shadow-xs flex flex-col justify-between cursor-pointer group hover:border-[#ff9900]/60 transition-all hover:-translate-y-1"
               >
-                {/* Visual Image Header */}
-                <div className="relative h-44 overflow-hidden">
-                  <img
-                    src={tool.image}
-                    alt={tool.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
-                  <div className="absolute top-4 left-4 w-8 h-8 rounded-lg bg-white/90 backdrop-blur-md text-indigo-600 font-bold text-xs flex items-center justify-center shadow-xs">
-                    {tool.num}
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#ff9900] bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200/80">
+                      {role.domain}
+                    </span>
+                    <span className="text-xs text-slate-400 font-medium">
+                      {role.location}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-[#23235b] group-hover:text-[#ff9900] transition-colors leading-snug">
+                    {role.title}
+                  </h3>
+                  
+                  <p className="text-xs text-slate-500 mt-1 font-medium">
+                    {role.companyCategory} · {role.experience}
+                  </p>
+
+                  <p className="text-xs sm:text-sm text-slate-600 mt-3 line-clamp-3 leading-relaxed font-normal">
+                    {role.description}
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-1.5 mt-4 pt-3 border-t border-slate-100">
+                    {role.skills.slice(0, 3).map((skill, idx) => (
+                      <span key={idx} className="text-[11px] px-2 py-0.5 rounded-md bg-[#faf7f2] border border-[#e8e2d5] text-slate-700">
+                        {skill}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
-                <div className="p-7 flex flex-col justify-between flex-grow">
-                  <div>
-                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                      {tool.title}
-                    </h3>
-                    <p className="text-sm text-slate-500 leading-relaxed mt-2 font-normal">
-                      {tool.desc}
-                    </p>
-                  </div>
-
-                  <div className="pt-6">
-                    <button
-                      onClick={onUploadResume}
-                      className="text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-700 inline-flex items-center gap-1 group-hover:gap-2 transition-all"
-                    >
-                      <span>Get started</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
+                <div className="pt-6 mt-4 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-xs sm:text-sm font-semibold text-[#23235b] group-hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors">
+                    <span>View Role & Apply</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#ff9900] group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <span className="text-[11px] font-bold text-[#00aeef]">
+                    Confidential
+                  </span>
                 </div>
               </div>
             ))}
@@ -397,31 +401,73 @@ export const ForCandidatesPage: React.FC<ForCandidatesPageProps> = ({
         </div>
       </section>
 
-      {/* 5. CTA Banner */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#faf7f2]">
-        <div className="max-w-5xl mx-auto bg-[#0c1222] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-              Your next role is waiting
+      {/* 4. Transform Your Career & Haven't Found Your Desired Role? (exact from join-us.php) */}
+      <section className="py-20 bg-white border-y border-[#e8e2d5]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+              Transform your career with James Douglas
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-3 max-w-xl mx-auto font-normal">
-              Upload your resume and let our recruiters find the match.
+            <div className="section-divider"></div>
+            <p className="text-slate-600 text-base leading-relaxed mt-4">
+              If you’re looking for work that’s thoughtful, people-driven, and genuinely meaningful, you’ll feel at home here.
+            </p>
+          </div>
+
+          {/* CTA Strip */}
+          <div className="bg-[#f4efe6] border border-[#e8e2d5] rounded-3xl p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+            <div className="space-y-2 text-center sm:text-left">
+              <h3 className="text-xl sm:text-2xl font-semibold text-[#23235b]">
+                Haven’t found your desired role?
+              </h3>
+              <p className="text-sm text-slate-600 max-w-lg leading-relaxed">
+                Join us to discover opportunities that match your skills, aspirations, and career goals.
+              </p>
+            </div>
+
+            <button
+              onClick={onUploadResume}
+              className="btn-warning-custom px-7 py-3.5 rounded-xl text-sm font-semibold shadow-sm whitespace-nowrap hover:-translate-y-0.5 flex-none"
+            >
+              Register With Us
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5. Call to Action Section (exact from leaders.html) */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#faf7f2]">
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#00aeef] via-[#1095cb] to-[#23235b] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
+          <div className="relative z-10">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-white">
+              Ready to bolster your leadership team?
+            </h2>
+            <div className="section-divider mt-4 mb-4"></div>
+            <p className="text-slate-200 text-sm sm:text-base max-w-xl mx-auto font-normal">
+              James Douglas delivers impact-driven leaders confidentially and without compromise.
             </p>
 
             <div className="pt-6 flex flex-wrap items-center justify-center gap-4">
               <button
-                onClick={onUploadResume}
-                className="btn-shimmer px-6 py-3 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm hover:-translate-y-0.5"
+                onClick={() => {
+                  if (onNavigateToContact) {
+                    onNavigateToContact();
+                  } else {
+                    window.location.hash = '#contact';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
+                className="btn-warning-custom px-7 py-3 rounded-xl text-sm font-semibold shadow-sm hover:-translate-y-0.5"
               >
-                Upload Resume
+                Connect With Us
               </button>
               <button
-                onClick={scrollToJobs}
-                className="px-6 py-3 rounded-xl text-sm font-semibold text-white bg-transparent border border-slate-700 hover:border-slate-500 transition hover:bg-white/5 hover:-translate-y-0.5"
+                onClick={onUploadResume}
+                className="px-7 py-3 rounded-xl text-sm font-semibold text-white bg-transparent border border-white/40 hover:border-white transition hover:bg-white/10 hover:-translate-y-0.5"
               >
-                Browse Jobs
+                Submit Credentials
               </button>
             </div>
           </div>

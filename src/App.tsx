@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Navbar, NavView } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { TrustTicker } from './components/TrustTicker';
 import { SolutionsSection } from './components/SolutionsSection';
 import { HowItWorksSection } from './components/HowItWorksSection';
-import { StatsBanner } from './components/StatsBanner';
 import { SpecialisedHiringSection } from './components/SpecialisedHiringSection';
-import { FeaturedJobs } from './components/FeaturedJobs';
 import { TestimonialsSection } from './components/TestimonialsSection';
+import { InsightsSection } from './components/InsightsSection';
 import { ContactCtaBanner } from './components/ContactCtaBanner';
 import { ForEmployersPage } from './components/ForEmployersPage';
 import { ForCandidatesPage } from './components/ForCandidatesPage';
 import { AboutPage } from './components/AboutPage';
 import { ContactPage } from './components/ContactPage';
+import { InsightsPage } from './components/InsightsPage';
 import { Footer } from './components/Footer';
 import { HireTalentModal } from './components/HireTalentModal';
 import { JobDetailModal } from './components/JobDetailModal';
@@ -28,14 +27,17 @@ export const App: React.FC = () => {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash.toLowerCase();
-      if (hash === '#employers' || hash === '#for-employers') {
+      if (hash === '#employers' || hash === '#for-employers' || hash === '#hiring-solutions') {
         setCurrentView('employers');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#candidates' || hash === '#for-candidates') {
+      } else if (hash === '#candidates' || hash === '#for-candidates' || hash === '#careers' || hash === '#join-us') {
         setCurrentView('candidates');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (hash === '#about' || hash === '#about-us') {
+      } else if (hash === '#about' || hash === '#about-us' || hash === '#expertise') {
         setCurrentView('about');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '#insights' || hash === '#insights-hub' || hash === '#perspectives') {
+        setCurrentView('insights');
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else if (hash === '#contact' || hash === '#contact-us') {
         setCurrentView('contact');
@@ -61,6 +63,9 @@ export const App: React.FC = () => {
     } else if (view === 'about') {
       window.location.hash = '#about';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (view === 'insights') {
+      window.location.hash = '#insights';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (view === 'contact') {
       window.location.hash = '#contact';
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -79,7 +84,7 @@ export const App: React.FC = () => {
   };
 
   const handleOpenHireModal = (category?: string) => {
-    setHireModalCategory(category || 'Permanent Hiring');
+    setHireModalCategory(category || 'Executive Search');
     setHireModalOpen(true);
   };
 
@@ -102,42 +107,39 @@ export const App: React.FC = () => {
       <main className="flex-grow">
         {currentView === 'home' && (
           <>
-            {/* Hero Section */}
+            {/* 1. Hero Banner with 3 rotating slides & EMA Partners credibility */}
             <Hero
               onOpenHireModal={handleOpenHireModal}
               onOpenJobPortal={handleOpenJobPortal}
             />
 
-            {/* Trusted By Client Logos */}
-            <TrustTicker />
+            {/* 2. Redefining Leadership with Intent & 4 Advisory Pillars */}
+            <SolutionsSection 
+              onOpenHireModal={handleOpenHireModal} 
+              onOpenJobPortal={handleOpenJobPortal}
+            />
 
-            {/* What we do - End-to-end hiring solutions */}
-            <SolutionsSection onOpenHireModal={handleOpenHireModal} />
-
-            {/* Process - Hiring in three simple steps */}
-            <HowItWorksSection />
-
-            {/* Key Metrics Banner (10K+, 500+, 48 hrs, 92%) */}
-            <StatsBanner />
-
-            {/* Industries - Specialised recruiters for every sector */}
+            {/* 3. 6 Industry Practices */}
             <SpecialisedHiringSection onOpenHireModal={handleOpenHireModal} />
 
-            {/* For candidates - Featured opportunities */}
-            <FeaturedJobs onSelectJob={(job) => setSelectedJob(job)} />
+            {/* 4. Why Choose James Douglas? */}
+            <HowItWorksSection onDiscover={() => handleNavigate('about')} />
 
-            {/* Testimonials - Loved by hiring teams and candidates */}
-            <TestimonialsSection />
+            {/* 5. Meet Our Consultants */}
+            <TestimonialsSection onSelectConsultant={() => handleNavigate('about')} />
 
-            {/* Ready to build your dream team? CTA Banner */}
+            {/* 6. Insights & Perspectives */}
+            <InsightsSection onExploreAll={() => handleNavigate('insights')} />
+
+            {/* 7. Better decisions start with better conversations CTA Banner */}
             <ContactCtaBanner 
               onOpenHireModal={handleOpenHireModal} 
-              onUploadResume={() => handleOpenHireModal('Resume Upload / Candidate')}
+              onUploadResume={() => handleOpenHireModal('Candidate Leadership Profile')}
             />
           </>
         )}
 
-        {/* For Employers Page */}
+        {/* For Employers / Hiring Solutions Page */}
         {currentView === 'employers' && (
           <ForEmployersPage
             onOpenHireModal={handleOpenHireModal}
@@ -145,7 +147,7 @@ export const App: React.FC = () => {
           />
         )}
 
-        {/* For Candidates Page */}
+        {/* For Candidates / Find Opportunities Page */}
         {currentView === 'candidates' && (
           <ForCandidatesPage
             onSelectJob={(job) => setSelectedJob(job)}
@@ -153,7 +155,7 @@ export const App: React.FC = () => {
           />
         )}
 
-        {/* About Page */}
+        {/* About Us / Our Expertise Page */}
         {currentView === 'about' && (
           <AboutPage
             onOpenHireModal={handleOpenHireModal}
@@ -161,7 +163,14 @@ export const App: React.FC = () => {
           />
         )}
 
-        {/* Contact Page */}
+        {/* Insights & Perspectives Hub Page */}
+        {currentView === 'insights' && (
+          <InsightsPage
+            onNavigateToContact={() => handleNavigate('contact')}
+          />
+        )}
+
+        {/* Contact Us Page */}
         {currentView === 'contact' && (
           <ContactPage
             onBackToHome={() => handleNavigate('home')}

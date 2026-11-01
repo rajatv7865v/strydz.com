@@ -1,76 +1,147 @@
 import React, { useState } from 'react';
+import { Landmark, Cpu, Users2, Stethoscope, Factory, ShoppingBag, ArrowRight } from 'lucide-react';
 
 interface SpecialisedHiringSectionProps {
   onOpenHireModal?: (category?: string) => void;
 }
 
 export const SpecialisedHiringSection: React.FC<SpecialisedHiringSectionProps> = ({ onOpenHireModal }) => {
-  const [activeSector, setActiveSector] = useState<string | null>(null);
+  const [selectedPractice, setSelectedPractice] = useState<string | null>(null);
 
-  const row1 = ['IT & Software', 'BFSI', 'Healthcare', 'Manufacturing', 'E-commerce', 'Pharma', 'Telecom'];
-  const row2 = ['Consulting', 'Retail', 'Education'];
-
-  const handleSelect = (sector: string) => {
-    setActiveSector(sector);
-    onOpenHireModal?.(sector);
-  };
+  const practices = [
+    {
+      id: 'bfsi',
+      title: 'BFSI',
+      desc: 'Banking, NBFCs, fintech, insurance, and financial institutions navigating scale, digital transformation, and regulation.',
+      icon: Landmark,
+      roles: ['Managing Directors', 'Chief Risk Officers', 'Head of Wholesale', 'Treasury Leads'],
+    },
+    {
+      id: 'tech',
+      title: 'Technology',
+      desc: 'Product, platform, SaaS, cloud infrastructure, and digital-first businesses hiring transformative engineering & product leaders.',
+      icon: Cpu,
+      roles: ['Chief Technology Officers', 'VP Engineering', 'Head of AI / Data', 'Chief Product Officers'],
+    },
+    {
+      id: 'hr',
+      title: 'HR Leadership',
+      desc: 'CHRO hiring, executive people and culture teams, compensation & benefits, and talent leadership across all corporate sectors.',
+      icon: Users2,
+      roles: ['CHRO / Chief People Officer', 'Head of Talent Acquisition', 'D&I Directors', 'Total Rewards Leads'],
+    },
+    {
+      id: 'health',
+      title: 'Healthcare & Life Sciences',
+      desc: 'Pharma, biotech, medtech, diagnostics, devices, and healthcare provider systems scaling clinical and commercial operations.',
+      icon: Stethoscope,
+      roles: ['Chief Commercial Officers', 'R&D Directors', 'Regulatory Heads', 'Country Managers'],
+    },
+    {
+      id: 'industrial',
+      title: 'Industrial & Manufacturing',
+      desc: 'Engineering-led, capital-intensive, supply chain, and operations-driven enterprises driving Industry 4.0 evolution.',
+      icon: Factory,
+      roles: ['Chief Operating Officers', 'Plant Heads', 'Supply Chain VPs', 'Procurement Directors'],
+    },
+    {
+      id: 'consumer',
+      title: 'Consumer (incl. Consumer Tech)',
+      desc: 'Omnichannel brands, direct-to-consumer, marketplaces, and consumer-facing digital ecosystems navigating consumer shifts.',
+      icon: ShoppingBag,
+      roles: ['Chief Marketing Officers', 'E-commerce Directors', 'Chief Business Officers', 'Retail Operations'],
+    },
+  ];
 
   return (
-    <section className="py-20 md:py-24 bg-[#faf7f2] text-center">
+    <section className="py-20 md:py-24 bg-white text-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
-            <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Domain Expertise</span>
+        <div className="max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Practice Groups</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
-            Specialised recruiters for{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-              every sector
+          
+          <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+            Industry{' '}
+            <span className="text-[#ff9900]">
+              Practices
             </span>
           </h2>
-          <p className="text-slate-600 text-base sm:text-lg mt-3.5 leading-relaxed font-normal">
-            Deep vertical networks across high-growth tech, fintech, health, and consumer platforms.
+          
+          <div className="section-divider"></div>
+          
+          <p className="text-slate-600 text-base sm:text-lg mt-2 leading-relaxed font-normal">
+            Specialized executive search practices led by sector directors with deep commercial intelligence.
           </p>
         </div>
 
-        {/* Sector Pill Badges */}
-        <div className="space-y-3.5 max-w-4xl mx-auto">
-          {/* Row 1 */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-            {row1.map((sector) => (
-              <button
-                key={sector}
-                onClick={() => handleSelect(sector)}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition border ${
-                  activeSector === sector
-                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                    : 'bg-white border-[#e8e2d5] text-slate-700 hover:border-indigo-400 hover:text-indigo-600 shadow-2xs hover:-translate-y-0.5'
-                }`}
-              >
-                {sector}
-              </button>
-            ))}
-          </div>
+        {/* 6 Industry Practice Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+          {practices.map((practice) => {
+            const Icon = practice.icon;
+            const isSelected = selectedPractice === practice.id;
 
-          {/* Row 2 */}
-          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
-            {row2.map((sector) => (
-              <button
-                key={sector}
-                onClick={() => handleSelect(sector)}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition border ${
-                  activeSector === sector
-                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                    : 'bg-white border-[#e8e2d5] text-slate-700 hover:border-indigo-400 hover:text-indigo-600 shadow-2xs hover:-translate-y-0.5'
+            return (
+              <div
+                key={practice.id}
+                onClick={() => setSelectedPractice(practice.id)}
+                className={`premium-card bg-[#faf7f2] border rounded-2xl p-7 shadow-xs flex flex-col justify-between cursor-pointer group transition-all ${
+                  isSelected
+                    ? 'border-[#ff9900] ring-2 ring-[#ff9900]/20 bg-white'
+                    : 'border-[#e8e2d5] hover:border-[#23235b]/30 hover:bg-white'
                 }`}
               >
-                {sector}
-              </button>
-            ))}
-          </div>
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-[#23235b] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+                      <Icon className="w-6 h-6 text-[#ff9900]" />
+                    </div>
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white border border-[#e8e2d5] text-slate-600">
+                      Practice Area
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-semibold text-[#23235b] group-hover:text-[#ff9900] transition-colors">
+                    {practice.title}
+                  </h3>
+
+                  <p className="text-sm text-slate-600 mt-2.5 leading-relaxed font-normal">
+                    {practice.desc}
+                  </p>
+
+                  {/* Sample mandates / roles */}
+                  <div className="pt-4 mt-4 border-t border-slate-200/70">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">
+                      Key Mandates
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {practice.roles.map((r, i) => (
+                        <span key={i} className="text-xs px-2 py-0.5 rounded-md bg-white border border-[#e8e2d5] text-slate-700">
+                          {r}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6 mt-4">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onOpenHireModal?.(practice.title);
+                    }}
+                    className="text-xs sm:text-sm font-semibold text-[#23235b] hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors"
+                  >
+                    <span>Engage {practice.title} Practice</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-[#ff9900] group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
       </div>
@@ -78,4 +149,5 @@ export const SpecialisedHiringSection: React.FC<SpecialisedHiringSectionProps> =
   );
 };
 
+export const SpecialisedHiringSectionDefault = SpecialisedHiringSection;
 export default SpecialisedHiringSection;

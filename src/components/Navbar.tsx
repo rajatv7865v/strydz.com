@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
-export type NavView = 'home' | 'employers' | 'candidates' | 'about' | 'contact';
+export type NavView = 'home' | 'employers' | 'candidates' | 'about' | 'contact' | 'insights';
 
 interface NavbarProps {
   onOpenHireModal: (defaultCategory?: string) => void;
@@ -36,76 +36,76 @@ export const Navbar: React.FC<NavbarProps> = ({
         <a 
           href="#"
           onClick={(e) => handleLinkClick(e, 'home')}
-          className="flex items-center gap-2.5 group"
+          className="flex items-center gap-3 group"
         >
-          <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center shadow-sm text-white font-black text-lg transition-transform group-hover:scale-105">
-            S
+          <div className="w-10 h-10 rounded-xl bg-[#23235b] flex items-center justify-center shadow-md text-white font-extrabold text-base tracking-tight transition-transform group-hover:scale-105 border border-[#ff9900]/40">
+            <span className="text-[#ff9900]">J</span><span>D</span>
           </div>
-          <span className="font-bold text-2xl tracking-tight text-slate-900">
-            Strydz
-          </span>
+          <div className="flex flex-col">
+            <span className="font-semibold text-xl sm:text-2xl tracking-[-0.02em] text-[#23235b] leading-tight">
+              James Douglas
+            </span>
+            <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">
+              India · Leadership Advisory
+            </span>
+          </div>
         </a>
 
         {/* Center Nav Links */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7 lg:gap-8">
           <a
             href="#"
             onClick={(e) => handleLinkClick(e, 'home')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'home' ? 'text-indigo-600' : 'text-slate-600 hover:text-slate-900'
+              currentView === 'home' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
             }`}
           >
             Home
           </a>
           <a
-            href="#employers"
-            onClick={(e) => handleLinkClick(e, 'employers')}
-            className={`text-sm font-semibold transition-colors ${
-              currentView === 'employers' ? 'text-indigo-600' : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            For Employers
-          </a>
-          <a
             href="#candidates"
             onClick={(e) => handleLinkClick(e, 'candidates')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'candidates' ? 'text-indigo-600' : 'text-slate-600 hover:text-slate-900'
+              currentView === 'candidates' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
             }`}
           >
-            For Candidates
+            Find Opportunities
           </a>
           <a
-            href="#solutions"
-            onClick={(e) => {
-              if (currentView === 'home') {
-                const el = document.getElementById('solutions');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              } else {
-                handleLinkClick(e, 'employers');
-              }
-            }}
-            className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+            href="#employers"
+            onClick={(e) => handleLinkClick(e, 'employers')}
+            className={`text-sm font-semibold transition-colors ${
+              currentView === 'employers' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
+            }`}
           >
-            Solutions
+            Hire Talent
           </a>
           <a
             href="#about"
             onClick={(e) => handleLinkClick(e, 'about')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'about' ? 'text-indigo-600' : 'text-slate-600 hover:text-slate-900'
+              currentView === 'about' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
             }`}
           >
-            About
+            Our Expertise
+          </a>
+          <a
+            href="#insights"
+            onClick={(e) => handleLinkClick(e, 'insights')}
+            className={`text-sm font-semibold transition-colors ${
+              currentView === 'insights' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
+            }`}
+          >
+            Insights
           </a>
           <a
             href="#contact"
             onClick={(e) => handleLinkClick(e, 'contact')}
             className={`text-sm font-semibold transition-colors ${
-              currentView === 'contact' ? 'text-indigo-600' : 'text-slate-600 hover:text-slate-900'
+              currentView === 'contact' ? 'text-[#ff9900]' : 'text-slate-700 hover:text-[#23235b]'
             }`}
           >
-            Contact
+            Contact Us
           </a>
         </nav>
 
@@ -113,7 +113,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="hidden md:flex items-center">
           <button
             onClick={() => onOpenHireModal()}
-            className="btn-shimmer px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm"
+            className="btn-shimmer px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-[#ff9900] hover:bg-[#e68a00] transition shadow-md hover:-translate-y-0.5"
           >
             Hire Talent
           </button>
@@ -123,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={() => onOpenHireModal()}
-            className="px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-indigo-600"
+            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-[#ff9900]"
           >
             Hire
           </button>
@@ -145,62 +145,56 @@ export const Navbar: React.FC<NavbarProps> = ({
             <a
               href="#"
               onClick={(e) => handleLinkClick(e, 'home')}
-              className={`py-2 text-sm font-medium border-b border-slate-50 ${
-                currentView === 'home' ? 'text-indigo-600 font-semibold' : 'text-slate-700'
+              className={`py-2 text-sm font-medium border-b border-slate-100 ${
+                currentView === 'home' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
               }`}
             >
               Home
             </a>
             <a
-              href="#employers"
-              onClick={(e) => handleLinkClick(e, 'employers')}
-              className={`py-2 text-sm font-medium border-b border-slate-50 ${
-                currentView === 'employers' ? 'text-indigo-600 font-semibold' : 'text-slate-700'
-              }`}
-            >
-              For Employers
-            </a>
-            <a
               href="#candidates"
               onClick={(e) => handleLinkClick(e, 'candidates')}
-              className={`py-2 text-sm font-medium border-b border-slate-50 ${
-                currentView === 'candidates' ? 'text-indigo-600 font-semibold' : 'text-slate-700'
+              className={`py-2 text-sm font-medium border-b border-slate-100 ${
+                currentView === 'candidates' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
               }`}
             >
-              For Candidates
+              Find Opportunities
             </a>
             <a
-              href="#solutions"
-              onClick={(e) => {
-                if (currentView === 'home') {
-                  setMobileMenuOpen(false);
-                  const el = document.getElementById('solutions');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                } else {
-                  handleLinkClick(e, 'employers');
-                }
-              }}
-              className="py-2 text-sm font-medium text-slate-700 border-b border-slate-50"
+              href="#employers"
+              onClick={(e) => handleLinkClick(e, 'employers')}
+              className={`py-2 text-sm font-medium border-b border-slate-100 ${
+                currentView === 'employers' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
+              }`}
             >
-              Solutions
+              Hire Talent
             </a>
             <a
               href="#about"
               onClick={(e) => handleLinkClick(e, 'about')}
-              className={`py-2 text-sm font-medium border-b border-slate-50 ${
-                currentView === 'about' ? 'text-indigo-600 font-semibold' : 'text-slate-700'
+              className={`py-2 text-sm font-medium border-b border-slate-100 ${
+                currentView === 'about' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
               }`}
             >
-              About
+              Our Expertise
+            </a>
+            <a
+              href="#insights"
+              onClick={(e) => handleLinkClick(e, 'insights')}
+              className={`py-2 text-sm font-medium border-b border-slate-100 ${
+                currentView === 'insights' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
+              }`}
+            >
+              Insights
             </a>
             <a
               href="#contact"
               onClick={(e) => handleLinkClick(e, 'contact')}
-              className={`py-2 text-sm font-medium border-b border-slate-50 ${
-                currentView === 'contact' ? 'text-indigo-600 font-semibold' : 'text-slate-700'
+              className={`py-2 text-sm font-medium border-b border-slate-100 ${
+                currentView === 'contact' ? 'text-[#ff9900] font-semibold' : 'text-slate-700'
               }`}
             >
-              Contact
+              Contact Us
             </a>
           </nav>
           <div className="pt-2">
@@ -209,7 +203,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenHireModal();
               }}
-              className="btn-shimmer w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 text-center shadow-sm"
+              className="btn-shimmer w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-[#ff9900] hover:bg-[#e68a00] text-center shadow-sm"
             >
               Hire Talent
             </button>

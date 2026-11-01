@@ -14,7 +14,8 @@ import {
   CheckCircle2,
   Calendar,
   Sparkles,
-  PhoneCall
+  PhoneCall,
+  Upload
 } from 'lucide-react';
 
 interface ContactPageProps {
@@ -23,14 +24,17 @@ interface ContactPageProps {
 }
 
 export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHireModal }) => {
-  const [inquiryType, setInquiryType] = useState<'hire' | 'exec' | 'contract' | 'candidate' | 'general'>('hire');
-  const [name, setName] = useState('');
+  const [assistType, setAssistType] = useState('Hire for you');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [company, setCompany] = useState('');
-  const [roleTitle, setRoleTitle] = useState('');
-  const [timeline, setTimeline] = useState('Immediate (< 48 Hours)');
+  const [designation, setDesignation] = useState('');
+  const [city, setCity] = useState('');
+  const [country, setCountry] = useState('India');
   const [message, setMessage] = useState('');
+  const [fileName, setFileName] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -40,57 +44,28 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHi
     window.scrollTo({ top: 150, behavior: 'smooth' });
   };
 
-  const offices = [
-    {
-      city: 'Bengaluru',
-      badge: 'Technology HQ',
-      address: 'Embassy TechVillage, Outer Ring Road, Bellandur',
-      postal: 'Bengaluru, Karnataka 560103',
-      phone: '+91 (80) 4920-8000',
-      email: 'blr@strydz.com',
-    },
-    {
-      city: 'Delhi-NCR (Gurugram)',
-      badge: 'Northern Regional Hub',
-      address: 'DLF Cyber City, Building 10, Tower B, Phase II',
-      postal: 'Gurugram, Haryana 122002',
-      phone: '+91 (124) 459-2000',
-      email: 'ncr@strydz.com',
-    },
-    {
-      city: 'Hyderabad',
-      badge: 'GCC & Operations Hub',
-      address: 'Cyber Towers, HITEC City, Madhapur',
-      postal: 'Hyderabad, Telangana 500081',
-      phone: '+91 (40) 6718-4000',
-      email: 'hyd@strydz.com',
-    },
-    {
-      city: 'Lucknow',
-      badge: 'Growth Center',
-      address: 'Vibhuti Khand, Gomti Nagar',
-      postal: 'Lucknow, Uttar Pradesh 226010',
-      phone: '+91 (522) 420-1000',
-      email: 'lucknow@strydz.com',
-    },
-  ];
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFileName(e.target.files[0].name);
+    }
+  };
 
   const faqs = [
     {
-      q: 'How fast will I hear back from a Strydz advisor?',
-      a: 'Our sector specialists review and respond to all inquiries within 2 business hours. If you submit a hiring brief, your initial intake discussion can be scheduled the same day.',
+      q: 'How does James Douglas approach executive leadership search?',
+      a: 'We believe leadership isn’t "filled", it is chosen with intent. We don’t operate as transactional resume brokers. As a wholly owned subsidiary of EMA Partners India Limited, our senior consultants conduct deep qualitative mapping, behavioral assessment, and cultural calibration to ensure enduring alignment.',
     },
     {
-      q: 'How does Strydz’s 48-hour shortlist delivery work?',
-      a: 'Once you submit a hiring brief, our recruiters and smart AI matching engine screen calibrated candidate profiles. Within 48 hours, you receive a curated batch of interview-ready candidates with verified skills and compensation alignment.',
+      q: 'Which practice areas and sectors do your consultants specialize in?',
+      a: 'We operate dedicated specialized practices across Banking & Financial Services (BFSI), Enterprise Technology & SaaS, Healthcare & Life Sciences, Industrial & Manufacturing, Human Resources Leadership, and Consumer & Retail.',
     },
     {
-      q: 'What is your commercial model and replacement guarantee?',
-      a: 'We operate on a transparent contingency success model. You only pay when a candidate successfully joins. Every placement includes an unconditional replacement guarantee.',
+      q: 'Are searches conducted with complete confidentiality?',
+      a: 'Absolute discretion is foundational to our advisory ethos. All board-level, CXO, and leadership succession mandates are conducted strictly under mutual non-disclosure and confidential protocols.',
     },
     {
-      q: 'Are searches conducted confidentially?',
-      a: 'Yes. Many mandates are confidential executive placements, stealth startup builds, or unannounced GCC team expansions. We strictly adhere to enterprise confidentiality and mutual NDAs.',
+      q: 'What is your relationship with EMA Partners India Limited?',
+      a: 'James Douglas Professional Search India Private Limited is a wholly owned subsidiary of EMA Partners India Limited, bringing over 25 years of global executive search legacy, institutional governance, and an international network.',
     },
   ];
 
@@ -103,57 +78,76 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHi
           <div className="flex items-center gap-2">
             <button 
               onClick={onBackToHome}
-              className="hover:text-indigo-600 transition font-medium"
+              className="hover:text-[#ff9900] transition font-medium"
             >
               Home
             </button>
             <span>/</span>
-            <span className="text-slate-900 font-semibold">Contact Us</span>
+            <span className="text-[#23235b] font-semibold">Contact Us</span>
           </div>
-          <div className="flex items-center gap-2 text-indigo-600 font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Talent Advisors Online · 2-Hour Response SLA</span>
+          <div className="flex items-center gap-2 text-[#23235b] font-medium">
+            <span className="w-2 h-2 rounded-full bg-[#00aeef] animate-pulse"></span>
+            <span>Executive Advisory Team Online · Mumbai BKC Head Office</span>
           </div>
         </div>
       </div>
 
-      {/* 2. Hero Header */}
-      <section className="relative pt-16 pb-12 text-center max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* 2. Hero Banner with Authentic James Douglas Imagery */}
+      <section
+        id="contact-banner"
+        className="banner relative w-full h-[52vh] min-h-[420px] max-h-[580px] overflow-hidden flex items-center justify-center bg-[#111126] select-none"
+        style={{
+          backgroundImage: `url('https://www.jamesdouglas.co.in/assets/images/contact-usbanner.jpg'), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1920&q=85')`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
 
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-5">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
-          <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Contact & Support</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-slate-900 tracking-tight leading-[1.15]">
-          Let's start a{' '}
-          <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-            conversation
-          </span>
-        </h1>
-        <p className="text-slate-600 text-base sm:text-lg mt-4 max-w-2xl mx-auto leading-relaxed font-normal">
-          Whether you're looking to hire top talent, explore new career opportunities, or partner with Strydz, our team is ready to assist.
-        </p>
+        {/* Centered James Douglas Banner Overlay */}
+        <div className="banner-overlay relative z-10 w-full md:w-[65%] lg:w-[60%] h-full flex items-center justify-center bg-black/45 md:bg-[#00000077] backdrop-blur-[1px] px-6 sm:px-10 md:px-14 py-12">
+          <div className="banner-content text-center text-white max-w-3xl mx-auto flex flex-col items-center justify-center">
+            
+            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4 text-white">
+              <Sparkles className="w-3.5 h-3.5 text-[#ff9900]" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
+                Let's Connect
+              </span>
+            </div>
 
-        {/* 3 Quick Contact Info Strip */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10 max-w-3xl mx-auto">
-          <div className="bg-white border border-[#e8e2d5] rounded-2xl p-4 text-center shadow-xs">
-            <Phone className="w-5 h-5 text-indigo-600 mx-auto mb-1.5" />
-            <p className="text-xs text-slate-400 font-medium">Direct Phone</p>
-            <p className="text-sm font-bold text-slate-900 mt-0.5">+91 (80) 4920-8000</p>
-          </div>
-          <div className="bg-white border border-[#e8e2d5] rounded-2xl p-4 text-center shadow-xs">
-            <Mail className="w-5 h-5 text-indigo-600 mx-auto mb-1.5" />
-            <p className="text-xs text-slate-400 font-medium">Email Advisory</p>
-            <p className="text-sm font-bold text-slate-900 mt-0.5">contact@strydz.com</p>
-          </div>
-          <div className="bg-white border border-[#e8e2d5] rounded-2xl p-4 text-center shadow-xs">
-            <Clock className="w-5 h-5 text-indigo-600 mx-auto mb-1.5" />
-            <p className="text-xs text-slate-400 font-medium">Response SLA</p>
-            <p className="text-sm font-bold text-slate-900 mt-0.5">&lt; 2 Business Hours</p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-medium leading-[1.2] text-white tracking-tight drop-shadow-sm">
+              <span className="hero-corner mr-4 sm:mr-6">Let's Create Value, Together.</span>
+            </h1>
+
+            <p className="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-white/90 font-normal max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+              We work with organizations, leaders, and colleagues who believe in building something meaningful. Reach out to start a conversation about how we can create value through people.
+            </p>
+
           </div>
         </div>
       </section>
+
+      {/* 3 Quick Contact Info Floating Strip */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 -mt-8 relative z-20">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="bg-white border border-[#e8e2d5] rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-all">
+            <Phone className="w-5 h-5 text-[#ff9900] mx-auto mb-1.5" />
+            <p className="text-xs text-slate-400 font-medium">Direct Telephone</p>
+            <p className="text-sm font-bold text-[#23235b] mt-0.5">+91 74001 60679</p>
+          </div>
+          <div className="bg-white border border-[#e8e2d5] rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-all">
+            <Mail className="w-5 h-5 text-[#00aeef] mx-auto mb-1.5" />
+            <p className="text-xs text-slate-400 font-medium">Email Advisory</p>
+            <p className="text-sm font-bold text-[#23235b] mt-0.5">contactus@jamesdouglas.co.in</p>
+          </div>
+          <div className="bg-white border border-[#e8e2d5] rounded-2xl p-4 text-center shadow-lg hover:shadow-xl transition-all">
+            <MapPin className="w-5 h-5 text-[#23235b] mx-auto mb-1.5" />
+            <p className="text-xs text-slate-400 font-medium">Head Office</p>
+            <p className="text-sm font-bold text-[#23235b] mt-0.5">ONE BKC, Bandra (E), Mumbai</p>
+          </div>
+        </div>
+      </div>
 
       {/* 3. Main Content: Interactive Form & Locations */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -164,35 +158,33 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHi
             {!submitted ? (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <h3 className="text-2xl font-bold text-slate-900 tracking-tight">
-                    Send us a message
+                  <h3 className="text-2xl font-semibold text-[#23235b] tracking-tight">
+                    Get in touch
                   </h3>
                   <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                    Fill out the form below and the appropriate sector lead will get back to you shortly.
+                    Tell us what you're looking for and our consultants will take it from there.
                   </p>
                 </div>
 
-                {/* Inquiry Type Tabs */}
+                {/* How Can We Assist You Dropdown / Tabs */}
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">
-                    I am inquiring about:
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">
+                    How Can We Assist You *
                   </label>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                     {[
-                      { id: 'hire', label: 'Hire Talent' },
-                      { id: 'exec', label: 'Executive Search' },
-                      { id: 'contract', label: 'Contract / RPO' },
-                      { id: 'candidate', label: 'Candidate / Jobs' },
-                      { id: 'general', label: 'General Partnership' },
+                      { id: 'Hire for you', label: 'Hire for you' },
+                      { id: 'Find your next career move', label: 'Career Move' },
+                      { id: 'Join us', label: 'Join Our Advisory' },
                     ].map((tab) => (
                       <button
                         key={tab.id}
                         type="button"
-                        onClick={() => setInquiryType(tab.id as any)}
-                        className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold border transition ${
-                          inquiryType === tab.id
-                            ? 'bg-indigo-600 text-white border-indigo-600 shadow-2xs'
-                            : 'bg-white text-slate-700 border-[#e8e2d5] hover:border-indigo-400 hover:text-indigo-600'
+                        onClick={() => setAssistType(tab.id)}
+                        className={`px-3.5 py-2.5 rounded-xl text-xs font-semibold border transition text-center ${
+                          assistType === tab.id
+                            ? 'bg-[#23235b] text-white border-[#23235b] shadow-2xs'
+                            : 'bg-white text-slate-700 border-[#e8e2d5] hover:border-[#ff9900] hover:text-[#23235b]'
                         }`}
                       >
                         {tab.label}
@@ -204,96 +196,143 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHi
                 {/* Form Inputs Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Your Name *</label>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">First Name *</label>
                     <input
                       type="text"
                       required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="e.g. Vikram Singh"
-                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 bg-white"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="Enter your first name"
+                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Work Email *</label>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">Last Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Enter your last name"
+                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">Company / Organization *</label>
+                    <input
+                      type="text"
+                      required
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                      placeholder="Company name"
+                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">Designation *</label>
+                    <input
+                      type="text"
+                      required
+                      value={designation}
+                      onChange={(e) => setDesignation(e.target.value)}
+                      placeholder="e.g. Managing Director, CHRO, VP"
+                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">Email Address *</label>
                     <input
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="vikram@company.com"
-                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 bg-white"
+                      placeholder="name@organization.com"
+                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Phone Number</label>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">Phone Number *</label>
                     <input
                       type="tel"
+                      required
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+91 98765 43210"
-                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 bg-white"
+                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Company / Organization</label>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">City *</label>
                     <input
                       type="text"
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                      placeholder="e.g. Finlytics"
-                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 bg-white"
+                      required
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      placeholder="Mumbai, Bengaluru, Delhi-NCR..."
+                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">Country *</label>
+                    <input
+                      type="text"
+                      required
+                      value={country}
+                      onChange={(e) => setCountry(e.target.value)}
+                      placeholder="Country"
+                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Role / Mandate Title</label>
-                    <input
-                      type="text"
-                      value={roleTitle}
-                      onChange={(e) => setRoleTitle(e.target.value)}
-                      placeholder="e.g. Senior Product Designer, Backend Lead"
-                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 bg-white"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Target Timeline</label>
-                    <select
-                      value={timeline}
-                      onChange={(e) => setTimeline(e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 bg-white text-slate-700"
-                    >
-                      <option>Immediate (&lt; 48 Hours)</option>
-                      <option>Next 2 - 4 Weeks</option>
-                      <option>Next 1 - 3 Months</option>
-                      <option>Exploratory / Planning</option>
-                    </select>
+                {/* Attach File Option */}
+                <div>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">
+                    Attach Relevant Documents / CV (Optional)
+                  </label>
+                  <div className="flex items-center gap-3">
+                    <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-[#23235b] bg-[#f4efe6] border border-[#e8e2d5] hover:bg-[#eae3d5] transition">
+                      <Upload className="w-3.5 h-3.5 text-[#ff9900]" />
+                      <span>{fileName ? 'Change File' : 'Upload File (.pdf, .docx)'}</span>
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept=".pdf,.doc,.docx"
+                        onChange={handleFileChange}
+                      />
+                    </label>
+                    {fileName && (
+                      <span className="text-xs text-slate-600 font-medium truncate max-w-xs">
+                        {fileName}
+                      </span>
+                    )}
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">How can we help? *</label>
+                  <label className="block text-xs font-semibold text-slate-700 mb-1">Message / Mandate Brief *</label>
                   <textarea
                     rows={4}
                     required
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Tell us about the roles, tech stack, location, or team expansion plans..."
-                    className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 bg-white"
+                    placeholder="Tell us about the leadership role, executive requirements, or inquiry details..."
+                    className="w-full px-4 py-2.5 rounded-xl text-sm border border-[#e8e2d5] focus:outline-none focus:border-[#23235b] focus:ring-1 focus:ring-[#23235b] bg-white"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="btn-shimmer w-full py-3.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-md hover:-translate-y-0.5"
+                  className="btn-warning-custom w-full py-3.5 rounded-xl text-sm font-bold text-slate-900 transition shadow-md hover:-translate-y-0.5"
                 >
-                  Send Inquiry
+                  Submit Inquiry
                 </button>
               </form>
             ) : (
@@ -301,13 +340,13 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHi
                 <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900">Thank you for reaching out!</h3>
-                <p className="text-sm text-slate-500 max-w-md mx-auto">
-                  Our talent advisory team has received your message. A dedicated specialist will reach out within 2 business hours.
+                <h3 className="text-2xl font-bold text-[#23235b]">Thank you for your interest in James Douglas</h3>
+                <p className="text-sm text-slate-600 max-w-md mx-auto">
+                  Our leadership consultants have received your communication and will connect with you confidentially.
                 </p>
                 <button
                   onClick={onBackToHome}
-                  className="btn-shimmer mt-4 px-6 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition"
+                  className="btn-warning-custom mt-4 px-6 py-2.5 rounded-xl text-sm font-semibold text-slate-900 transition"
                 >
                   Back to Home
                 </button>
@@ -315,55 +354,61 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHi
             )}
           </div>
 
-          {/* Right Column (5 Cols): Direct Booking Card & Office Locations */}
+          {/* Right Column (5 Cols): Office Locations & Legacy */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Quick 15-Minute Intro Call Card */}
-            <div className="bg-indigo-600 text-white rounded-3xl p-7 shadow-xl relative overflow-hidden">
-              <div className="flex items-center gap-2 mb-2 text-indigo-100 text-xs font-semibold uppercase tracking-wider">
-                <Calendar className="w-4 h-4 text-white" />
-                <span>Fast Consultation</span>
+            {/* Quick Connect Card */}
+            <div className="bg-gradient-to-br from-[#23235b] via-[#1d1e4c] to-[#121332] text-white rounded-3xl p-7 shadow-xl relative overflow-hidden">
+              <div className="flex items-center gap-2 mb-2 text-[#ff9900] text-xs font-semibold uppercase tracking-wider">
+                <Calendar className="w-4 h-4" />
+                <span>Executive Consultation</span>
               </div>
               <h3 className="text-xl font-bold text-white">
-                Prefer a direct conversation?
+                Better decisions start with better conversations.
               </h3>
-              <p className="text-xs sm:text-sm text-indigo-100 mt-2 leading-relaxed">
-                Schedule a 15-minute intake call with our managing recruiters to discuss your requirements.
+              <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
+                Connect directly with our Practice Leaders to review organizational mandates, talent landscapes, or succession roadmaps.
               </p>
               <button
-                onClick={() => onOpenHireModal('15-Min Intro Call')}
-                className="btn-shimmer mt-5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-indigo-600 bg-white hover:bg-indigo-50 transition shadow-sm inline-flex items-center gap-2"
+                onClick={() => onOpenHireModal('Direct Executive Consultation')}
+                className="btn-warning-custom mt-5 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-900 transition shadow-sm inline-flex items-center gap-2"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
-                <span>Book 15-Min Call</span>
+                <span>Request Practice Consultation</span>
               </button>
             </div>
 
-            {/* Offices across India */}
-            <div className="bg-[#f4efe6] rounded-3xl p-7 border border-[#e8e2d5]">
-              <div className="flex items-center gap-2 mb-4">
-                <Building2 className="w-4 h-4 text-indigo-600" />
-                <h3 className="text-base font-bold text-slate-900">
-                  Our Hubs in India
-                </h3>
+            {/* Offices & Registered Address */}
+            <div className="bg-[#f4efe6] rounded-3xl p-7 border border-[#e8e2d5] space-y-5">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#ff9900] block mb-1">
+                  Corporate Headquarters
+                </span>
+                <h4 className="font-bold text-base text-[#23235b]">
+                  James Douglas Professional Search India Pvt. Ltd.
+                </h4>
+                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                  1012, 10th Floor, C-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex, Bandra (East), Mumbai - 400 051, India.
+                </p>
+                <div className="mt-3 pt-3 border-t border-[#e8e2d5] flex flex-col gap-1 text-xs">
+                  <div className="flex items-center gap-2 text-slate-700">
+                    <Phone className="w-3.5 h-3.5 text-[#23235b]" />
+                    <span className="font-semibold">+91 74001 60679</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-700">
+                    <Mail className="w-3.5 h-3.5 text-[#23235b]" />
+                    <span className="font-semibold">contactus@jamesdouglas.co.in</span>
+                  </div>
+                </div>
               </div>
 
-              <div className="space-y-4">
-                {offices.map((office) => (
-                  <div key={office.city} className="bg-white rounded-2xl p-4 border border-[#e8e2d5] space-y-1 shadow-2xs">
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-sm text-slate-900">{office.city}</span>
-                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-100">
-                        {office.badge}
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-500">{office.address}, {office.postal}</p>
-                    <div className="flex items-center justify-between pt-1 text-xs">
-                      <span className="text-slate-600 font-medium">{office.phone}</span>
-                      <span className="text-indigo-600 font-semibold">{office.email}</span>
-                    </div>
-                  </div>
-                ))}
+              <div className="border-t border-[#e8e2d5] pt-4">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#23235b] block mb-1">
+                  Institutional Heritage
+                </span>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  A wholly owned subsidiary of <strong>EMA Partners India Limited</strong>, listed on the NSE (EMAPL). Seamless executive reach across major commercial centers in Mumbai, Bengaluru, Delhi-NCR, and worldwide partner offices.
+                </p>
               </div>
             </div>
 
@@ -376,17 +421,15 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHi
       <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
-            <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Frequently Asked Questions</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#23235b]">Advisory Insights</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-[1.2]">
-            Clear answers to{' '}
-            <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-              common questions
-            </span>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#23235b] tracking-tight leading-[1.2]">
+            Frequently Asked Questions
           </h2>
+          <div className="section-divider mt-3.5 mb-3.5"></div>
           <p className="text-slate-600 text-sm sm:text-base mt-2.5 max-w-xl mx-auto font-normal">
-            Everything you need to know about our recruitment turnarounds, guarantees, and enterprise models.
+            Information regarding our retained search methodology, practice coverage, and governance credentials.
           </p>
         </div>
 
@@ -395,7 +438,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHi
             <div key={idx} className="border-b border-[#e8e2d5]/60 pb-3 last:border-none">
               <button
                 onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                className="w-full flex items-center justify-between text-left text-sm sm:text-base font-bold text-slate-800 hover:text-indigo-600 py-1.5 transition"
+                className="w-full flex items-center justify-between text-left text-sm sm:text-base font-bold text-[#23235b] hover:text-[#ff9900] py-1.5 transition"
               >
                 <span>{faq.q}</span>
                 {openFaq === idx ? (
@@ -416,27 +459,26 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onBackToHome, onOpenHi
 
       {/* 5. CTA Banner */}
       <section className="py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto bg-[#0c1222] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#00aeef] via-[#23235b] to-[#1a1b4b] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
           <div className="relative z-10">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-              Ready to build your dream team?
+              Better decisions start with better conversations
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-3 max-w-xl mx-auto font-normal">
-              Talk to a Strydz talent advisor and get your first shortlist in 48 hours.
+            <div className="section-divider mt-4 mb-4"></div>
+            <p className="text-slate-200 text-sm sm:text-base mt-3 max-w-xl mx-auto font-normal">
+              Start the conversation that shapes your leadership future.
             </p>
 
             <div className="pt-6 flex flex-wrap items-center justify-center gap-4">
               <button
                 onClick={() => onOpenHireModal('Contact Us Footer CTA')}
-                className="btn-shimmer px-6 py-3 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm hover:-translate-y-0.5"
+                className="btn-warning-custom px-7 py-3 rounded-xl text-sm font-semibold text-slate-900 transition shadow-sm hover:-translate-y-0.5"
               >
-                Hire Talent
+                Start a Conversation
               </button>
               <button
                 onClick={onBackToHome}
-                className="px-6 py-3 rounded-xl text-sm font-semibold text-white bg-transparent border border-slate-700 hover:border-slate-500 transition hover:bg-white/5 hover:-translate-y-0.5"
+                className="px-7 py-3 rounded-xl text-sm font-semibold text-white bg-transparent border border-white/30 hover:border-white transition hover:bg-white/10 hover:-translate-y-0.5"
               >
                 Back to Home
               </button>

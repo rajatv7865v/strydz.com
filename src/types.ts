@@ -29,9 +29,9 @@ export interface JobListing {
   id: string;
   title: string;
   companyCategory: string;
-  domain: 'AI & Data' | 'Low-Latency & Quant' | 'Core Engineering' | 'Leadership / CXO' | 'GCC Core';
+  domain: string;
   location: string;
-  type: 'Full-time' | 'Contract' | 'Hybrid' | 'Remote';
+  type: string;
   experience: string;
   salaryRange: string;
   skills: string[];

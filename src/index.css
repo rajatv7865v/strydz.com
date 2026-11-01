@@ -9,13 +9,17 @@
   --border: #e8e2d5;
   --tx: #0f172a;
   --mu: #64748b;
-  --primary: #4f46e5;
+  --primary: #23235b;
+  --jd-navy: #23235b;
+  --jd-navy-light: #2b3a67;
+  --jd-gold: #ff9900;
+  --jd-cyan: #00aeef;
   color-scheme: light;
 }
 
 @layer base {
   html {
-    font-family: 'Plus Jakarta Sans', 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+    font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
     background-color: var(--bg);
@@ -23,12 +27,19 @@
   }
   
   body {
+    font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--bg);
     color: var(--tx);
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -76,5 +87,74 @@
 
 .premium-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 16px 32px -8px rgba(79, 70, 229, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 16px 32px -8px rgba(35, 35, 91, 0.1), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
 }
+
+/* James Douglas Brand Accents */
+.section-divider {
+  width: 80px;
+  height: 4px;
+  background-color: #ff9900;
+  border-radius: 2px;
+  margin: 16px auto 24px auto;
+}
+
+.section-divider-left {
+  width: 80px;
+  height: 4px;
+  background-color: #ff9900;
+  border-radius: 2px;
+  margin: 16px 0 24px 0;
+}
+
+.btn-warning-custom {
+  background-color: #ff9900;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.btn-warning-custom:hover {
+  background-color: #e68a00;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -4px rgba(255, 153, 0, 0.35);
+}
+
+.btn-navy-custom {
+  background-color: #23235b;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.btn-navy-custom:hover {
+  background-color: #1a1a45;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px -4px rgba(35, 35, 91, 0.35);
+}
+
+/* James Douglas Hero Banner Corner Accent */
+.hero-corner {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-corner::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: -21px;
+  width: 38px;
+  height: 38px;
+  display: block;
+  transform: scale(0.7);
+  background: url("data:image/svg+xml,%3Csvg width='44' height='46' viewBox='0 0 44 46' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0V20.9673H23.5698V45.1567H44V20.9673V0H0Z' fill='white'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+
+@media (max-width: 768px) {
+  .hero-corner::before {
+    top: -6px;
+    right: -16px;
+    width: 25px;
+    height: 25px;
+  }
+}
+

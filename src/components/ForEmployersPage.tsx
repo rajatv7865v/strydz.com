@@ -1,322 +1,257 @@
 import React from 'react';
-import { ArrowRight, Check, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Landmark, Factory, Stethoscope, ShoppingBag, Cpu, Users2, Shield, CheckCircle2 } from 'lucide-react';
 
 interface ForEmployersPageProps {
   onOpenHireModal: (category?: string) => void;
-  onOpenBookDemo: () => void;
+  onOpenBookDemo?: () => void;
+  onNavigateToContact?: () => void;
 }
 
 export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
   onOpenHireModal,
-  onOpenBookDemo
+  onNavigateToContact,
 }) => {
-  const models = [
+  const industries = [
+    {
+      id: 'banking',
+      title: 'Banking & Financial Services',
+      desc: 'Our Global Financial Services Practice is designed to be flexible and to serve the needs of an ever-changing market. It adapts seamlessly to shifting regulatory landscapes, digital transformation mandates, and evolving customer expectations.',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80',
+      icon: Landmark,
+    },
+    {
+      id: 'industrial',
+      title: 'Industrial & Manufacturing',
+      desc: 'James Douglas specializes in mid-management to senior executive search across industrial and hi-tech sectors. From advanced manufacturing to mining start-ups, we help organisations secure leaders who drive operational excellence and long-term growth.',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80',
+      icon: Factory,
+    },
+    {
+      id: 'health',
+      title: 'Healthcare & Life Sciences',
+      desc: 'Scientific research, technological advancements, and constant development in healthcare and life sciences create both challenges and opportunities in this vibrant and innovative sector.',
+      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80',
+      icon: Stethoscope,
+    },
+    {
+      id: 'consumer',
+      title: 'Consumer',
+      desc: 'We know that the sector is constantly evolving and that leadership is faced with daily challenges that threaten both market share and margin erosion.',
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80',
+      icon: ShoppingBag,
+    },
+    {
+      id: 'tech',
+      title: 'Technology',
+      desc: 'We also specialise in supporting entrepreneurial companies and start-ups within the Financial Services sector, identifying talent that can scale businesses and navigate competitive digital landscapes.',
+      image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
+      icon: Cpu,
+    },
+    {
+      id: 'hr',
+      title: 'Human Resources',
+      desc: 'Human Resources leadership is no longer just about policy, it is about enabling business transformation. We help organizations hire HR leaders who can build high-performance cultures and drive change at scale.',
+      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
+      icon: Users2,
+    },
+  ];
+
+  const searchStages = [
     {
       num: '01',
-      title: 'Permanent Hiring',
-      desc: 'Pre-vetted mid to senior professionals for full-time roles.',
+      title: 'Needs Assessment & Role Definition',
+      desc: 'We align closely with board and senior leaders to define organizational targets, cultural requirements, and the exact leadership phenotype required.',
     },
     {
       num: '02',
-      title: 'Executive Search',
-      desc: 'Confidential leadership hiring for CXO and board roles.',
+      title: 'Market Mapping & Research',
+      desc: 'Systematic intelligence mapping across target industries, competitors, and parallel sectors to uncover proven high-impact leaders.',
     },
     {
       num: '03',
-      title: 'Contract Staffing',
-      desc: 'Flexible and compliant staffing for project-based needs.',
+      title: 'Candidate Identification & Evaluation',
+      desc: 'In-depth behavioral interviews assessing track record, strategic vision, emotional intelligence, and genuine alignment with your mission.',
     },
     {
       num: '04',
-      title: 'RPO',
-      desc: 'A dedicated recruitment team embedded in your business.',
+      title: 'Selection & Offer Negotiation',
+      desc: 'Facilitating discussions, discreet reference checks, and aligning executive compensation architectures for seamless closure.',
     },
     {
       num: '05',
-      title: 'Campus Hiring',
-      desc: 'Structured fresher hiring programmes with top institutes.',
-    },
-    {
-      num: '06',
-      title: 'Bulk Hiring',
-      desc: 'Scale quickly with high-volume, quality-controlled drives.',
-    },
-  ];
-
-  const whyChooseUs = [
-    {
-      badge: '48h',
-      title: 'Fast shortlists',
-      desc: 'Interview-ready profiles within two working days of your brief.',
-    },
-    {
-      badge: '92%',
-      title: 'High retention',
-      desc: 'Most hires stay beyond their first year thanks to rigorous fit checks.',
-    },
-    {
-      badge: 'AI',
-      title: 'Smart matching',
-      desc: 'Skills, intent and culture signals ranked automatically.',
-    },
-  ];
-
-  const pricingTiers = [
-    {
-      label: 'Pay per hire',
-      price: '8.33%',
-      sub: 'of annual CTC',
-      features: ['Dedicated recruiter', 'Replacement guarantee', 'Weekly reporting'],
-      highlighted: false,
-    },
-    {
-      label: 'Retainer',
-      price: 'Custom',
-      sub: 'For senior & leadership roles',
-      features: ['Dedicated recruiter', 'Replacement guarantee', 'Weekly reporting'],
-      highlighted: true,
-    },
-    {
-      label: 'RPO',
-      price: 'Monthly',
-      sub: 'Fixed team fee',
-      features: ['Dedicated recruiter', 'Replacement guarantee', 'Weekly reporting'],
-      highlighted: false,
+      title: 'Onboarding & Integration',
+      desc: 'Partnering through the transition milestones to ensure rapid strategic traction and long-term organizational value creation.',
     },
   ];
 
   return (
     <div className="bg-[#faf7f2] min-h-screen text-slate-900 pb-20">
       
-      {/* 1. Hero Section with Ambient Glow */}
-      <section className="relative pt-16 pb-20 md:pt-24 md:pb-24 text-center max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* 1. Hero Banner with Authentic James Douglas Imagery */}
+      <section
+        id="company-banner"
+        className="banner relative w-full h-[52vh] min-h-[420px] max-h-[580px] overflow-hidden flex items-center justify-center bg-[#111126] select-none"
+        style={{
+          backgroundImage: `url('https://www.jamesdouglas.co.in/assets/images/company-banner.jpg'), url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1920&q=85')`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
 
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-5">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
-          <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Talent Acquisition Partner</span>
-        </div>
-        <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-bold text-slate-900 tracking-tight leading-[1.15]">
-          Hire top talent without the{' '}
-          <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-            hiring headache
-          </span>
-        </h1>
-        <p className="text-slate-600 text-base sm:text-lg mt-4 max-w-2xl mx-auto leading-relaxed font-normal">
-          Tell us who you need. We source, screen and present interview-ready candidates in 48 hours — you only talk to the best.
-        </p>
+        {/* Centered James Douglas Banner Overlay */}
+        <div className="banner-overlay relative z-10 w-full md:w-[65%] lg:w-[60%] h-full flex items-center justify-center bg-black/45 md:bg-[#00000077] backdrop-blur-[1px] px-6 sm:px-10 md:px-14 py-12">
+          <div className="banner-content text-center text-white max-w-3xl mx-auto flex flex-col items-center justify-center">
+            
+            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4 text-white">
+              <Sparkles className="w-3.5 h-3.5 text-[#ff9900]" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
+                Hiring Solutions for Organizations
+              </span>
+            </div>
 
-        {/* Hero Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-          <button
-            onClick={() => onOpenHireModal('For Employers Mandate')}
-            className="btn-shimmer px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-md hover:-translate-y-0.5"
-          >
-            Hire Talent
-          </button>
-          <button
-            onClick={onOpenBookDemo}
-            className="px-6 py-3.5 rounded-xl text-sm font-semibold text-slate-700 bg-white border border-[#e8e2d5] hover:bg-[#f4efe6] transition shadow-2xs hover:-translate-y-0.5"
-          >
-            Book a Demo
-          </button>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-medium leading-[1.2] text-white tracking-tight drop-shadow-sm">
+              <span className="hero-corner mr-4 sm:mr-6">Hiring Solutions</span>
+              <br />
+              <span>for Organizations</span>
+            </h1>
+
+            <p className="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-white/90 font-normal max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
+              Partnering with boards and enterprises to discover leaders who transform ambition into enduring market leadership.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
+              <button
+                onClick={() => onOpenHireModal('Hiring Solutions')}
+                className="btn-warning-custom px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
+              >
+                Find Your Next Hire
+              </button>
+              <button
+                onClick={() => {
+                  const el = document.getElementById('our-services');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium text-white border border-white/60 hover:border-white hover:bg-white/10 backdrop-blur-sm hover:-translate-y-0.5 transition-all"
+              >
+                Explore Industry Practices
+              </button>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      {/* 2. Choose the model that fits (Linen Cream Background #f4efe6) */}
-      <section className="py-16 md:py-20 bg-[#f4efe6] border-y border-[#e8e2d5]">
+      {/* 2. Build High-Impact Teams Section */}
+      <section className="py-16 md:py-20 bg-white border-y border-[#e8e2d5]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Hiring Solutions</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
-              Choose the model that{' '}
-              <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-                fits your scale
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
+            <div className="lg:col-span-6 space-y-5">
+              <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#ff9900]">
+                Executive Leadership
               </span>
-            </h2>
-            <p className="text-slate-600 text-base sm:text-lg mt-3.5 leading-relaxed font-normal">
-              Tailored staffing structures built for startup speed, departmental scale, or executive retained mandates.
-            </p>
-          </div>
+              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+                Build High-Impact Teams
+              </h2>
+              <div className="section-divider-left"></div>
+              <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
+                Exceptional results come from thoughtful hiring. At James Douglas, we work closely with organizations to place professionals who combine skill, intent, and long-term fit across management and leadership roles.
+              </p>
+              <div className="pt-3">
+                <button
+                  onClick={() => onOpenHireModal('Build High-Impact Teams')}
+                  className="btn-warning-custom px-7 py-3.5 rounded-xl text-sm font-semibold shadow-md inline-flex items-center gap-2 hover:-translate-y-0.5"
+                >
+                  <span>Find Your Next Hire</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {models.map((item) => (
-              <div
-                key={item.num}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-7 shadow-xs flex flex-col justify-between group"
-              >
-                <div>
-                  <div className="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 font-bold text-xs flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                    {item.num}
-                  </div>
-                  <h3 className="text-lg font-bold text-slate-900 mt-4 group-hover:text-indigo-600 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 leading-relaxed mt-2 font-normal">
-                    {item.desc}
+            <div className="lg:col-span-6">
+              <div className="relative rounded-3xl overflow-hidden shadow-xl border border-[#e8e2d5]">
+                <img
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80"
+                  alt="Build High-Impact Teams"
+                  className="w-full h-80 sm:h-96 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#23235b]/70 via-transparent to-transparent flex items-end p-8">
+                  <p className="text-white text-sm font-medium">
+                    Placing leaders who combine skill, intent, and long-term fit.
                   </p>
                 </div>
-
-                <div className="pt-5">
-                  <button
-                    onClick={() => onOpenHireModal(item.title)}
-                    className="text-xs sm:text-sm font-semibold text-indigo-600 hover:text-indigo-700 inline-flex items-center gap-1 group-hover:gap-2 transition-all"
-                  >
-                    <span>Learn more</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
               </div>
-            ))}
-          </div>
+            </div>
 
+          </div>
         </div>
       </section>
 
-      {/* 3. Why employers choose us (Ivory Cream #faf7f2) */}
+      {/* 3. Industry Specialization Section */}
       <section className="py-20 bg-[#faf7f2]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">The Strydz Edge</span>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Sector Expertise</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
-              Why ambitious employers{' '}
-              <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-                choose us
-              </span>
+            
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+              Industry Specialization
             </h2>
-            <p className="text-slate-600 text-base sm:text-lg mt-3.5 leading-relaxed font-normal">
-              High-touch industry recruiting experts powered by automated skill and intent calibration.
+            
+            <div className="section-divider"></div>
+            
+            <p className="text-slate-600 text-base sm:text-lg mt-2 leading-relaxed font-normal">
+              We connect top talent with leading organizations across industries. With deep expertise and a human-first approach, we deliver tailored recruitment solutions that drive success.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {whyChooseUs.map((card) => (
-              <div
-                key={card.title}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-8 shadow-xs group"
-              >
-                <div className="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 font-bold text-xs flex items-center justify-center mb-5 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
-                  {card.badge}
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                  {card.title}
-                </h3>
-                <p className="text-sm text-slate-500 leading-relaxed mt-2 font-normal">
-                  {card.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 4. Simple, transparent pricing (Linen Cream #f4efe6) */}
-      <section className="py-20 bg-[#f4efe6] border-y border-[#e8e2d5]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-[0_0_6px_rgba(99,102,241,0.8)]"></span>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-indigo-700">Engagement Models</span>
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
-              Simple, transparent{' '}
-              <span className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 bg-clip-text text-transparent">
-                pricing
-              </span>
-            </h2>
-            <p className="text-slate-600 text-base sm:text-lg mt-3.5 leading-relaxed font-normal">
-              No hidden fees, no opaque contracts. Predictable structures built around successful hires.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto items-stretch">
-            {pricingTiers.map((tier) => {
-              if (tier.highlighted) {
-                return (
-                  <div
-                    key={tier.label}
-                    className="bg-indigo-600 text-white rounded-3xl p-8 shadow-2xl flex flex-col justify-between relative transform md:-translate-y-3 transition-transform duration-300 hover:scale-[1.02] border border-indigo-400/40"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <p className="text-xs uppercase tracking-wider font-bold text-indigo-200">
-                          {tier.label}
-                        </p>
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white text-indigo-600 uppercase">
-                          Popular
-                        </span>
-                      </div>
-                      <h3 className="text-3xl sm:text-4xl font-bold mt-2 tracking-tight text-white">
-                        {tier.price}
-                      </h3>
-                      <p className="text-xs text-indigo-100 mt-1 mb-6 font-medium">
-                        {tier.sub}
-                      </p>
-
-                      <div className="space-y-3 border-t border-indigo-500/50 pt-6">
-                        {tier.features.map((f) => (
-                          <div key={f} className="flex items-center gap-2.5 text-xs sm:text-sm text-indigo-50">
-                            <Check className="w-4 h-4 text-white flex-none" />
-                            <span>{f}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="pt-8">
-                      <button
-                        onClick={() => onOpenHireModal(`Pricing Tier: ${tier.label}`)}
-                        className="btn-shimmer w-full py-3.5 rounded-xl text-sm font-bold text-indigo-600 bg-white hover:bg-indigo-50 transition shadow-sm text-center hover:-translate-y-0.5"
-                      >
-                        Get started
-                      </button>
-                    </div>
-                  </div>
-                );
-              }
-
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {industries.map((ind) => {
+              const Icon = ind.icon;
               return (
                 <div
-                  key={tier.label}
-                  className="premium-card bg-white border border-[#e8e2d5] rounded-3xl p-8 shadow-xs flex flex-col justify-between"
+                  key={ind.id}
+                  className="premium-card bg-white border border-[#e8e2d5] rounded-3xl overflow-hidden shadow-xs flex flex-col justify-between group hover:border-[#ff9900]/60 transition-all hover:-translate-y-1"
                 >
                   <div>
-                    <p className="text-xs uppercase tracking-wider font-semibold text-slate-400">
-                      {tier.label}
-                    </p>
-                    <h3 className="text-3xl sm:text-4xl font-bold mt-2 tracking-tight text-slate-900">
-                      {tier.price}
-                    </h3>
-                    <p className="text-xs text-slate-500 mt-1 mb-6 font-medium">
-                      {tier.sub}
-                    </p>
-
-                    <div className="space-y-3 border-t border-slate-100 pt-6">
-                      {tier.features.map((f) => (
-                        <div key={f} className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-600">
-                          <Check className="w-4 h-4 text-emerald-500 flex-none" />
-                          <span>{f}</span>
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={ind.image}
+                        alt={ind.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#23235b]/80 via-transparent to-transparent flex items-end p-5">
+                        <div className="flex items-center gap-2.5 text-white">
+                          <div className="w-8 h-8 rounded-lg bg-[#ff9900] flex items-center justify-center text-slate-900 font-bold">
+                            <Icon className="w-4 h-4" />
+                          </div>
+                          <h3 className="text-base font-semibold text-white">
+                            {ind.title}
+                          </h3>
                         </div>
-                      ))}
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                        {ind.desc}
+                      </p>
                     </div>
                   </div>
 
-                  <div className="pt-8">
+                  <div className="p-6 pt-0 border-t border-slate-100 mt-4">
                     <button
-                      onClick={() => onOpenHireModal(`Pricing Tier: ${tier.label}`)}
-                      className="w-full py-3 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm text-center hover:-translate-y-0.5"
+                      onClick={() => onOpenHireModal(ind.title)}
+                      className="text-xs sm:text-sm font-semibold text-[#23235b] group-hover:text-[#ff9900] inline-flex items-center gap-1.5 transition-colors"
                     >
-                      Get started
+                      <span>Find leaders in {ind.title}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-[#ff9900] group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </div>
@@ -327,31 +262,87 @@ export const ForEmployersPage: React.FC<ForEmployersPageProps> = ({
         </div>
       </section>
 
-      {/* 5. CTA Banner */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#faf7f2]">
-        <div className="max-w-5xl mx-auto bg-[#0c1222] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-              Ready to build your dream team?
+      {/* 4. Our Search Approach Section */}
+      <section className="py-20 bg-[#f4efe6] border-y border-[#e8e2d5]" id="our-search-approach">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff9900]"></span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#23235b]">Methodology</span>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#23235b] leading-[1.2]">
+              Our Search Approach
             </h2>
-            <p className="text-slate-400 text-sm sm:text-base mt-3 max-w-xl mx-auto font-normal">
-              Talk to a Strydz talent advisor today.
+            
+            <div className="section-divider"></div>
+            
+            <p className="text-slate-600 text-base sm:text-lg mt-2 leading-relaxed font-normal">
+              A disciplined, high-touch framework that balances market breadth with rigorous qualitative evaluation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            {searchStages.map((s, idx) => (
+              <div 
+                key={s.num}
+                className="bg-white border border-[#e8e2d5] rounded-2xl p-6 shadow-xs relative flex flex-col justify-between group hover:border-[#ff9900]/60 transition-all hover:-translate-y-1"
+              >
+                <div>
+                  <span className="text-2xl font-black text-[#ff9900] block mb-3 font-mono">
+                    {s.num}
+                  </span>
+                  <h4 className="text-base font-semibold text-[#23235b] mb-2 leading-snug">
+                    {s.title}
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                    {s.desc}
+                  </p>
+                </div>
+                {idx < 4 && (
+                  <div className="hidden md:block absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-[#23235b] text-white flex items-center justify-center text-[10px]">
+                    →
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 5. Call to Action Banner (from hiring-solution.html) */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#faf7f2]">
+        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#00aeef] via-[#1095cb] to-[#23235b] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
+          <div className="relative z-10">
+            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-white">
+              Advance Your Leadership Journey.
+            </h2>
+            <div className="section-divider mt-4 mb-4"></div>
+            <p className="text-slate-200 text-sm sm:text-base max-w-xl mx-auto font-normal">
+              Let’s define the roles that matter and run a search built for results.
             </p>
 
             <div className="pt-6 flex flex-wrap items-center justify-center gap-4">
               <button
-                onClick={() => onOpenHireModal('For Employers CTA')}
-                className="btn-shimmer px-6 py-3 rounded-xl text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition shadow-sm hover:-translate-y-0.5"
+                onClick={() => onOpenHireModal('Organization Search Brief')}
+                className="btn-warning-custom px-7 py-3 rounded-xl text-sm font-semibold shadow-sm hover:-translate-y-0.5"
               >
-                Hire Talent
+                Find Your Next Hire
               </button>
               <button
-                onClick={onOpenBookDemo}
-                className="px-6 py-3 rounded-xl text-sm font-semibold text-white bg-transparent border border-slate-700 hover:border-slate-500 transition hover:bg-white/5 hover:-translate-y-0.5"
+                onClick={() => {
+                  if (onNavigateToContact) {
+                    onNavigateToContact();
+                  } else {
+                    window.location.hash = '#contact';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
+                className="px-7 py-3 rounded-xl text-sm font-semibold text-white bg-transparent border border-white/40 hover:border-white transition hover:bg-white/10 hover:-translate-y-0.5"
               >
-                Book a Demo
+                Contact Us
               </button>
             </div>
           </div>
