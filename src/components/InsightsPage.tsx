@@ -1,226 +1,306 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowRight, Clock } from 'lucide-react';
+import { BlogPost } from '../types';
+import { Tag, ArrowRight, X, Clock, Calendar } from 'lucide-react';
 
 interface InsightsPageProps {
-  onNavigateToContact?: () => void;
+  onContactClick: () => void;
 }
 
-export const InsightsPage: React.FC<InsightsPageProps> = ({ onNavigateToContact }) => {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+export const InsightsPage: React.FC<InsightsPageProps> = ({ onContactClick }) => {
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
 
-  const categories = ['All', 'Succession Strategy', 'Board Governance', 'Executive Search', 'Leadership Trends'];
-
-  const articles = [
+  const blogs: BlogPost[] = [
     {
-      id: 'insight-1',
-      title: 'Succession Planning in Promoter-Led Indian Companies',
-      category: 'Succession Strategy',
-      badge: 'BUSINESS, CONSULTING',
-      desc: 'Strydz, a leader in executive search, shows how smart succession planning turns generational transition risk into strategic opportunity.',
+      id: '1',
+      slug: 'how-rpo-aligns-talent-with-long-term-business-strategy',
+      title: 'How RPO Aligns Talent with Long-Term Business Strategy',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: "In India’s fast-changing market, RPO helps align talent with long-term goals without compromising current execution momentum.",
+      image: 'https://jamesdouglasglobal.com/assets/img/blogs-img/How-RPO-Aligns-Talent-with-Long-Term-Business-Strategy.jpg',
       readTime: '5 min read',
-      date: 'Published by Practice Leadership',
-      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80',
+      content: [
+        "In fast-changing markets, reactive hiring is no longer viable. Today's hyper-competitive landscape requires organizations to treat recruitment as a core driver of enterprise value rather than a back-office transactional support function.",
+        "Recruitment Process Outsourcing (RPO) transforms how modern companies view talent acquisition. By embedding strategic talent advisors into your organization, RPO bridges the gap between high-level business goals and ground-level hiring execution.",
+        "Through predictive workforce planning, structured competency mapping, and proactive talent pipelining, RPO partners ensure that when new business opportunities emerge, the leadership and technical talent required to seize them are already identified and engaged."
+      ]
     },
     {
-      id: 'insight-2',
-      title: 'Hiring Leaders Who Shape the Future',
-      category: 'Executive Search',
-      badge: 'BUSINESS, CONSULTING',
-      desc: 'In boardrooms today, the pace of change has far outstripped yesterday’s leadership playbooks. Strydz meets this challenge by combining precision with human judgment for speed and rigor.',
-      readTime: '4 min read',
-      date: 'Published by Practice Leadership',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80',
-    },
-    {
-      id: 'insight-3',
-      title: 'CEO Succession Planning: A Strategic Imperative',
-      category: 'Board Governance',
-      badge: 'BUSINESS, CONSULTING',
-      desc: 'Most succession plans fail, risking organizational instability. Done right, they ensure governance continuity and strategic competitive edge.',
+      id: '2',
+      slug: 'how-rpo-scales-hiring-without-losing-quality',
+      title: 'How RPO Scales Hiring Without Losing Quality',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: "It’s not about positions filled, but about finding the right people without slowing business momentum.",
+      image: 'https://jamesdouglasglobal.com/assets/img/blogs-img/Hiring-Without-Losing-Quality-img.jpg',
       readTime: '6 min read',
-      date: 'Published by Board Advisory',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=80',
+      content: [
+        "Scaling recruitment quickly often leads to a common trap: quality dilution. In the rush to hit headcount milestones, internal teams often lower qualification bars or skip thorough cultural alignment checks.",
+        "Leading RPO models overcome this through dual-engine architecture: AI-driven parsing and ranking paired with deep domain-specialist recruiter scrutiny.",
+        "By automating repetitive top-of-funnel matching through engines like MatchCore, recruiters can spend their high-value hours conducting qualitative behavioral assessments, ensuring candidates exceed both performance and cultural standards."
+      ]
     },
     {
-      id: 'insight-4',
-      title: 'The Future of Executive Search in the Middle East',
-      category: 'Leadership Trends',
-      badge: 'BUSINESS, CONSULTING',
-      desc: 'Regional leadership hiring is being reshaped by economic transformation and localized mandates. Success lies in blending deep market intelligence with agile search.',
-      readTime: '5 min read',
-      date: 'Published by Global Practice',
-      image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80',
-    },
-    {
-      id: 'insight-5',
-      title: 'How Strydz Turned a 12-Month Hiring Stalemate into Strategic Success',
-      category: 'Executive Search',
-      badge: 'CASE BRIEF',
-      desc: 'A regional developer’s year-long VP search failed due to rigid criteria, not lack of talent. Strydz resolved it by reframing the organizational challenge.',
+      id: '3',
+      slug: 'hiring-at-the-speed-of-business',
+      title: 'Hiring at the Speed of Business',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: 'Legacy recruitment slows business momentum—every delay risks market share, innovation, and execution.',
+      image: 'https://jamesdouglasglobal.com/assets/img/blogs-img/Hiring-at-the-Speed-of-Business.jpg',
       readTime: '4 min read',
-      date: 'Published by Advisory Leads',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80',
+      content: [
+        "Time-to-hire is no longer just an HR KPI; it is a competitive metric. When product launches or transformation roadmaps depend on specialized talent, every vacancy delays go-to-market velocity.",
+        "Traditional recruitment agencies operate reactively after a requisition is formally opened. In contrast, RPO providers maintain pre-warmed candidate pools across core disciplines, reducing time-to-first-interview by up to 50%.",
+        "Streamlined interview scheduling and automated candidate feedback loops ensure that exceptional talent is not lost to competitor counter-offers."
+      ]
     },
+    {
+      id: '4',
+      slug: 'predictive-hiring',
+      title: 'Predictive Hiring: From Guesswork to Certainty',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: 'MatchCore turns talent prediction into your competitive edge with data-led fitment scores.',
+      image: 'https://jamesdouglasglobal.com/assets/img/blogs-img/Predictive_Hiring.png',
+      readTime: '7 min read',
+      content: [
+        "Gut-feel hiring decisions have cost organizations millions in bad hires and turnover. Predictive hiring leverages structured data, historical success markers, and behavioral analytics to forecast candidate fit and tenure.",
+        "MatchCore combines resume intelligence, skill gap analysis, and real-time market benchmarking to provide objective fitment scores before an interview is even scheduled.",
+        "The result is a radically lower interview-to-offer ratio, freeing hiring managers to spend their time with candidates who are already statistically calibrated for success."
+      ]
+    },
+    {
+      id: '5',
+      slug: 'rpo-and-diversity',
+      title: 'RPO and Diversity',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: 'Today, businesses see diversity not just as a moral duty but as a strategic edge.',
+      image: 'https://jamesdouglasglobal.com/assets/img/blogs-img/RPO-and-Diversity-blog-img.jpg',
+      readTime: '5 min read',
+      content: [
+        "Modern enterprises recognize that cognitive and demographic diversity fuels creative problem-solving and better corporate governance.",
+        "RPO providers implement blind screening processes, unbiased AI ranking algorithms, and diverse sourcing slates that systematically eliminate unconscious bias from candidate discovery.",
+        "Real-time pipeline dashboards allow executive leadership to monitor diversity ratios across every phase of recruitment, ensuring commitments translate into measurable hiring outcomes."
+      ]
+    },
+    {
+      id: '6',
+      slug: 'the-global-talent-pool',
+      title: 'The Global Talent Pool',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: 'As companies scale globally, recruitment grows more complex and demanding across international borders.',
+      image: 'https://jamesdouglasglobal.com/assets/img/blogs-img/The-Global-Talent-Pool-blog-img.jpg',
+      readTime: '6 min read',
+      content: [
+        "Global capability centers (GCCs) and distributed cross-border teams have rewritten the rules of talent acquisition. Finding talent in Mumbai, Singapore, or Dubai requires local cultural fluency paired with international search standards.",
+        "Backed by EMA Partners' international footprint, Strydz - a green-tree company  provides seamless reach across major commercial centers.",
+        "Whether building an entire GCC engineering hub from scratch or hiring localized regulatory specialists, global RPO ensures uniform employer branding and compliance."
+      ]
+    },
+    {
+      id: '7',
+      slug: 'why-traditional-rpos-fall-short',
+      title: 'Why Traditional RPOs Fall Short and What a Better One Looks Like',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: "It's time to pause and ask: Is your RPO truly working for you, or just billing hours?",
+      image: 'https://jamesdouglasglobal.com/assets/img/blogs-img/beyond-resumes-img.jpg',
+      readTime: '5 min read',
+      content: [
+        "Many legacy RPOs operate as rigid staff-augmentation shops, billing for recruiter seats rather than taking ownership of business results.",
+        "Modern RPO demands co-creation. It starts with a comprehensive TA Maturity Assessment, followed by agile SLAs and technology integration that evolves with organizational growth.",
+        "True talent partners don't just supply resumes; they consult on compensation benchmarks, employer branding, and candidate experience metrics."
+      ]
+    },
+    {
+      id: '8',
+      slug: 'building-a-resilient-talent-strategy',
+      title: 'Building a Resilient Talent Strategy',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: 'Learn how RPOs help organizations navigate market uncertainty with agile talent strategies.',
+      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80',
+      readTime: '6 min read',
+      content: [
+        "Economic volatility demands recruitment models that can scale up in growth phases and flex down during consolidation without painful severance or restructuring.",
+        "Hybrid and cloud RPO models give CFOs and CHROs financial agility, converting fixed internal recruiting overhead into a flexible, variable operating cost.",
+        "Building resilience means maintaining continuous talent visibility so leadership is never caught flat-footed when market demand surges."
+      ]
+    },
+    {
+      id: '9',
+      slug: 'rpo-vs-traditional-recruitment',
+      title: 'RPO vs Traditional Recruitment',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: 'Discover how AI and human expertise are reshaping modern recruitment strategies.',
+      image: 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&w=800&q=80',
+      readTime: '5 min read',
+      content: [
+        "Contingent recruitment agencies are transactional brokers incentivized only by individual placement fees, resulting in fragmented candidate interactions and zero institutional memory.",
+        "In contrast, an RPO is an exclusive, embedded partner acting directly under your brand name and values.",
+        "RPO brings proprietary AI platforms, dedicated recruiters, and full accountability for cost-per-hire, time-to-hire, and long-term retention."
+      ]
+    },
+    {
+      id: '10',
+      slug: 'the-evolving-role-of-rpo',
+      title: 'The Evolving Role of RPO in Modern Talent Acquisition',
+      category: 'BUSINESS, CONSULTING',
+      excerpt: 'Explore the compelling data behind why leading enterprise firms are switching to RPO partnerships.',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80',
+      readTime: '6 min read',
+      content: [
+        "The global RPO market is surging as enterprises abandon unscalable in-house recruitment centers in favor of specialized talent architects.",
+        "Today’s leading RPOs provide strategic talent advisory, continuous talent intelligence, and predictive hiring algorithms that guide board-level organizational decisions.",
+        "By merging cutting-edge automation with consultative human nuance, the future of talent acquisition belongs to intelligent RPO partnerships."
+      ]
+    }
   ];
 
-  const filteredArticles = selectedCategory === 'All' 
-    ? articles 
-    : articles.filter(a => a.category === selectedCategory);
-
   return (
-    <div className="bg-[#faf7f2] min-h-screen text-slate-900 pb-20">
+    <div className="bg-white min-h-screen text-[#0B3041] pb-20">
       
-      {/* 1. Hero Banner with Authentic Imagery */}
-      <section
-        id="insights-banner"
-        className="banner relative w-full h-[52vh] min-h-[420px] max-h-[580px] overflow-hidden flex items-center justify-center bg-[#111126] select-none mb-10"
-        style={{
-          backgroundImage: `url('https://www.jamesdouglas.co.in/assets/images/insights-banner.jpg'), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=85')`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
+      {/* 1. Header Banner */}
+      <section className="bg-gray-50/70 border-b border-gray-100 py-14 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#FF7D04]">
+            Insights & Perspectives
+          </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0B3041] mt-2 tracking-tight">
+            Latest Research & Industry Trends
+          </h1>
+          <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
+            Stay updated with the latest trends and insights in talent acquisition, workforce planning, and RPO models.
+          </p>
+        </div>
+      </section>
 
-        {/* Centered Banner Overlay */}
-        <div className="banner-overlay relative z-10 w-full md:w-[65%] lg:w-[60%] h-full flex items-center justify-center bg-black/45 md:bg-[#00000077] backdrop-blur-[1px] px-6 sm:px-10 md:px-14 py-12">
-          <div className="banner-content text-center text-white max-w-3xl mx-auto flex flex-col items-center justify-center">
+      {/* 2. Blog Grid */}
+      <section className="py-12 sm:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogs.map((post) => (
+              <article
+                key={post.id}
+                className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  <div className="aspect-[16/10] overflow-hidden bg-gray-100">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
+                      onError={(e) => {
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80";
+                      }}
+                    />
+                  </div>
+
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-xs font-bold text-[#0090FF] uppercase tracking-wider mb-2.5">
+                      <Tag className="w-3.5 h-3.5" />
+                      <span>{post.category}</span>
+                    </div>
+
+                    <h2 className="text-lg sm:text-xl font-bold text-[#0B3041] group-hover:text-[#FF7D04] transition-colors leading-snug line-clamp-2 mb-2">
+                      {post.title}
+                    </h2>
+
+                    <p className="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="px-6 pb-6 pt-0">
+                  <button
+                    onClick={() => setSelectedPost(post)}
+                    className="primary-cta group/btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#0B3041] text-white text-xs font-semibold hover:bg-[#14465d] transition-all"
+                  >
+                    <span>Read more</span>
+                    <svg 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      width="18" 
+                      height="12" 
+                      viewBox="0 0 24 17" 
+                      fill="none"
+                      className="transition-transform group-hover/btn:translate-x-1"
+                    >
+                      <path
+                        d="M13.9499 16.5073C13.6676 16.5087 13.3913 16.4422 13.156 16.3164C12.9208 16.1907 12.7374 16.0113 12.6291 15.8012C12.5209 15.5911 12.4927 15.3597 12.5483 15.1367C12.6038 14.9136 12.7405 14.7089 12.9409 14.5487L20.4728 8.4895L12.9409 2.4303C12.7081 2.21118 12.5864 1.92932 12.6002 1.64105C12.6141 1.35278 12.7623 1.07933 13.0154 0.875338C13.2685 0.671347 13.6078 0.551845 13.9654 0.54071C14.3231 0.529576 14.6728 0.627629 14.9447 0.815277L23.4713 7.68772C23.736 7.90232 23.8846 8.19263 23.8846 8.49523C23.8846 8.79783 23.736 9.08813 23.4713 9.30274L14.9447 16.1752C14.68 16.3868 14.3227 16.5061 13.9499 16.5073Z"
+                        fill="white"
+                      />
+                      <path
+                        d="M1.42254 16.5075C1.14027 16.5088 0.863909 16.4423 0.628688 16.3166C0.393466 16.1908 0.210042 16.0114 0.101801 15.8013C-0.00644071 15.5912 -0.034595 15.3599 0.0209272 15.1368C0.0764495 14.9137 0.213133 14.709 0.41355 14.5488L7.94543 8.48963L0.41355 2.43043C0.14595 2.21475 -0.00438591 1.92222 -0.00438591 1.6172C-0.0043859 1.31217 0.14595 1.01964 0.41355 0.803957C0.681151 0.588272 1.04409 0.467102 1.42254 0.467102C1.80098 0.467102 2.16393 0.588272 2.43153 0.803957L10.9582 7.67639C11.2229 7.891 11.3714 8.18131 11.3714 8.48391C11.3714 8.78651 11.2229 9.07681 10.9582 9.29142L2.43153 16.1639C2.29991 16.2721 2.14296 16.3582 1.96976 16.4172C1.79656 16.4761 1.61056 16.5068 1.42254 16.5075Z"
+                        fill="white"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 3. Full Article Reading Modal */}
+      {selectedPost && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
+          <div className="relative w-full max-w-3xl rounded-3xl bg-white p-6 sm:p-10 my-8 shadow-2xl border border-gray-100 text-[#0B3041]">
             
-            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4 text-white">
-              <Sparkles className="w-3.5 h-3.5 text-white" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
-                Executive Perspectives
+            <button
+              onClick={() => setSelectedPost(null)}
+              className="absolute top-5 right-5 p-2 rounded-full text-gray-400 hover:text-[#0B3041] hover:bg-gray-100 transition"
+              aria-label="Close Article"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-3 text-xs font-semibold text-[#0090FF] uppercase mb-3">
+              <span>{selectedPost.category}</span>
+              <span>•</span>
+              <span className="flex items-center gap-1 text-gray-400 font-normal">
+                <Clock className="w-3.5 h-3.5" />
+                {selectedPost.readTime}
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-medium leading-[1.2] text-white tracking-tight drop-shadow-sm">
-              <span className="hero-corner mr-4 sm:mr-6">Insights & Perspectives</span>
-            </h1>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#0B3041] leading-tight mb-4">
+              {selectedPost.title}
+            </h2>
 
-            <p className="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-white/90 font-normal max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
-              Stay ahead with concise briefs on leadership trends, succession strategy, and board governance, freshly curated by our partners.
-            </p>
-
-            {/* Quick Action Button */}
-            <div className="mt-6 sm:mt-8 flex items-center justify-center">
-              <button
-                onClick={onNavigateToContact}
-                className="btn-warning-custom px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
-              >
-                Discuss Leadership Trends With Us
-              </button>
+            <div className="rounded-2xl overflow-hidden aspect-[16/9] mb-6 bg-gray-100">
+              <img
+                src={selectedPost.image}
+                alt={selectedPost.title}
+                className="w-full h-full object-cover"
+              />
             </div>
 
-          </div>
-        </div>
-      </section>
+            <div className="space-y-4 text-sm sm:text-base text-gray-700 leading-relaxed font-normal">
+              {selectedPost.content.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
+            </div>
 
-      {/* 2. Filter Pills */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold border transition ${
-                selectedCategory === cat
-                  ? 'bg-[#31547b] text-white border-[#31547b] shadow-2xs'
-                  : 'bg-white border-[#e8e2d5] text-slate-700 hover:border-[#31547b] hover:text-[#31547b]'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. Articles Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredArticles.map((article) => (
-            <article
-              key={article.id}
-              className="premium-card bg-white border border-[#e8e2d5] rounded-3xl overflow-hidden shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60 transition-all hover:-translate-y-1"
-            >
-              <div>
-                <div className="relative h-52 overflow-hidden bg-slate-100">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-[#31547b]/90 text-white backdrop-blur-sm">
-                      {article.badge}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-7">
-                  <div className="flex items-center gap-3 text-xs text-slate-400 mb-2">
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-[#514f14]" />
-                      {article.readTime}
-                    </span>
-                    <span>•</span>
-                    <span>{article.category}</span>
-                  </div>
-
-                  <h2 className="text-lg font-semibold text-[#31547b] group-hover:text-[#514f14] transition-colors leading-snug">
-                    {article.title}
-                  </h2>
-
-                  <p className="text-sm text-slate-600 leading-relaxed mt-3 font-normal">
-                    {article.desc}
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-7 pt-0 border-t border-slate-100 mt-2 flex items-center justify-between">
-                <span className="text-xs sm:text-sm font-semibold text-[#31547b] group-hover:text-[#514f14] inline-flex items-center gap-1.5 transition-colors">
-                  <span>Read full brief</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#514f14] group-hover:translate-x-1 transition-transform" />
-                </span>
-                <span className="text-[11px] text-slate-400">
-                  {article.date}
-                </span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* 4. Bottom CTA */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[#faf7f2] mt-12">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#31547b] via-[#264364] to-[#152537] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
-          <div className="relative z-10">
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-white">
-              Better decisions start with better conversations
-            </h2>
-            <div className="section-divider mt-4 mb-4"></div>
-            <p className="text-slate-200 text-sm sm:text-base max-w-xl mx-auto font-normal">
-              Connect with our practice consultants to discuss organizational leadership trends, talent mapping, or board appointments.
-            </p>
-
-            <div className="pt-6 flex justify-center">
+            <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+              <button
+                onClick={() => setSelectedPost(null)}
+                className="text-xs font-semibold text-gray-500 hover:text-[#0B3041]"
+              >
+                ← Back to Insights
+              </button>
               <button
                 onClick={() => {
-                  if (onNavigateToContact) {
-                    onNavigateToContact();
-                  } else {
-                    window.location.hash = '#contact';
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }
+                  setSelectedPost(null);
+                  onContactClick();
                 }}
-                className="btn-warning-custom px-7 py-3 rounded-xl text-sm font-semibold shadow-sm hover:-translate-y-0.5"
+                className="primary-cta px-6 py-2.5 rounded-full text-xs font-semibold"
               >
-                Contact Us
+                Discuss with Our Advisors
               </button>
             </div>
+
           </div>
         </div>
-      </section>
+      )}
 
     </div>
   );

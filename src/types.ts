@@ -1,3 +1,60 @@
+export type JDView = 
+  | 'home'
+  | 'matchcore'
+  | 'enterprise-rpo'
+  | 'project-rpo'
+  | 'process-rpo'
+  | 'cloud-rpo'
+  | 'source-screen'
+  | 'flex-team'
+  | 'outplacement'
+  | 'about'
+  | 'contact'
+  | 'career'
+  | 'blogs'
+  | 'privacy'
+  | 'terms';
+
+export interface ServiceDetail {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  heroBanner: string;
+  descriptionParagraphs: string[];
+  whyItWorks: {
+    title: string;
+    description: string;
+    icon: string;
+  }[];
+  whatYoullExperience: {
+    title: string;
+    description: string;
+    icon: string;
+  }[];
+  ctaTitle: string;
+  ctaText: string;
+}
+
+export interface LeadershipMember {
+  name: string;
+  title: string;
+  image: string;
+  linkedin: string;
+}
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  image: string;
+  readTime?: string;
+  content: string[];
+}
+
+// Legacy types preserved to ensure backward compatibility
 export interface CandidateSignal {
   name: string;
   score: number;

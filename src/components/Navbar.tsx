@@ -1,136 +1,225 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-
-export type NavView = 'home' | 'employers' | 'candidates' | 'about' | 'contact' | 'insights';
+import React, { useState, useEffect, useRef } from 'react';
+import { JDView } from '../types';
+import { ChevronDown, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
-  onOpenHireModal: (defaultCategory?: string) => void;
-  onOpenJobPortal?: () => void;
-  currentView?: NavView;
-  onNavigate?: (view: NavView, hash?: string) => void;
+  currentView: JDView;
+  onNavigate: (view: JDView) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({
-  onOpenHireModal,
-  currentView = 'home',
-  onNavigate,
-}) => {
+export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [insightsOpen, setInsightsOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleLinkClick = (e: React.MouseEvent, view: NavView, hash?: string) => {
-    e.preventDefault();
+  const solutionsRef = useRef<HTMLDivElement>(null);
+  const insightsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (solutionsRef.current && !solutionsRef.current.contains(e.target as Node)) {
+        setSolutionsOpen(false);
+      }
+      if (insightsRef.current && !insightsRef.current.contains(e.target as Node)) {
+        setInsightsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleNav = (view: JDView) => {
+    onNavigate(view);
+    setSolutionsOpen(false);
+    setInsightsOpen(false);
     setMobileMenuOpen(false);
-    if (onNavigate) {
-      onNavigate(view, hash);
-    } else if (hash) {
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-[#faf7f2]/90 backdrop-blur-md border-b border-[#e8e2d5]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <header 
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/95 backdrop-blur-md shadow-sm py-2.5' 
+          : 'bg-white py-4 border-b border-gray-100'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
-        {/* Strydz Brand Logo */}
-        <a 
-          href="#"
-          onClick={(e) => handleLinkClick(e, 'home')}
-          className="flex items-center gap-3 group"
+        {/* Brand Logo */}
+        <button 
+          onClick={() => handleNav('home')} 
+          className="flex items-center gap-2 focus:outline-none text-left"
+          aria-label="Strydz - a green-tree company  Home"
         >
-          <div className="w-10 h-10 rounded-xl bg-[#31547b] flex items-center justify-center shadow-md text-white font-extrabold text-lg tracking-tight transition-transform group-hover:scale-105 border border-[#514f14]/30">
-            <span className="text-white">S</span>
+          <img 
+            src="https://jamesdouglasglobal.com/assets/img/brand/jd-logo.svg" 
+            alt="Strydz - a green-tree company " 
+            className="h-9 sm:h-10 w-auto object-contain"
+            onError={(e) => {
+              // Graceful fallback if image URL is inaccessible
+              e.currentTarget.style.display = 'none';
+              const fallback = document.getElementById('jd-logo-fallback');
+              if (fallback) fallback.style.display = 'flex';
+            }}
+          />
+          <div id="jd-logo-fallback" className="hidden items-center gap-1.5 font-bold tracking-tight text-[#0B3041]">
+            <span className="text-xl tracking-tight text-[#0B3041]">JAMES DOUGLAS</span>
+            <span className="text-xs bg-[#FF7D04] text-white px-1.5 py-0.5 rounded font-semibold uppercase">Global</span>
           </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-xl sm:text-2xl tracking-[-0.02em] text-[#31547b] leading-tight">
-              Strydz
-            </span>
-            <span className="text-[10px] font-semibold text-[#514f14] uppercase tracking-widest">
-              Executive Search & Advisory
-            </span>
-          </div>
-        </a>
+        </button>
 
-        {/* Center Nav Links */}
-        <nav className="hidden md:flex items-center gap-7 lg:gap-8">
-          <a
-            href="#"
-            onClick={(e) => handleLinkClick(e, 'home')}
-            className={`text-sm font-semibold transition-colors ${
-              currentView === 'home' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
+        {/* Desktop Navigation Links */}
+        <nav className="hidden lg:flex items-center space-x-1 font-medium text-sm text-[#0B3041]">
+          
+          {/* MatchCore */}
+          <button
+            onClick={() => handleNav('matchcore')}
+            className={`px-3.5 py-2 rounded-lg transition-colors hover:text-[#FF7D04] ${
+              currentView === 'matchcore' ? 'text-[#FF7D04] font-semibold' : 'text-[#0B3041]'
             }`}
           >
-            Home
-          </a>
-          <a
-            href="#candidates"
-            onClick={(e) => handleLinkClick(e, 'candidates')}
-            className={`text-sm font-semibold transition-colors ${
-              currentView === 'candidates' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
+            MatchCore
+          </button>
+
+          {/* Solutions Dropdown */}
+          <div className="relative" ref={solutionsRef}>
+            <button
+              onClick={() => {
+                setSolutionsOpen(!solutionsOpen);
+                setInsightsOpen(false);
+              }}
+              className={`flex items-center gap-1 px-3.5 py-2 rounded-lg transition-colors hover:text-[#FF7D04] ${
+                [
+                  'enterprise-rpo', 'project-rpo', 'process-rpo', 
+                  'cloud-rpo', 'source-screen', 'flex-team', 'outplacement'
+                ].includes(currentView)
+                  ? 'text-[#FF7D04] font-semibold'
+                  : 'text-[#0B3041]'
+              }`}
+            >
+              <span>Solutions</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${solutionsOpen ? 'rotate-180 text-[#FF7D04]' : ''}`} />
+            </button>
+
+            {solutionsOpen && (
+              <div className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-2.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <button
+                  onClick={() => handleNav('enterprise-rpo')}
+                  className="w-full text-left px-4 py-2.5 text-sm text-[#0B3041] hover:bg-[#0B3041] hover:text-white transition-colors"
+                >
+                  Enterprise RPO
+                </button>
+                <button
+                  onClick={() => handleNav('project-rpo')}
+                  className="w-full text-left px-4 py-2.5 text-sm text-[#0B3041] hover:bg-[#0B3041] hover:text-white transition-colors"
+                >
+                  Project RPO
+                </button>
+                <button
+                  onClick={() => handleNav('process-rpo')}
+                  className="w-full text-left px-4 py-2.5 text-sm text-[#0B3041] hover:bg-[#0B3041] hover:text-white transition-colors"
+                >
+                  Process RPO
+                </button>
+                <button
+                  onClick={() => handleNav('cloud-rpo')}
+                  className="w-full text-left px-4 py-2.5 text-sm text-[#0B3041] hover:bg-[#0B3041] hover:text-white transition-colors"
+                >
+                  Cloud RPO
+                </button>
+                <button
+                  onClick={() => handleNav('source-screen')}
+                  className="w-full text-left px-4 py-2.5 text-sm text-[#0B3041] hover:bg-[#0B3041] hover:text-white transition-colors"
+                >
+                  Source & Screen
+                </button>
+                <button
+                  onClick={() => handleNav('flex-team')}
+                  className="w-full text-left px-4 py-2.5 text-sm text-[#0B3041] hover:bg-[#0B3041] hover:text-white transition-colors"
+                >
+                  Flex team
+                </button>
+                <button
+                  onClick={() => handleNav('outplacement')}
+                  className="w-full text-left px-4 py-2.5 text-sm text-[#0B3041] hover:bg-[#0B3041] hover:text-white transition-colors"
+                >
+                  Outplacement
+                </button>
+                <div className="border-t border-gray-100 my-1"></div>
+                <button
+                  onClick={() => handleNav('matchcore')}
+                  className="w-full text-left px-4 py-2.5 text-sm font-semibold text-[#FF7D04] hover:bg-[#0B3041] hover:text-white transition-colors"
+                >
+                  MatchCore Platform
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Insights Dropdown */}
+          <div className="relative" ref={insightsRef}>
+            <button
+              onClick={() => {
+                setInsightsOpen(!insightsOpen);
+                setSolutionsOpen(false);
+              }}
+              className={`flex items-center gap-1 px-3.5 py-2 rounded-lg transition-colors hover:text-[#FF7D04] ${
+                currentView === 'blogs' ? 'text-[#FF7D04] font-semibold' : 'text-[#0B3041]'
+              }`}
+            >
+              <span>Insights</span>
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${insightsOpen ? 'rotate-180 text-[#FF7D04]' : ''}`} />
+            </button>
+
+            {insightsOpen && (
+              <div className="absolute left-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <button
+                  onClick={() => handleNav('blogs')}
+                  className="w-full text-left px-4 py-2.5 text-sm text-[#0B3041] hover:bg-[#0B3041] hover:text-white transition-colors"
+                >
+                  Blog
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* About us */}
+          <button
+            onClick={() => handleNav('about')}
+            className={`px-3.5 py-2 rounded-lg transition-colors hover:text-[#FF7D04] ${
+              currentView === 'about' ? 'text-[#FF7D04] font-semibold' : 'text-[#0B3041]'
             }`}
           >
-            Find Opportunities
-          </a>
-          <a
-            href="#employers"
-            onClick={(e) => handleLinkClick(e, 'employers')}
-            className={`text-sm font-semibold transition-colors ${
-              currentView === 'employers' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
-            }`}
-          >
-            Hire Talent
-          </a>
-          <a
-            href="#about"
-            onClick={(e) => handleLinkClick(e, 'about')}
-            className={`text-sm font-semibold transition-colors ${
-              currentView === 'about' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
-            }`}
-          >
-            Our Expertise
-          </a>
-          <a
-            href="#insights"
-            onClick={(e) => handleLinkClick(e, 'insights')}
-            className={`text-sm font-semibold transition-colors ${
-              currentView === 'insights' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
-            }`}
-          >
-            Insights
-          </a>
-          <a
-            href="#contact"
-            onClick={(e) => handleLinkClick(e, 'contact')}
-            className={`text-sm font-semibold transition-colors ${
-              currentView === 'contact' ? 'text-[#31547b] border-b-2 border-[#31547b]' : 'text-slate-700 hover:text-[#31547b]'
-            }`}
-          >
-            Contact Us
-          </a>
+            About us
+          </button>
         </nav>
 
-        {/* Right CTA Actions */}
-        <div className="hidden md:flex items-center">
+        {/* Right CTA */}
+        <div className="hidden lg:flex items-center">
           <button
-            onClick={() => onOpenHireModal()}
-            className="btn-shimmer px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-[#31547b] hover:bg-[#264364] transition shadow-md hover:-translate-y-0.5"
+            onClick={() => handleNav('contact')}
+            className="primary-cta font-medium hover:shadow-md transition-all"
           >
-            Hire Talent
+            Contact us
           </button>
         </div>
 
-        {/* Mobile menu button */}
-        <div className="flex md:hidden items-center gap-2">
-          <button
-            onClick={() => onOpenHireModal()}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-[#31547b]"
-          >
-            Hire
-          </button>
+        {/* Mobile Hamburger Toggle */}
+        <div className="flex lg:hidden items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-lg text-slate-700 hover:bg-[#f4efe6] transition"
-            aria-label="Toggle menu"
+            className="p-2 rounded-lg text-[#0B3041] hover:bg-gray-100 transition"
+            aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -140,76 +229,80 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#e8e2d5] bg-[#faf7f2] px-6 py-5 space-y-4 shadow-xl">
-          <nav className="flex flex-col space-y-3">
-            <a
-              href="#"
-              onClick={(e) => handleLinkClick(e, 'home')}
-              className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'home' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
-              }`}
-            >
-              Home
-            </a>
-            <a
-              href="#candidates"
-              onClick={(e) => handleLinkClick(e, 'candidates')}
-              className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'candidates' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
-              }`}
-            >
-              Find Opportunities
-            </a>
-            <a
-              href="#employers"
-              onClick={(e) => handleLinkClick(e, 'employers')}
-              className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'employers' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
-              }`}
-            >
-              Hire Talent
-            </a>
-            <a
-              href="#about"
-              onClick={(e) => handleLinkClick(e, 'about')}
-              className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'about' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
-              }`}
-            >
-              Our Expertise
-            </a>
-            <a
-              href="#insights"
-              onClick={(e) => handleLinkClick(e, 'insights')}
-              className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'insights' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
-              }`}
-            >
-              Insights
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleLinkClick(e, 'contact')}
-              className={`py-2 text-sm font-medium border-b border-slate-100 ${
-                currentView === 'contact' ? 'text-[#31547b] font-semibold' : 'text-slate-700'
-              }`}
-            >
-              Contact Us
-            </a>
-          </nav>
-          <div className="pt-2">
+        <div className="lg:hidden bg-white border-t border-gray-100 px-5 pt-3 pb-6 space-y-2 shadow-lg animate-in fade-in duration-200">
+          
+          <button
+            onClick={() => handleNav('matchcore')}
+            className="w-full text-left py-2.5 font-medium text-[#0B3041] border-b border-gray-50 hover:text-[#FF7D04]"
+          >
+            MatchCore
+          </button>
+
+          {/* Mobile Solutions Accordion */}
+          <div>
             <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenHireModal();
-              }}
-              className="btn-shimmer w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-[#31547b] hover:bg-[#264364] text-center shadow-sm"
+              onClick={() => setSolutionsOpen(!solutionsOpen)}
+              className="w-full flex items-center justify-between py-2.5 font-medium text-[#0B3041] border-b border-gray-50 hover:text-[#FF7D04]"
             >
-              Hire Talent
+              <span>Solutions</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${solutionsOpen ? 'rotate-180 text-[#FF7D04]' : ''}`} />
+            </button>
+            {solutionsOpen && (
+              <div className="pl-4 py-1 space-y-1 bg-gray-50/50 rounded-xl mt-1">
+                <button onClick={() => handleNav('enterprise-rpo')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Enterprise RPO</button>
+                <button onClick={() => handleNav('project-rpo')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Project RPO</button>
+                <button onClick={() => handleNav('process-rpo')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Process RPO</button>
+                <button onClick={() => handleNav('cloud-rpo')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Cloud RPO</button>
+                <button onClick={() => handleNav('source-screen')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Source & Screen</button>
+                <button onClick={() => handleNav('flex-team')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Flex team</button>
+                <button onClick={() => handleNav('outplacement')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Outplacement</button>
+                <button onClick={() => handleNav('matchcore')} className="w-full text-left py-2 text-sm font-semibold text-[#FF7D04]">MatchCore Platform</button>
+              </div>
+            )}
+          </div>
+
+          {/* Mobile Insights */}
+          <div>
+            <button
+              onClick={() => setInsightsOpen(!insightsOpen)}
+              className="w-full flex items-center justify-between py-2.5 font-medium text-[#0B3041] border-b border-gray-50 hover:text-[#FF7D04]"
+            >
+              <span>Insights</span>
+              <ChevronDown className={`w-4 h-4 transition-transform ${insightsOpen ? 'rotate-180 text-[#FF7D04]' : ''}`} />
+            </button>
+            {insightsOpen && (
+              <div className="pl-4 py-1 bg-gray-50/50 rounded-xl mt-1">
+                <button onClick={() => handleNav('blogs')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Blog</button>
+              </div>
+            )}
+          </div>
+
+          <button
+            onClick={() => handleNav('about')}
+            className="w-full text-left py-2.5 font-medium text-[#0B3041] border-b border-gray-50 hover:text-[#FF7D04]"
+          >
+            About us
+          </button>
+
+          <button
+            onClick={() => handleNav('career')}
+            className="w-full text-left py-2.5 font-medium text-[#0B3041] border-b border-gray-50 hover:text-[#FF7D04]"
+          >
+            Careers
+          </button>
+
+          <div className="pt-3">
+            <button
+              onClick={() => handleNav('contact')}
+              className="primary-cta w-full py-3"
+            >
+              Contact us
             </button>
           </div>
+
         </div>
       )}
+
     </header>
   );
 };

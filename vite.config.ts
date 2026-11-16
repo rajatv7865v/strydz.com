@@ -6,18 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    allowedHosts: [
-      'st.fairdealac.com',
-      '.fairdealac.com',
-    ],
+    allowedHosts: true,
     cors: true,
   },
   preview: {
     host: true,
-    allowedHosts: [
-      'st.fairdealac.com',
-      '.fairdealac.com',
-    ],
+    allowedHosts: true,
     cors: true,
   },
 });

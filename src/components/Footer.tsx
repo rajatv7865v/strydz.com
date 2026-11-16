@@ -1,169 +1,178 @@
 import React from 'react';
-import { NavView } from './Navbar';
+import { JDView } from '../types';
 
 interface FooterProps {
-  onOpenHireModal: (category?: string) => void;
-  onNavigate?: (view: NavView, hash?: string) => void;
+  onNavigate: (view: JDView) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenHireModal, onNavigate }) => {
-  const handleLinkClick = (e: React.MouseEvent, view: NavView, hash?: string) => {
-    e.preventDefault();
-    if (onNavigate) {
-      onNavigate(view, hash);
-    } else if (hash) {
-      const el = document.querySelector(hash);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   return (
-    <footer className="bg-gradient-to-br from-[#31547b] via-[#264364] to-[#152537] text-slate-200 pt-16 pb-12 border-t border-white/10">
+    <footer className="bg-[#D9D9D9] text-[#0B3041] pt-12 pb-8 border-t border-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Top Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-10">
           
-          {/* Brand & About Col */}
-          <div className="lg:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center text-white font-extrabold text-base border border-[#514f14]/50 shadow-md">
-                <span className="text-white">S</span>
+          {/* Brand Logo Left */}
+          <div className="lg:col-span-3">
+            <button
+              onClick={() => onNavigate('home')}
+              className="focus:outline-none text-left"
+            >
+              <img 
+                src="https://jamesdouglasglobal.com/assets/img/brand/jd-logo.svg" 
+                alt="Strydz - a green-tree company " 
+                className="h-10 w-auto object-contain"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  const fallback = document.getElementById('footer-jd-logo-fallback');
+                  if (fallback) fallback.style.display = 'block';
+                }}
+              />
+              <div id="footer-jd-logo-fallback" className="hidden font-bold tracking-tight text-[#0B3041]">
+                <span className="text-xl tracking-tight text-[#0B3041]">JAMES DOUGLAS</span>
+                <span className="text-xs bg-[#FF7D04] text-white px-1.5 py-0.5 rounded font-semibold ml-1.5 uppercase">Global</span>
               </div>
-              <div className="flex flex-col">
-                <span className="font-semibold text-2xl tracking-[-0.02em] text-white leading-tight">
-                  Strydz
-                </span>
-                <span className="text-[10px] font-semibold text-slate-300 uppercase tracking-widest">
-                  Leadership Advisory & Executive Search
-                </span>
-              </div>
-            </div>
-
-            <p className="text-sm text-slate-200 leading-relaxed max-w-sm">
-              At Strydz, we connect exceptional leadership talent with forward-thinking companies through tailored executive search solutions driven by insight, precision, and impact.
+            </button>
+            <p className="mt-4 text-xs text-[#0B3041]/80 max-w-xs leading-relaxed font-normal">
+              The Talent-Solutions arm of EMA Partners India Ltd. AI-powered. Human-led.
             </p>
-            <p className="text-xs text-slate-300 font-medium leading-relaxed">
-              Partnering with boards and enterprises to discover leaders who transform ambition into enduring market leadership.
-            </p>
-
-            <div className="pt-2 text-xs text-slate-300 space-y-1.5">
-              <p className="flex items-start gap-2">
-                <span className="text-white font-bold">📍</span>
-                <span>1012, 10th Floor, C-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex, Bandra (East), Mumbai- 400 051 India.</span>
-              </p>
-              <p className="flex items-center gap-2">
-                <span className="text-white font-bold">📞</span>
-                <span>+91 74001 60679</span>
-              </p>
-              <p className="flex items-center gap-2">
-                <span className="text-white font-bold">✉️</span>
-                <span>contact@strydz.com</span>
-              </p>
-            </div>
           </div>
 
-          {/* Quick Links Col */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-sm font-semibold text-white uppercase tracking-[0.12em]">
-              Quick Links
-            </h4>
-            <div className="w-8 h-1 bg-[#514f14] rounded-sm mb-3"></div>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <a
-                  href="#about"
-                  onClick={(e) => handleLinkClick(e, 'about')}
-                  className="hover:text-white transition-colors"
-                >
-                  About Us & Leadership
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#candidates"
-                  onClick={(e) => handleLinkClick(e, 'candidates')}
-                  className="hover:text-white transition-colors"
-                >
-                  Open Roles / Career
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#employers"
-                  onClick={(e) => handleLinkClick(e, 'employers')}
-                  className="hover:text-white transition-colors"
-                >
-                  Hire Talent / Solutions
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#insights"
-                  onClick={(e) => handleLinkClick(e, 'insights')}
-                  className="hover:text-white transition-colors"
-                >
-                  Insights & Perspectives
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact"
-                  onClick={(e) => handleLinkClick(e, 'contact')}
-                  className="hover:text-white transition-colors"
-                >
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Industry Practices Col */}
-          <div className="lg:col-span-4 space-y-3">
-            <h4 className="text-sm font-semibold text-white uppercase tracking-[0.12em]">
-              Industry Practices
-            </h4>
-            <div className="w-8 h-1 bg-[#514f14] rounded-sm mb-3"></div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <span className="px-2.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-slate-200">
-                BFSI Practice
-              </span>
-              <span className="px-2.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-slate-200">
-                Technology
-              </span>
-              <span className="px-2.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-slate-200">
-                HR Leadership
-              </span>
-              <span className="px-2.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-slate-200">
-                Healthcare & Life Sci
-              </span>
-              <span className="px-2.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-slate-200">
-                Industrial & Mfg
-              </span>
-              <span className="px-2.5 py-1.5 rounded-lg bg-white/10 border border-white/15 text-slate-200">
-                Consumer & Tech
-              </span>
+          {/* 4 Menu Columns Right */}
+          <div className="lg:col-span-9 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+            
+            {/* 1. Explore */}
+            <div>
+              <h4 className="text-sm font-bold text-[#0B3041] mb-3 uppercase tracking-wider">
+                Explore
+              </h4>
+              <ul className="space-y-2 text-xs">
+                <li>
+                  <button onClick={() => onNavigate('matchcore')} className="footer-link">
+                    MatchCore
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('career')} className="footer-link">
+                    Careers
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('contact')} className="footer-link">
+                    Contact Us
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('about')} className="footer-link">
+                    Overview
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('about')} className="footer-link">
+                    Management Team
+                  </button>
+                </li>
+              </ul>
             </div>
 
-            <div className="pt-4">
-              <button
-                onClick={() => onOpenHireModal('Footer Conversation')}
-                className="btn-shimmer w-full py-2.5 px-4 rounded-xl text-xs sm:text-sm font-semibold text-white bg-[#514f14] hover:bg-[#3f3e10] transition shadow-md"
-              >
-                Start a Conversation
-              </button>
+            {/* 2. Solutions */}
+            <div>
+              <h4 className="text-sm font-bold text-[#0B3041] mb-3 uppercase tracking-wider">
+                Solutions
+              </h4>
+              <ul className="space-y-2 text-xs">
+                <li>
+                  <button onClick={() => onNavigate('enterprise-rpo')} className="footer-link">
+                    Enterprise RPO
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('project-rpo')} className="footer-link">
+                    Project RPO
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('process-rpo')} className="footer-link">
+                    Process RPO
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('cloud-rpo')} className="footer-link">
+                    Cloud RPO
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('source-screen')} className="footer-link">
+                    Source & Screen
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('flex-team')} className="footer-link">
+                    Flex Team
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('outplacement')} className="footer-link">
+                    Outplacement
+                  </button>
+                </li>
+              </ul>
             </div>
+
+            {/* 3. Insights */}
+            <div>
+              <h4 className="text-sm font-bold text-[#0B3041] mb-3 uppercase tracking-wider">
+                Insights
+              </h4>
+              <ul className="space-y-2 text-xs">
+                <li>
+                  <button onClick={() => onNavigate('blogs')} className="footer-link">
+                    Blogs
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* 4. T&C */}
+            <div>
+              <h4 className="text-sm font-bold text-[#0B3041] mb-3 uppercase tracking-wider">
+                T&C
+              </h4>
+              <ul className="space-y-2 text-xs">
+                <li>
+                  <button onClick={() => onNavigate('privacy')} className="footer-link">
+                    Privacy
+                  </button>
+                </li>
+                <li>
+                  <button onClick={() => onNavigate('terms')} className="footer-link">
+                    Terms
+                  </button>
+                </li>
+              </ul>
+            </div>
+
           </div>
 
         </div>
 
-        {/* Bottom copyright */}
-        <div className="border-t border-white/10 mt-14 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-300 gap-4">
-          <p>© 2026 Strydz. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white transition">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition">Terms of Service</a>
-            <a href="#" className="hover:text-white transition">Cookie Policy</a>
+        {/* Copyright & Social */}
+        <div className="border-t border-gray-400/40 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#0B3041] gap-4">
+          <div>
+            ©2025 James Douglas. All rights reserved.
+          </div>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://www.linkedin.com/company/james-douglas-global"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full bg-[#0B3041] text-white flex items-center justify-center hover:bg-[#FF7D04] transition-colors"
+              aria-label="LinkedIn"
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63a1.63 1.63 0 0 0 0-3.26z" />
+              </svg>
+            </a>
           </div>
         </div>
 

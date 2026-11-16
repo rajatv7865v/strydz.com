@@ -1,222 +1,191 @@
-import React from 'react';
-import { Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { 
+  ShieldCheck, 
+  Award, 
+  Search, 
+  MapPin, 
+  ChevronLeft, 
+  ChevronRight,
+  ArrowRight
+} from 'lucide-react';
 
 interface AboutPageProps {
-  onOpenHireModal: (category?: string) => void;
-  onNavigateToContact: () => void;
+  onScheduleCall: () => void;
 }
 
-export const AboutPage: React.FC<AboutPageProps> = ({ onOpenHireModal, onNavigateToContact }) => {
-  const searchStages = [
+export const AboutPage: React.FC<AboutPageProps> = ({ onScheduleCall }) => {
+  const [activeLocation, setActiveLocation] = useState<'bengaluru' | 'dubai' | 'singapore'>('bengaluru');
+  const [leaderIndex, setLeaderIndex] = useState(0);
+
+  const leaders = [
     {
-      step: '01',
-      title: 'Search Strategy Formulation',
-      desc: 'Deep discovery with boards and executives to define the leadership mandate, cultural context, and business goals.',
+      name: 'Harish Pillai',
+      role: 'Managing Director',
+      image: 'https://jamesdouglasglobal.com/assets/img/jb-team-profiles/Harish-Pillai.png',
+      linkedin: 'https://www.linkedin.com/in/hpillai/',
     },
     {
-      step: '02',
-      title: 'Candidate Engagement & Assessment',
-      desc: 'Discreet market outreach identifying high-caliber executives with verified track records of driving transformation.',
+      name: 'Praveen Rane',
+      role: 'Executive Director',
+      image: 'https://jamesdouglasglobal.com/assets/img/jb-team-profiles/Praveen-Rane.png',
+      linkedin: 'https://www.linkedin.com/company/james-douglas-global',
     },
     {
-      step: '03',
-      title: 'Shortlisting & Joint Evaluation',
-      desc: 'Structured competency interviews, situational evaluations, and mutual alignment with leadership expectations.',
+      name: 'Narayana Subramanian',
+      role: 'Head Technology',
+      image: 'https://jamesdouglasglobal.com/assets/img/jb-team-profiles/Narayana-Subramanian.png',
+      linkedin: 'https://www.linkedin.com/in/narayana-subramanian-65204b10/',
     },
     {
-      step: '04',
-      title: 'Offer Negotiation & Transition Planning',
-      desc: 'Balancing compensation benchmarks, long-term incentive alignment, and confidential offer management.',
+      name: 'Harish Gaur',
+      role: 'Director, Delivery and Client Services',
+      image: 'https://jamesdouglasglobal.com/assets/img/jb-team-profiles/Harish-Gaur.png',
+      linkedin: 'https://www.linkedin.com/company/james-douglas-global',
     },
     {
-      step: '05',
-      title: 'Post-Placement Integration & Feedback',
-      desc: 'Ongoing check-ins with client and placed leader to ensure early traction and long-term organizational value.',
+      name: 'K. Sudarshan',
+      role: 'Chairman and Managing Director, EMA Partners India',
+      image: 'https://jamesdouglasglobal.com/assets/img/jb-team-profiles/K.Sudarshan.png',
+      linkedin: 'https://www.linkedin.com/in/ksudarshan/',
+    },
+    {
+      name: 'Arun Dasmahapatra',
+      role: 'Executive Advisor to the Board, EMA Partners India',
+      image: 'https://jamesdouglasglobal.com/assets/img/jb-team-profiles/Image.png',
+      linkedin: 'https://www.linkedin.com/in/arun-dasmahapatra-376b14/',
     },
   ];
 
-  const values = [
-    {
-      num: '01',
-      title: 'Trust',
-      desc: 'Uncompromising integrity, discretion, and accountability in every client and candidate interaction.',
-    },
-    {
-      num: '02',
-      title: 'Ownership',
-      desc: 'We treat every leadership mandate as an enterprise mission, staying committed from inception to integration.',
-    },
-    {
-      num: '03',
-      title: 'Excellence',
-      desc: 'Rigorous sector research, market intelligence, and executive assessment that outlasts immediate hiring trends.',
-    },
-  ];
+  const handleNextLeader = () => {
+    setLeaderIndex((prev) => (prev + 1) % leaders.length);
+  };
 
-  const leadershipTeam = [
-    {
-      name: 'Nupur Mehta',
-      role: 'Managing Partner',
-      practice: 'Leadership Hiring & Succession Planning',
-      bio: 'With over a decade of experience in leadership hiring and succession planning, Nupur brings expertise to strengthen mid-to-senior-level talent pipelines, a critical priority for organizations building their next generation of leaders.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
-      linkedin: 'https://www.linkedin.com/in/nupurmehtampi/?originalSubdomain=in',
-    },
-    {
-      name: 'Diksha Uniyal',
-      role: 'Senior Director',
-      practice: 'HR, Healthcare & Diversity Practice',
-      bio: 'Diksha is an executive search leader with 12+ years of experience in HR, sales, healthcare, and analytics, shaping leadership talent, driving organizational growth, and championing diversity and inclusion.',
-      image: 'https://images.unsplash.com/photo-1580894732444-8ecded7900cd?auto=format&fit=crop&w=600&q=80',
-      linkedin: 'https://www.linkedin.com/in/diksha-uniyal-27573054/?originalSubdomain=in',
-    },
-    {
-      name: 'Sakshi Punjabi',
-      role: 'Director',
-      practice: 'Head of Technology & BFSI Practice',
-      bio: 'With 9+ years of consulting experience, Sakshi heads the Technology function and BFSI practice. She partners with CXOs across Tech, Business, HR and others to shape leadership teams that drive digital transformation.',
-      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80',
-      linkedin: 'https://www.linkedin.com/in/sakshi-punjabi-817147103/?originalSubdomain=in',
-    },
-  ];
+  const handlePrevLeader = () => {
+    setLeaderIndex((prev) => (prev - 1 + leaders.length) % leaders.length);
+  };
 
   return (
-    <div className="bg-[#faf7f2] min-h-screen text-slate-900 pb-20">
+    <div className="bg-white min-h-screen">
       
-      {/* 1. Hero Banner with Authentic Imagery */}
-      <section
-        id="about-banner"
-        className="banner relative w-full h-[52vh] min-h-[420px] max-h-[580px] overflow-hidden flex items-center justify-center bg-[#111126] select-none"
-        style={{
-          backgroundImage: `url('https://www.jamesdouglas.co.in/assets/images/about-us-banner.jpg'), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=85')`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
-
-        {/* Centered Banner Overlay */}
-        <div className="banner-overlay relative z-10 w-full md:w-[65%] lg:w-[60%] h-full flex items-center justify-center bg-black/45 md:bg-[#00000077] backdrop-blur-[1px] px-6 sm:px-10 md:px-14 py-12">
-          <div className="banner-content text-center text-white max-w-3xl mx-auto flex flex-col items-center justify-center">
-            
-            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4 text-white">
-              <Sparkles className="w-3.5 h-3.5 text-white" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90">
-                About Strydz
-              </span>
-            </div>
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-medium leading-[1.2] text-white tracking-tight drop-shadow-sm">
-              <span className="hero-corner mr-4 sm:mr-6">Leading With Vision.</span>
-              <br />
-              <span>Built on Expertise.</span>
+      {/* 1. Hero Banner */}
+      <section className="relative w-full h-[320px] sm:h-[420px] lg:h-[480px] overflow-hidden bg-[#0B3041]">
+        <img
+          src="https://jamesdouglasglobal.com/assets/img/banners/about-us-hero-banner.png"
+          alt="About Strydz - a green-tree company "
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1920&q=80";
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B3041]/90 via-[#0B3041]/60 to-transparent flex items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#FF7D04] text-white text-xs font-bold uppercase tracking-wider mb-4">
+              Institutional Heritage
+            </span>
+            <h1 className="text-3xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+              About Us
             </h1>
-
-            <p className="mt-4 sm:mt-5 text-base sm:text-lg md:text-xl text-white/90 font-normal max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
-              We specialize in assessing, hiring, and advising leaders from mid-managerial through senior executive levels across industries and businesses.
+            <p className="mt-3 text-white/90 text-sm sm:text-lg max-w-xl font-medium">
+              Built on Experience. Driven by Intelligence.
             </p>
-
-            {/* Action Buttons */}
-            <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3.5 sm:gap-4">
-              <button
-                onClick={() => onOpenHireModal('Leadership Search')}
-                className="btn-warning-custom px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
-              >
-                Build Your Leadership Team
-              </button>
-              <button
-                onClick={onNavigateToContact}
-                className="px-6 sm:px-7 py-3 rounded-lg text-sm sm:text-base font-medium text-white border border-white/60 hover:border-white hover:bg-white/10 backdrop-blur-sm hover:-translate-y-0.5 transition-all"
-              >
-                Start a Conversation
-              </button>
-            </div>
-
           </div>
         </div>
       </section>
 
-      {/* 2. About Us Two-Column Narrative */}
-      <section className="py-16 md:py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white border border-[#e8e2d5] rounded-3xl p-8 sm:p-12 shadow-xs">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
-            {/* Left Statement */}
-            <div className="lg:col-span-5 space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#514f14]">
-                Executive Focus
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
-                The right leadership has the power to transform organizations
+      {/* 2. Overview Section */}
+      <section className="py-14 sm:py-20 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0B3041] tracking-tight leading-tight mb-6">
+              Empowering Enterprise Hiring with Intent
+            </h2>
+            <div className="space-y-5 text-sm sm:text-base text-[#0B3041]/85 leading-relaxed font-normal">
+              <p>
+                Strydz - a green-tree company  is the Talent Solutions vertical of EMA Partners India Ltd., focused on delivering customized RPO solutions across industries in India, APAC, and the Middle East. With a deep understanding of regional talent landscapes, we help organizations elevate their hiring function through our proprietary TA Maturity Assessment Model. This model provides a structured approach to diagnosing current capabilities and co-creating strategies that drive sustainable growth.
+              </p>
+              <p>
+                Our solutions are built to scale—with flexibility and precision—combining advanced AI technology with deep domain expertise. Powered by MatchCore, our intelligent matching platform, we enable faster, smarter, and more efficient hiring decisions by blending automation with a high-touch recruiter experience.
+              </p>
+              <p>
+                Whether you're solving for volume hiring, niche roles, or strategic workforce planning, JD Global brings the insight, infrastructure, and innovation to help you stay ahead. Backed by the global legacy of EMA Partners and a team of seasoned talent advisors, we are committed to building high-performing teams that fuel business success.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Leadership Team Section */}
+      <section className="py-16 sm:py-24 bg-gray-50/60" id="leadershipTeam">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0B3041] tracking-tight">
+                Leadership Team — Expertise That Drives Results
               </h2>
-              <div className="section-divider-left"></div>
-              <p className="text-sm text-slate-500 italic">
-                “At Strydz, our values are not words. They are promises.”
-              </p>
+              <div className="w-16 h-1 bg-[#FF7D04] mt-3 rounded-full"></div>
             </div>
-
-            {/* Right Detailed Narrative */}
-            <div className="lg:col-span-7 space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
-              <p>
-                <strong className="text-[#31547b] font-semibold">Strydz</strong> is a premier executive search firm focused on mid-management and senior leadership hiring. We partner with boards and business leaders to build transformative leadership teams.
-              </p>
-              <p>
-                We bring together deep industry expertise and diverse perspectives to help organizations address one of their most critical priorities: identifying and securing the right leadership talent.
-              </p>
-              <p>
-                At Strydz, we specialize in assessing, hiring, and advising leaders from mid-managerial through senior executive levels, working across industries and businesses.
-              </p>
-              <p>
-                Our clients include global corporations, established enterprises, and high-growth niche organizations navigating phases of rapid scale, succession planning, and organizational transformation.
-              </p>
+            <div className="flex items-center gap-2 mt-4 md:mt-0">
+              <button
+                onClick={handlePrevLeader}
+                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-[#0B3041] hover:text-white transition-all text-[#0B3041]"
+                aria-label="Previous Leader"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={handleNextLeader}
+                className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-[#0B3041] hover:text-white transition-all text-[#0B3041]"
+                aria-label="Next Leader"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 3. How We Work / Our Search Approach */}
-      <section className="py-20 bg-[#f4efe6] border-y border-[#e8e2d5]" id="search-approach">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Executive Search Rigor</span>
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
-              How We Work:{' '}
-              <span className="text-[#514f14]">
-                Our Search Approach
-              </span>
-            </h2>
-            
-            <div className="section-divider"></div>
-            
-            <p className="text-slate-600 text-base sm:text-lg mt-2 leading-relaxed font-normal">
-              A structured, consultative methodology designed for discretion, speed, and long-term retention.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            {searchStages.map((stage) => (
+          {/* Leaders Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {leaders.map((leader, idx) => (
               <div
-                key={stage.step}
-                className="bg-white border border-[#e8e2d5] rounded-2xl p-6 shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60 transition-all hover:-translate-y-1"
+                key={idx}
+                className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-9 h-9 rounded-xl bg-[#31547b] text-white font-bold text-sm flex items-center justify-center mb-4 shadow-2xs">
-                    {stage.step}
+                  <div className="h-1 bg-[#FF7D04] w-full"></div>
+                  <div className="aspect-[4/3] bg-gray-100 overflow-hidden">
+                    <img
+                      src={leader.image}
+                      alt={leader.name}
+                      className="w-full h-full object-cover object-top group-hover:scale-103 transition-transform duration-500"
+                      onError={(e) => {
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80";
+                      }}
+                    />
                   </div>
-                  <h3 className="text-base font-semibold text-[#31547b] leading-snug">
-                    {stage.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed mt-2 font-normal">
-                    {stage.desc}
-                  </p>
                 </div>
+
+                <div className="p-6 flex items-center justify-between border-t border-gray-50">
+                  <div>
+                    <h3 className="font-bold text-base sm:text-lg text-[#0B3041]">
+                      {leader.name}
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-0.5 leading-snug">
+                      {leader.role}
+                    </p>
+                  </div>
+                  <a
+                    href={leader.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-9 h-9 rounded-full bg-[#0B3041] hover:bg-[#FF7D04] text-white flex items-center justify-center transition-colors flex-none ml-2"
+                    aria-label={`${leader.name} LinkedIn Profile`}
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64c-.9 0-1.63.73-1.63 1.63s.73 1.63 1.63 1.63a1.63 1.63 0 0 0 0-3.26z" />
+                    </svg>
+                  </a>
+                </div>
+
               </div>
             ))}
           </div>
@@ -224,228 +193,245 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onOpenHireModal, onNavigat
         </div>
       </section>
 
-      {/* 4. What Guides Our Work (Values: Trust, Ownership, Excellence) */}
-      <section className="py-20 bg-[#faf7f2]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[#31547b]">Guiding Principles</span>
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl font-semibold tracking-[-0.025em] text-[#31547b] leading-[1.2]">
-              What Guides{' '}
-              <span className="text-[#514f14]">
-                Our Work
-              </span>
-            </h2>
-            
-            <div className="section-divider"></div>
-            
-            <p className="text-slate-600 text-base sm:text-lg mt-2 leading-relaxed font-normal">
-              Our professional search services deliver high-impact leaders for your management and executive needs.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {values.map((v) => (
-              <div
-                key={v.num}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-2xl p-8 shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60"
-              >
-                <div>
-                  <div className="w-10 h-10 rounded-xl bg-[#31547b]/10 text-[#31547b] font-bold text-sm flex items-center justify-center mb-5 group-hover:bg-[#31547b] group-hover:text-white transition-colors">
-                    {v.num}
-                  </div>
-                  <h3 className="text-xl font-bold text-[#31547b] group-hover:text-[#514f14] transition-colors">
-                    {v.title}
-                  </h3>
-                  <p className="text-sm text-slate-600 leading-relaxed mt-2.5 font-normal">
-                    {v.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* 5. Strydz Executive Advisory Legacy Section */}
-      <section className="py-20 bg-gradient-to-br from-[#31547b] via-[#264364] to-[#152537] text-white">
+      {/* 4. EMA Partners Legacy Section */}
+      <section className="py-16 sm:py-24 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             
-            <div className="lg:col-span-6 space-y-5">
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-300">
-                Global Pedigree
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.15]">
-                Strydz Leadership Pedigree
+            {/* Left Image with 1st Listed Badge */}
+            <div className="lg:col-span-6 relative">
+              <div className="rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+                <img
+                  src="https://jamesdouglasglobal.com/assets/img/EMA-Partners-legacy-img.png"
+                  alt="EMA Partners Legacy"
+                  className="w-full h-auto object-cover"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80";
+                  }}
+                />
+              </div>
+
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -right-4 sm:bottom-6 sm:right-6 bg-[#0B3041] text-white rounded-2xl p-4 sm:p-5 shadow-2xl border border-white/20 text-center max-w-[200px]">
+                <span className="block text-3xl font-extrabold text-[#FF7D04]">1st</span>
+                <span className="block text-xs font-semibold leading-tight text-white/90 mt-1">
+                  Listed Global Executive Search Firm In India
+                </span>
+              </div>
+            </div>
+
+            {/* Right Content */}
+            <div className="lg:col-span-6 space-y-6 pt-6 lg:pt-0">
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#0B3041] tracking-tight">
+                EMA Partners Legacy
               </h2>
-              <div className="w-20 h-1 bg-[#514f14] rounded-sm"></div>
               
-              <p className="text-slate-200 text-base sm:text-lg leading-relaxed font-normal">
-                Strydz brings seasoned advisory pedigree that has guided boards and C-suites across critical transitions:
+              <p className="text-sm sm:text-base text-[#0B3041]/85 leading-relaxed font-normal">
+                Strydz - a green-tree company  stands on the shoulders of{' '}
+                <a 
+                  href="https://www.ema-partners.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="font-bold underline text-[#0B3041] hover:text-[#FF7D04]"
+                >
+                  EMA Partners
+                </a>
+                , a globally respected search firm that has advised boards and C-suites for a quarter-century. That pedigree brings:
               </p>
 
               <div className="space-y-4 pt-2">
-                <div className="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center flex-none font-bold">
-                    ✓
+                
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50/80 border border-gray-100">
+                  <div className="w-10 h-10 rounded-xl bg-[#0B3041] text-white flex items-center justify-center flex-none">
+                    <Award className="w-5 h-5 text-[#FF7D04]" />
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-white">Credibility</h4>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-0.5">Trusted relationships with leadership talent across India and global markets.</p>
+                    <h3 className="font-bold text-sm text-[#0B3041]">Credibility</h3>
+                    <p className="text-xs sm:text-sm text-[#0B3041]/75 mt-0.5 leading-relaxed">
+                      Trusted relationships with leadership talent worldwide.
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center flex-none font-bold">
-                    ✓
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50/80 border border-gray-100">
+                  <div className="w-10 h-10 rounded-xl bg-[#0B3041] text-white flex items-center justify-center flex-none">
+                    <ShieldCheck className="w-5 h-5 text-[#FF7D04]" />
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-white">Governance</h4>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-0.5">Rigorous search methodology, in-depth reference checks, and strict compliance discipline.</p>
+                    <h3 className="font-bold text-sm text-[#0B3041]">Governance</h3>
+                    <p className="text-xs sm:text-sm text-[#0B3041]/75 mt-0.5 leading-relaxed">
+                      Rigorous search methodology, reference checks and compliance discipline.
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
-                  <div className="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center flex-none font-bold">
-                    ✓
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-gray-50/80 border border-gray-100">
+                  <div className="w-10 h-10 rounded-xl bg-[#0B3041] text-white flex items-center justify-center flex-none">
+                    <Search className="w-5 h-5 text-[#FF7D04]" />
                   </div>
                   <div>
-                    <h4 className="text-base font-bold text-white">Insight</h4>
-                    <p className="text-xs sm:text-sm text-slate-300 mt-0.5">Sector intelligence across BFSI, Technology, Life Sciences, Manufacturing, and Consumer.</p>
+                    <h3 className="font-bold text-sm text-[#0B3041]">Insight</h3>
+                    <p className="text-xs sm:text-sm text-[#0B3041]/75 mt-0.5 leading-relaxed">
+                      Sector intelligence across BFSI, Tech, Life Sciences, Manufacturing & more.
+                    </p>
                   </div>
                 </div>
-              </div>
-            </div>
 
-            <div className="lg:col-span-6 bg-white/5 border border-white/15 rounded-3xl p-8 sm:p-12 text-center backdrop-blur-md">
-              <div className="w-20 h-20 rounded-2xl bg-[#31547b] text-white border border-[#514f14]/40 flex items-center justify-center mx-auto text-3xl font-black mb-6 shadow-xl">
-                S
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Strydz</h3>
-              <p className="text-slate-300 text-sm max-w-md mx-auto leading-relaxed">
-                Advising boards, promoters, and leadership teams on high-impact executive appointments and leadership succession.
-              </p>
-              <div className="pt-6">
-                <button
-                  onClick={() => onOpenHireModal('Strydz Partnership')}
-                  className="btn-warning-custom px-6 py-3 rounded-xl text-sm font-semibold shadow-md"
-                >
-                  Start an Engagement
-                </button>
-              </div>
+
             </div>
 
           </div>
         </div>
       </section>
 
-      {/* 6. Meet Our Leadership (Nupur Mehta, Diksha Uniyal, Sakshi Punjabi) */}
-      <section className="py-20 bg-[#faf7f2]">
+      {/* 5. Global Reach Section with Interactive Tabs */}
+      <section className="py-16 sm:py-24 bg-gray-50/60" id="globalReach">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#e2dcd0] shadow-[0_2px_8px_rgba(0,0,0,0.03)] backdrop-blur-md mb-3.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#514f14]"></span>
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#31547b]">Consultant Leadership</span>
-            </div>
-            
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#31547b] leading-[1.2]">
-              Meet Our{' '}
-              <span className="text-[#514f14]">
-                Leadership
-              </span>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0B3041] tracking-tight">
+              Global Reach
             </h2>
-            
-            <div className="section-divider"></div>
-            
-            <p className="text-slate-600 text-base sm:text-lg mt-2 leading-relaxed font-normal">
-              Our consultants bring onboard top-quality experience and knowledge, making their mark amongst the best in the industry.
-            </p>
+            <div className="w-16 h-1 bg-[#FF7D04] mx-auto mt-3 rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {leadershipTeam.map((member) => (
-              <div
-                key={member.name}
-                className="premium-card bg-white border border-[#e8e2d5] rounded-3xl overflow-hidden shadow-xs flex flex-col justify-between group hover:border-[#31547b]/60 transition-all"
-              >
-                <div>
-                  <div className="relative h-64 overflow-hidden bg-slate-100">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#31547b]/90 via-transparent to-transparent opacity-80" />
-                    <div className="absolute bottom-4 left-4 right-4 text-white">
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-[#514f14] text-white inline-block mb-1 shadow-sm">
-                        {member.role}
-                      </span>
-                      <h3 className="text-xl font-bold text-white tracking-tight">
-                        {member.name}
-                      </h3>
-                    </div>
-                  </div>
+          {/* Location Selector Tabs */}
+          <div className="flex justify-center space-x-3 mb-8">
+            <button
+              onClick={() => setActiveLocation('bengaluru')}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
+                activeLocation === 'bengaluru'
+                  ? 'bg-[#0B3041] text-white shadow-md'
+                  : 'bg-white text-[#0B3041] border border-gray-200 hover:border-[#FF7D04]'
+              }`}
+            >
+              Bengaluru
+            </button>
+            <button
+              onClick={() => setActiveLocation('dubai')}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
+                activeLocation === 'dubai'
+                  ? 'bg-[#0B3041] text-white shadow-md'
+                  : 'bg-white text-[#0B3041] border border-gray-200 hover:border-[#FF7D04]'
+              }`}
+            >
+              Dubai
+            </button>
+            <button
+              onClick={() => setActiveLocation('singapore')}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all ${
+                activeLocation === 'singapore'
+                  ? 'bg-[#0B3041] text-white shadow-md'
+                  : 'bg-white text-[#0B3041] border border-gray-200 hover:border-[#FF7D04]'
+              }`}
+            >
+              Singapore
+            </button>
+          </div>
 
-                  <div className="p-6">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#514f14] mb-2">
-                      {member.practice}
-                    </p>
-                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
-                      {member.bio}
-                    </p>
-                  </div>
+          {/* Location Details & Interactive Map */}
+          <div className="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm max-w-4xl mx-auto">
+            
+            {activeLocation === 'bengaluru' && (
+              <div className="space-y-5 animate-in fade-in duration-200">
+                <div className="text-center max-w-lg mx-auto">
+                  <h3 className="font-bold text-lg text-[#0B3041] flex items-center justify-center gap-1.5">
+                    <MapPin className="w-5 h-5 text-[#FF7D04]" />
+                    <span>Bengaluru Headquarters</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#0B3041]/80 mt-1 leading-relaxed">
+                    3rd Block, 3 Block, 734, 7th Cross Rd, Koramangala 4-B Block, Koramangala 3 Block, Koramangala, Bengaluru, Karnataka 560034
+                  </p>
                 </div>
-
-                <div className="p-6 pt-0 border-t border-slate-100 mt-4 flex items-center justify-between">
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-semibold text-[#31547b] hover:text-[#514f14] inline-flex items-center gap-1.5 transition-colors"
-                  >
-                    <svg className="w-4 h-4 fill-current text-[#31547b]" viewBox="0 0 24 24">
-                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.76v8.37H6.46v-8.37M7.84 6.2a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24Z" />
-                    </svg>
-                    <span>View LinkedIn Profile</span>
-                  </a>
+                <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-inner h-[380px]">
+                  <iframe
+                    title="Bengaluru Location Map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.641326850684!2d77.623836!3d12.930758999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae145b9410c4ed%3A0xbe682d7dd796b7cc!2s3rd%20Block%2C%203%20Block%2C%20734%2C%207th%20Cross%20Rd%2C%20Koramangala%203%20Block%2C%20Koramangala%2C%20Bengaluru%2C%20Karnataka%20560034!5e0!3m2!1sen!2sin!4v1749733866212!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                  />
                 </div>
               </div>
-            ))}
+            )}
+
+            {activeLocation === 'dubai' && (
+              <div className="space-y-5 animate-in fade-in duration-200">
+                <div className="text-center max-w-lg mx-auto">
+                  <h3 className="font-bold text-lg text-[#0B3041] flex items-center justify-center gap-1.5">
+                    <MapPin className="w-5 h-5 text-[#FF7D04]" />
+                    <span>Dubai Regional Office</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#0B3041]/80 mt-1 leading-relaxed">
+                    Gate Village 7, Level 2, Office 206, DIFC, P.O. Box 507340, Dubai, UAE
+                  </p>
+                </div>
+                <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-inner h-[380px]">
+                  <iframe
+                    title="Dubai Location Map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.750373355437!2d55.27680582570258!3d25.211639477701652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f428fb39b4b6f%3A0x186fd99b04552040!2sDIFC%20Gate%20Village!5e0!3m2!1sen!2sin!4v1749734152781!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            )}
+
+            {activeLocation === 'singapore' && (
+              <div className="space-y-5 animate-in fade-in duration-200">
+                <div className="text-center max-w-lg mx-auto">
+                  <h3 className="font-bold text-lg text-[#0B3041] flex items-center justify-center gap-1.5">
+                    <MapPin className="w-5 h-5 text-[#FF7D04]" />
+                    <span>Singapore Office</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#0B3041]/80 mt-1 leading-relaxed">
+                    6 Raffles Boulevard #03-308 Marina Square Singapore 039594
+                  </p>
+                </div>
+                <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-inner h-[380px]">
+                  <iframe
+                    title="Singapore Location Map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.805224305423!2d103.85510187531948!3d1.291206098696536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da19003a187a6f%3A0xcbb5a46307b2e204!2sJustCo%20%E2%80%93%20Marina%20Square%20%7C%20Coworking%20%26%20Office%20Space!5e0!3m2!1sen!2sin!4v1749734069939!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            )}
+
           </div>
 
         </div>
       </section>
 
-      {/* 7. Ready to bolster your leadership team CTA Banner */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-[#faf7f2]">
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-[#31547b] via-[#264364] to-[#152537] text-white rounded-3xl p-10 sm:p-14 text-center shadow-xl relative overflow-hidden">
-          <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
-              Ready to bolster your leadership team?
-            </h2>
-            <p className="text-white/90 text-sm sm:text-base leading-relaxed font-normal">
-              Start the conversation that shapes your leadership future. Connect directly with our managing partners.
-            </p>
-
-            <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
+      {/* 6. Unlock Clarity-First Hiring Banner */}
+      <section className="py-16 sm:py-20 bg-[#0B3041] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
+                Unlock Clarity-First Hiring
+              </h2>
+              <p className="mt-3 text-sm sm:text-base text-white/85">
+                See how MatchCore and JD Global cut time-to-hire and elevate talent quality—book a quick, no-obligation walkthrough.
+              </p>
+            </div>
+            <div className="flex-none">
               <button
-                onClick={() => onOpenHireModal('About Page Mandate')}
-                className="btn-warning-custom px-6 py-3 rounded-xl text-sm font-semibold shadow-md"
+                onClick={onScheduleCall}
+                className="clarity-hero-button inline-flex items-center gap-2 hover:shadow-lg transition-all"
               >
-                Build Your Leadership Team
-              </button>
-              <button
-                onClick={onNavigateToContact}
-                className="px-6 py-3 rounded-xl text-sm font-semibold text-[#31547b] bg-white hover:bg-slate-100 transition shadow-sm"
-              >
-                Contact Us
+                <span>Schedule a Call</span>
+                <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
