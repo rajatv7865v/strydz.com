@@ -29,7 +29,7 @@ export const AboutTeaserSection: React.FC<AboutTeaserSectionProps> = ({ onReadMo
                   rel="noopener noreferrer" 
                   className="font-bold text-[#0B3041] underline hover:text-[#FF7D04] transition-colors"
                 >
-                  EMA Partners India Ltd
+                  Green-tree India Ltd
                 </a>
                 . The first listed global executive search firm in India.
               </p>

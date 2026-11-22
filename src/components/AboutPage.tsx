@@ -44,13 +44,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onScheduleCall }) => {
     },
     {
       name: 'K. Sudarshan',
-      role: 'Chairman and Managing Director, EMA Partners India',
+      role: 'Chairman and Managing Director, Green-tree India',
       image: 'https://jamesdouglasglobal.com/assets/img/jb-team-profiles/K.Sudarshan.png',
       linkedin: 'https://www.linkedin.com/in/ksudarshan/',
     },
     {
       name: 'Arun Dasmahapatra',
-      role: 'Executive Advisor to the Board, EMA Partners India',
+      role: 'Executive Advisor to the Board, Green-tree India',
       image: 'https://jamesdouglasglobal.com/assets/img/jb-team-profiles/Image.png',
       linkedin: 'https://www.linkedin.com/in/arun-dasmahapatra-376b14/',
     },
@@ -101,13 +101,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onScheduleCall }) => {
             </h2>
             <div className="space-y-5 text-sm sm:text-base text-[#0B3041]/85 leading-relaxed font-normal">
               <p>
-                Strydz - a green-tree company  is the Talent Solutions vertical of EMA Partners India Ltd., focused on delivering customized RPO solutions across industries in India, APAC, and the Middle East. With a deep understanding of regional talent landscapes, we help organizations elevate their hiring function through our proprietary TA Maturity Assessment Model. This model provides a structured approach to diagnosing current capabilities and co-creating strategies that drive sustainable growth.
+                Strydz - a green-tree company  is the Talent Solutions vertical of Green-tree India Ltd., focused on delivering customized RPO solutions across industries in India, APAC, and the Middle East. With a deep understanding of regional talent landscapes, we help organizations elevate their hiring function through our proprietary TA Maturity Assessment Model. This model provides a structured approach to diagnosing current capabilities and co-creating strategies that drive sustainable growth.
               </p>
               <p>
                 Our solutions are built to scale—with flexibility and precision—combining advanced AI technology with deep domain expertise. Powered by MatchCore, our intelligent matching platform, we enable faster, smarter, and more efficient hiring decisions by blending automation with a high-touch recruiter experience.
               </p>
               <p>
-                Whether you're solving for volume hiring, niche roles, or strategic workforce planning, JD Global brings the insight, infrastructure, and innovation to help you stay ahead. Backed by the global legacy of EMA Partners and a team of seasoned talent advisors, we are committed to building high-performing teams that fuel business success.
+                Whether you're solving for volume hiring, niche roles, or strategic workforce planning, JD Global brings the insight, infrastructure, and innovation to help you stay ahead. Backed by the global legacy of Green-tree and a team of seasoned talent advisors, we are committed to building high-performing teams that fuel business success.
               </p>
             </div>
           </div>
@@ -193,7 +193,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onScheduleCall }) => {
         </div>
       </section>
 
-      {/* 4. EMA Partners Legacy Section */}
+      {/* 4. Green-tree Legacy Section */}
       <section className="py-16 sm:py-24 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -203,7 +203,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onScheduleCall }) => {
               <div className="rounded-3xl overflow-hidden shadow-lg border border-gray-100">
                 <img
                   src="https://jamesdouglasglobal.com/assets/img/EMA-Partners-legacy-img.png"
-                  alt="EMA Partners Legacy"
+                  alt="Green-tree Legacy"
                   className="w-full h-auto object-cover"
                   onError={(e) => {
                     e.currentTarget.src = "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80";
@@ -223,7 +223,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onScheduleCall }) => {
             {/* Right Content */}
             <div className="lg:col-span-6 space-y-6 pt-6 lg:pt-0">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#0B3041] tracking-tight">
-                EMA Partners Legacy
+                Green-tree Legacy
               </h2>
               
               <p className="text-sm sm:text-base text-[#0B3041]/85 leading-relaxed font-normal">
@@ -234,7 +234,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onScheduleCall }) => {
                   rel="noopener noreferrer" 
                   className="font-bold underline text-[#0B3041] hover:text-[#FF7D04]"
                 >
-                  EMA Partners
+                  Green-tree
                 </a>
                 , a globally respected search firm that has advised boards and C-suites for a quarter-century. That pedigree brings:
               </p>

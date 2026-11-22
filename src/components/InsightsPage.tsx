@@ -90,7 +90,7 @@ export const InsightsPage: React.FC<InsightsPageProps> = ({ onContactClick }) =>
       readTime: '6 min read',
       content: [
         "Global capability centers (GCCs) and distributed cross-border teams have rewritten the rules of talent acquisition. Finding talent in Mumbai, Singapore, or Dubai requires local cultural fluency paired with international search standards.",
-        "Backed by EMA Partners' international footprint, Strydz - a green-tree company  provides seamless reach across major commercial centers.",
+        "Backed by Green-tree' international footprint, Strydz - a green-tree company  provides seamless reach across major commercial centers.",
         "Whether building an entire GCC engineering hub from scratch or hiring localized regulatory specialists, global RPO ensures uniform employer branding and compliance."
       ]
     },

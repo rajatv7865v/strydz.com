@@ -83,12 +83,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
           
           {/* MatchCore */}
           <button
-            onClick={() => handleNav('matchcore')}
+            onClick={() => handleNav('hirebound')}
             className={`px-3.5 py-2 rounded-lg transition-colors hover:text-[#FF7D04] ${
-              currentView === 'matchcore' ? 'text-[#FF7D04] font-semibold' : 'text-[#0B3041]'
+              currentView === 'hirebound' ? 'text-[#FF7D04] font-semibold' : 'text-[#0B3041]'
             }`}
           >
-            MatchCore
+            Hire Bound
           </button>
 
           {/* Solutions Dropdown */}
@@ -157,7 +157,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
                 </button>
                 <div className="border-t border-gray-100 my-1"></div>
                 <button
-                  onClick={() => handleNav('matchcore')}
+                  onClick={() => handleNav('hirebound')}
                   className="w-full text-left px-4 py-2.5 text-sm font-semibold text-[#FF7D04] hover:bg-[#0B3041] hover:text-white transition-colors"
                 >
                   MatchCore Platform
@@ -232,10 +232,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
         <div className="lg:hidden bg-white border-t border-gray-100 px-5 pt-3 pb-6 space-y-2 shadow-lg animate-in fade-in duration-200">
           
           <button
-            onClick={() => handleNav('matchcore')}
+            onClick={() => handleNav('hirebound')}
             className="w-full text-left py-2.5 font-medium text-[#0B3041] border-b border-gray-50 hover:text-[#FF7D04]"
           >
-            MatchCore
+            Hire Bound
           </button>
 
           {/* Mobile Solutions Accordion */}
@@ -256,7 +256,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
                 <button onClick={() => handleNav('source-screen')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Source & Screen</button>
                 <button onClick={() => handleNav('flex-team')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Flex team</button>
                 <button onClick={() => handleNav('outplacement')} className="w-full text-left py-2 text-sm text-[#0B3041] hover:text-[#FF7D04]">Outplacement</button>
-                <button onClick={() => handleNav('matchcore')} className="w-full text-left py-2 text-sm font-semibold text-[#FF7D04]">MatchCore Platform</button>
+                <button onClick={() => handleNav('hirebound')} className="w-full text-left py-2 text-sm font-semibold text-[#FF7D04]">MatchCore Platform</button>
               </div>
             )}
           </div>

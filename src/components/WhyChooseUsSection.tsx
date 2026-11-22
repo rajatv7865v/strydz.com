@@ -5,7 +5,7 @@ export const WhyChooseUsSection: React.FC = () => {
   const cards = [
     {
       title: 'Trusted Pedigree',
-      text: "Backed by EMA Partners' 20-year executive-search legacy.",
+      text: "Backed by Green-tree' 20-year executive-search legacy.",
       icon: 'https://jamesdouglasglobal.com/assets/img/whyus/trusted-pedigree.svg',
       fallbackIcon: <ShieldCheck className="w-10 h-10 text-[#FF7D04]" />,
     },

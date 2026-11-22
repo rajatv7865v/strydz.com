@@ -24,8 +24,8 @@ export const App: React.FC = () => {
       const hash = window.location.hash.replace('#', '').toLowerCase();
       if (!hash || hash === 'home') {
         setCurrentView('home');
-      } else if (hash === 'matchcore' || hash === 'matchcore-platform') {
-        setCurrentView('matchcore');
+      } else if (hash === 'hirebound' || hash === 'hirebound-platform') {
+        setCurrentView('hirebound');
       } else if (hash === 'enterprise-rpo') {
         setCurrentView('enterprise-rpo');
       } else if (hash === 'project-rpo') {
@@ -95,7 +95,7 @@ export const App: React.FC = () => {
           </>
         )}
 
-        {currentView === 'matchcore' && (
+        {currentView === 'hirebound' && (
           <MatchCorePage onTalkToExpert={() => handleNavigate('contact')} />
         )}
 

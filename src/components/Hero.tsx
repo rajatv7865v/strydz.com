@@ -21,7 +21,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           poster="https://jamesdouglasglobal.com/assets/videos/hero-banner.png"
         >
           <source 
-            src="https://jamesdouglasglobal.com/assets/videos/hero-section-video.mp4" 
+            src="/hero-section-video.mp4" 
             type="video/mp4" 
           />
         </video>
@@ -54,7 +54,7 @@ export const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
             </h1>
 
             <p className="mt-4 sm:mt-5 text-base sm:text-lg md:text-[20px] text-[#0B3041] font-medium leading-relaxed max-w-md">
-              AI-powered. Human-led. Backed by the legacy of EMA Partners.
+              AI-powered. Human-led. Backed by the legacy of Green-tree.
             </p>
 
             <div className="mt-7 sm:mt-8">

@@ -1,6 +1,6 @@
 export type JDView = 
   | 'home'
-  | 'matchcore'
+  | 'hirebound'
   | 'enterprise-rpo'
   | 'project-rpo'
   | 'process-rpo'

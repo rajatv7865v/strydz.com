@@ -388,7 +388,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentView, onTalkT
       paragraphs: [
         "JD Global's Flex Team solutions offer you the agility to access skilled talent precisely when and where you need it.",
         "From tech specialists supporting short projects to customer service teams during peak periods, we help you scale quickly, efficiently, and cost-effectively — ensuring your workforce adapts fluidly to changing business priorities.",
-        "Eliminate long procurement cycles and ensure complete payroll, legal, and operational compliance under institutional EMA Partners governance."
+        "Eliminate long procurement cycles and ensure complete payroll, legal, and operational compliance under institutional Green-tree governance."
       ],
       whyItWorks: [
         {
@@ -481,7 +481,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ currentView, onTalkT
         },
         {
           title: 'Executive Network Exposure',
-          description: "Leverages EMA Partners' international leadership reach to connect talent with active market openings.",
+          description: "Leverages Green-tree' international leadership reach to connect talent with active market openings.",
           icon: <TrendingUp className="w-6 h-6 text-[#FF7D04]" />
         },
         {

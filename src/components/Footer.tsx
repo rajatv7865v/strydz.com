@@ -34,7 +34,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
             </button>
             <p className="mt-4 text-xs text-[#0B3041]/80 max-w-xs leading-relaxed font-normal">
-              The Talent-Solutions arm of EMA Partners India Ltd. AI-powered. Human-led.
+              The Talent-Solutions arm of Green-tree India Ltd. AI-powered. Human-led.
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </h4>
               <ul className="space-y-2 text-xs">
                 <li>
-                  <button onClick={() => onNavigate('matchcore')} className="footer-link">
+                  <button onClick={() => onNavigate('hirebound')} className="footer-link">
                     MatchCore
                   </button>
                 </li>
