@@ -18,19 +18,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               onClick={() => onNavigate('home')}
               className="focus:outline-none text-left"
             >
-              <img 
-                src="https://jamesdouglasglobal.com/assets/img/brand/jd-logo.svg" 
-                alt="Strydz - a green-tree company " 
-                className="h-10 w-auto object-contain"
-                onError={(e) => {
-                  e.currentTarget.style.display = 'none';
-                  const fallback = document.getElementById('footer-jd-logo-fallback');
-                  if (fallback) fallback.style.display = 'block';
-                }}
-              />
-              <div id="footer-jd-logo-fallback" className="hidden font-bold tracking-tight text-[#0B3041]">
-               <img src='/logo STRYDZ new.jpg' alt='logo'/>
-              </div>
+            <img 
+           src='/logo STRYDZ new.jpg'
+            alt="Strydz - a green-tree company " 
+            className="h-9 sm:h-16 w-auto object-contain"
+            onError={(e) => {
+              // Graceful fallback if image URL is inaccessible
+              e.currentTarget.style.display = 'none';
+              const fallback = document.getElementById('jd-logo-fallback');
+              if (fallback) fallback.style.display = 'flex';
+            }}
+          />
             </button>
             <p className="mt-4 text-xs text-[#0B3041]/80 max-w-xs leading-relaxed font-normal">
               The Talent-Solutions arm of Green-tree India Ltd. AI-powered. Human-led.

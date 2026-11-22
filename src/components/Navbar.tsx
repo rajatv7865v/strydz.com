@@ -62,9 +62,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
           aria-label="Strydz - a green-tree company  Home"
         >
           <img 
-            src="https://jamesdouglasglobal.com/assets/img/brand/jd-logo.svg" 
+           src='/logo STRYDZ new.jpg'
             alt="Strydz - a green-tree company " 
-            className="h-9 sm:h-10 w-auto object-contain"
+            className="h-9 sm:h-16 w-auto object-contain"
             onError={(e) => {
               // Graceful fallback if image URL is inaccessible
               e.currentTarget.style.display = 'none';
@@ -72,9 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
               if (fallback) fallback.style.display = 'flex';
             }}
           />
-          <div id="jd-logo-fallback" className="hidden items-center gap-1.5 font-bold tracking-tight text-[#0B3041]">
-           <img src='/logo STRYDZ new.jpg' alt='logo'/>
-          </div>
+          
         </button>
 
         {/* Desktop Navigation Links */}
