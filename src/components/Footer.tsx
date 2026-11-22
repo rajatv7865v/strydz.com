@@ -29,8 +29,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 }}
               />
               <div id="footer-jd-logo-fallback" className="hidden font-bold tracking-tight text-[#0B3041]">
-                <span className="text-xl tracking-tight text-[#0B3041]">JAMES DOUGLAS</span>
-                <span className="text-xs bg-[#FF7D04] text-white px-1.5 py-0.5 rounded font-semibold ml-1.5 uppercase">Global</span>
+               <img src='/logo STRYDZ new.jpg' alt='logo'/>
               </div>
             </button>
             <p className="mt-4 text-xs text-[#0B3041]/80 max-w-xs leading-relaxed font-normal">
