@@ -73,8 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
             }}
           />
           <div id="jd-logo-fallback" className="hidden items-center gap-1.5 font-bold tracking-tight text-[#0B3041]">
-            <span className="text-xl tracking-tight text-[#0B3041]">JAMES DOUGLAS</span>
-            <span className="text-xs bg-[#FF7D04] text-white px-1.5 py-0.5 rounded font-semibold uppercase">Global</span>
+           <img src='/logo STRYDZ new.jpg' alt='logo'/>
           </div>
         </button>
 
