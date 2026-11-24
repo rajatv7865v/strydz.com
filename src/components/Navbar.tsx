@@ -56,24 +56,32 @@ export const Navbar: React.FC<NavbarProps> = ({ currentView, onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Brand Logo */}
-        <button 
-          onClick={() => handleNav('home')} 
-          className="flex items-center gap-2 focus:outline-none text-left"
-          aria-label="Strydz - a green-tree company  Home"
-        >
-          <img 
-           src='/logo STRYDZ new.jpg'
-            alt="Strydz - a green-tree company " 
-            className="h-9 sm:h-16 w-auto object-contain"
-            onError={(e) => {
-              // Graceful fallback if image URL is inaccessible
-              e.currentTarget.style.display = 'none';
-              const fallback = document.getElementById('jd-logo-fallback');
-              if (fallback) fallback.style.display = 'flex';
-            }}
-          />
-          
-        </button>
+      <button
+  onClick={() => handleNav('home')}
+  className="flex items-center gap-3 focus:outline-none text-left"
+  aria-label="Strydz - Management Consultant, a green-tree company - Home"
+>
+  <img
+    src="/logo STRYDZ new.jpg"
+    alt="Strydz logo"
+    className="h-9 sm:h-16 w-auto object-contain"
+    onError={(e) => {
+      // Graceful fallback if image URL is inaccessible
+      e.currentTarget.style.display = 'none';
+      const fallback = document.getElementById('jd-logo-fallback');
+      if (fallback) fallback.style.display = 'flex';
+    }}
+  />
+
+  <div className="flex flex-col leading-tight">
+    <span className="text-sm sm:text-[17px] font-semibold text-gray-900">
+      STRYDZ Management Consulting
+    </span>
+    <span className="text-[10px] sm:text-sm text-green-700">
+      a green-tree company
+    </span>
+  </div>
+</button>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center space-x-1 font-medium text-sm text-[#0B3041]">
